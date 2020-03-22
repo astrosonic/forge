@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Log into FORGE</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for("static", filename="css3/uikit.min.css") }}" />
+        <link rel="stylesheet" href="{{ url_for("static", filename="css3/custfrmt.css") }}" />
+        <script src="{{ url_for("static", filename="jscn/uikit.min.js") }}"></script>
+        <script src="{{ url_for("static", filename="jscn/uikit-icons.min.js") }}"></script>
+    </head>
+    <body>
+        <br/>
+        <div class="uk-container uk-container-small">
+            <div class="uk-card uk-background-secondary uk-width-1-1@s">
+                <div class="uk-card-header forggrin">
+                    <div class="uk-grid-small uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto uk-padding-remove">
+                            <img class="uk-border-circle" width="50" height="50" src="{{ url_for("static", filename="imgs/datalogo.png") }}">
+                        </div>
+                        <div class="uk-width-expand">
+                            <h3 class="uk-card-title uk-margin-remove headelem">Forensics Oriented Reporting Group Under Encryption</h3>
+                            <p class="uk-text-meta uk-margin-remove normelem">Version {{ versinfo.mainline }} - {{ versinfo.warnmail }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-card-body uk-background-default uk-padding-small">
+                    {% if erorcode != "" %}
+                    <div class="uk-alert-danger" uk-alert>
+                        <p class="normelem">{{ erorlist[erorcode] }}</p>
+                    </div>
+                    {% endif %}
+                    <p class="normelem">You need to login to continue.</p>
+                    <form method="POST">
+                        <fieldset class="uk-fieldset normelem">
+                            <p><input class="uk-input" type="text" name="username" placeholder="Username"></p>
+                            <p><input class="uk-input" type="password" name="password" placeholder="Password"></p>
+                        </fieldset>
+                        <input type="submit" value="LOGIN" class="uk-button uk-background-secondary headelem forggrin"/>
+                    </form>
+                    <p class="normelem">Don't have an account yet? Create one here</p>
+                    <a href="{{ url_for("makeacnt") }}">
+                        <button class="uk-button uk-background-secondary headelem forggrin">
+                            SIGNUP
+                        </button>
+                    </a>
+                </div>
+                <div class="uk-card-footer forggrin">
+                    <p class="uk-margin-remove normelem">FORGE Client v{{ versinfo.mainline }}</p>
+                    <p class="uk-margin-remove uk-text-small normelem">Built by <span class="headelem">t0xic0der</span></p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
