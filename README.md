@@ -89,20 +89,20 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
   * Created frontend for compose page
 * Elected GMT for default timezone
 * Built inbox backbone
- * Added convertor function for timestamp
- * Added private key fetch function - reading
- * Added convertor function for byte-index array
- * Enabled *subject* decryption for sent and received directives
- * Enabled *content* decryption for sent and received directives
+  * Added convertor function for timestamp
+  * Added private key fetch function - reading
+  * Added convertor function for byte-index array
+  * Enabled *subject* decryption for sent and received directives
+  * Enabled *content* decryption for sent and received directives
 
 ### v21032020
 * Updated compose backbone
- * Added validation check for empty recipient response
- * Added validation check for nonexistent recipient
- * Added validation check for empty subject response
- * Added validation check for empty content response
+  * Added validation check for empty recipient response
+  * Added validation check for nonexistent recipient
+  * Added validation check for empty subject response
+  * Added validation check for empty content response
 * Updated inbox backbone
- * Added sent directive fetching function
- * Added received directive fetching function
- * Added mail reader for single directive
- * Enabled moving to trashcan feature for directives
+  * Added sent directive fetching function
+  * Added received directive fetching function
+  * Added mail reader for single directive
+  * Enabled moving to trashcan feature for directives
