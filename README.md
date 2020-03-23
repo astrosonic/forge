@@ -24,7 +24,7 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
 ## Changelog
 **NOTE** : Project follows a rolling version control model  
 
-### v17032020
+### v18032020
 * Built basic flow-of-control framework
 * Elected UIKit CSS framework for look-and-feel
 * Elected SQLite3 database for testing purposes
@@ -37,7 +37,7 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
   * Added login check by hash comparison
   * Created frontend for login page
 
-### v18032020
+### v19032020
 * Elected RSA2048 as the default asymmetric encryption method
 * Built signup backbone
   * Added validation check for existing account
@@ -58,7 +58,7 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
   * Added link to settings page
   * Added link to logout
 
-### v19032020
+### v20032020
 * Updated login backbone
   * Added validation check for empty username response
   * Added validation check for empty password response
@@ -75,7 +75,7 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
   * Added centralized version info
   * Added centralized error handling routine
 
-### v20032020
+### v21032020
 * Built compose backbone
   * Enable one-to-one directive sharing
   * Added validation check for existing account
@@ -95,7 +95,7 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
   * Enabled *subject* decryption for sent and received directives
   * Enabled *content* decryption for sent and received directives
 
-### v21032020
+### v22032020
 * Updated compose backbone
   * Added validation check for empty recipient response
   * Added validation check for nonexistent recipient
@@ -106,3 +106,6 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
   * Added received directive fetching function
   * Added mail reader for single directive
   * Enabled moving to trashcan feature for directives
+  * Created frontend for inbox page
+  * Created frontend for mail reader page
+  * Created frontend for inbox redirect
