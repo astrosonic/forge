@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-import libr_makeacnt, libr_entrydir, libr_sessdata, libr_fgconfig, libr_makemail, libr_inbxpage
+import libr_makeacnt, libr_entrydir, libr_sessdata, libr_fgconfig, libr_makemail, libr_inbxpage, libr_trashcan
 
 versinfo = libr_fgconfig.versinfo
 erorlist = libr_fgconfig.erorlist
@@ -48,6 +48,22 @@ def rmovmail(paradrct, mailiden):
         libr_inbxpage.movetrsh(paradrct, mailiden)
         return render_template("rmovmail.html", username=trgtuser["username"], versinfo=versinfo)
 
+@software.route("/purgemsg/<paradrct>/<mailiden>/")
+def purgemsg(paradrct, mailiden):
+    if trgtuser == None:
+        return render_template("invalses.html", versinfo=versinfo)
+    else:
+        libr_trashcan.purgemsg(paradrct, mailiden)
+        return render_template("purgemsg.html", username=trgtuser["username"], versinfo=versinfo)
+
+@software.route("/rstrmail/<paradrct>/<mailiden>/")
+def rstrmail(paradrct, mailiden):
+    if trgtuser == None:
+        return render_template("invalses.html", versinfo=versinfo)
+    else:
+        libr_trashcan.moveinbx(paradrct, mailiden)
+        return render_template("rstrmail.html", username=trgtuser["username"], versinfo=versinfo)
+
 @software.route("/inbxpage/")
 def inbxpage():
     if trgtuser == None:
@@ -69,7 +85,9 @@ def trashcan():
     if trgtuser == None:
         return render_template("invalses.html", versinfo=versinfo)
     else:
-        return render_template("trashcan.html", username=trgtuser["username"], versinfo=versinfo)
+        recvdict = libr_trashcan.fetcrecv(trgtuser["username"])
+        senddict = libr_trashcan.fetcsend(trgtuser["username"])
+        return render_template("trashcan.html", username=trgtuser["username"], versinfo=versinfo, recvdict=recvdict, senddict=senddict)
 
 @software.route("/grupdata/")
 def grupdata():
@@ -101,13 +119,21 @@ def fglogout():
         trgtuser = None
         return render_template("fglogout.html", username="", versinfo=versinfo)
 
-@software.route("/readpage/<paradrct>/<mailiden>/")
-def readpage(paradrct, mailiden):
+@software.route("/readinbx/<paradrct>/<mailiden>/")
+def readinbx(paradrct, mailiden):
     if trgtuser == None:
         return render_template("invalses.html", versinfo=versinfo)
     else:
         maildict = libr_inbxpage.mailread(paradrct, mailiden, trgtuser["username"])
-        return render_template("readpage.html", username=trgtuser["username"], versinfo=versinfo, maildict=maildict, itempara=paradrct)
+        return render_template("readinbx.html", username=trgtuser["username"], versinfo=versinfo, maildict=maildict, itempara=paradrct)
+
+@software.route("/readtrsh/<paradrct>/<mailiden>/")
+def readtrsh(paradrct, mailiden):
+    if trgtuser == None:
+        return render_template("invalses.html", versinfo=versinfo)
+    else:
+        maildict = libr_trashcan.mailread(paradrct, mailiden, trgtuser["username"])
+        return render_template("readtrsh.html", username=trgtuser["username"], versinfo=versinfo, maildict=maildict, itempara=paradrct)
 
 @software.route("/", methods=["GET", "POST"])
 def entrydir(erorcode = ""):
