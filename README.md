@@ -21,12 +21,6 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
 * Capable of one-to-many directive sharing using *broadcast* and *groups*
 * State-of-the-art session management and user access control
 
-## Screenshots
-* Login page
-  ![Login page](/pictures/entrydir.png)
-* Signup page
-  ![Signup page](/pictures/makeacnt.png)
-
 ## Changelog
 **NOTE** : Project follows a rolling version control model  
 
