@@ -108,4 +108,23 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
   * Enabled moving to trashcan feature for directives
   * Created frontend for inbox page
   * Created frontend for mail reader page
-  * Created frontend for inbox redirect
+  * Created frontend for delete-to-inbox redirect
+
+### v23032020
+* Updated inbox backbone
+  * Corrected mail reader page reference
+* Built trashcan backbone
+  * Added convertor function for timestamp
+  * Added private key fetch function - reading
+  * Added convertor function for byte-index array
+  * Enabled *subject* decryption for sent and received directives
+  * Enabled *content* decryption for sent and received directives
+  * Added removed sent directive fetching function
+  * Added removed received directive fetching function
+  * Added mail reader for single directive
+  * Enabled restoring to inbox feature for directives
+  * Enabled permanent purge feature for directives
+  * Created frontend for trashcan page
+  * Created frontend for mail reader page
+  * Created frontend for restore-to-trashcan redirect
+  * Created frontend for purge-to-trashcan redirect
