@@ -142,4 +142,7 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
   * Created frontend for contacts page
   * Created frontend for follow-to-contacts redirect
   * Created frontend for unfollow-to-contacts redirect
-  
+* Updated trashcan backbone
+  * Handled undecryptable *subject* & *content* of directives
+* Updated inbox backbone
+  * Handled undecryptable *subject* & *content* of directives
