@@ -1,7 +1,6 @@
 # forge
 Forensics Oriented Reporting Group Under Encryption
 
-
 ## Ideology
 **This project is follows the belief of Sir Abraham Lincoln**
 > You can fool *all* the people *some* of the time and *some* of the people *all* the time,
@@ -128,3 +127,19 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
   * Created frontend for mail reader page
   * Created frontend for restore-to-trashcan redirect
   * Created frontend for purge-to-trashcan redirect
+
+### v24022020
+* Built contacts backbone
+  * Added unique identity for every contact list entry
+  * Added validation check for saved contacts
+  * Added validation check for empty search query
+  * Added error handling for empty search results
+  * Enabled *follow* feature - single-end contact creation
+  * Enabled *unfollow* feature - single-end contact removal
+  * Added function for fetching saved contacts
+  * Added function for searching unsaved contacts
+  * Added function for fetching details on single contact
+  * Created frontend for contacts page
+  * Created frontend for follow-to-contacts redirect
+  * Created frontend for unfollow-to-contacts redirect
+  
