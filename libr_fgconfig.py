@@ -91,5 +91,7 @@ erorlist = {
     "nosubjsp": "You did not specify a directive subject.",
     "contemty": "The directive cannot be sent empty.",
     "recvabst": "No receiver with the provided username exists.",
-    "mailsucc": "Your directive has been sent successfully"
+    "mailsucc": "Your directive has been sent successfully.",
+    "srchemty": "You cannot search with empty query.",
+    "nouserfd": "No user contact with this username was found."
 }
