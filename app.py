@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-import libr_makeacnt, libr_entrydir, libr_sessdata, libr_fgconfig, libr_makemail, libr_inbxpage, libr_trashcan
+import libr_makeacnt, libr_entrydir, libr_sessdata, libr_fgconfig, libr_makemail, libr_inbxpage, libr_trashcan, libr_contacts
 
 versinfo = libr_fgconfig.versinfo
 erorlist = libr_fgconfig.erorlist
@@ -40,6 +40,22 @@ def makemail(erorcode=""):
             return render_template("makemail.html", username=trgtuser["username"], versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
         return render_template("makemail.html", username=trgtuser["username"], versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
 
+@software.route("/folocont/<usercont>/")
+def folocont(usercont):
+    if trgtuser == None:
+        return render_template("invalses.html", versinfo=versinfo)
+    else:
+        libr_contacts.addtocnt(usercont, trgtuser["username"])
+        return render_template("folocont.html", username=trgtuser["username"], versinfo=versinfo)
+
+@software.route("/unfocont/<usercont>/")
+def unfocont(usercont):
+    if trgtuser == None:
+        return render_template("invalses.html", versinfo=versinfo)
+    else:
+        libr_contacts.delfmcnt(usercont, trgtuser["username"])
+        return render_template("unfocont.html", username=trgtuser["username"], versinfo=versinfo)
+
 @software.route("/rmovmail/<paradrct>/<mailiden>/")
 def rmovmail(paradrct, mailiden):
     if trgtuser == None:
@@ -73,12 +89,22 @@ def inbxpage():
         senddict = libr_inbxpage.fetcsend(trgtuser["username"])
         return render_template("inbxpage.html", username=trgtuser["username"], versinfo=versinfo, recvdict=recvdict, senddict=senddict)
 
-@software.route("/contacts/")
-def contacts():
+@software.route("/contacts/", methods=["GET", "POST"])
+def contacts(srchuser = [], erorcode = ""):
     if trgtuser == None:
         return render_template("invalses.html", versinfo=versinfo)
     else:
-        return render_template("contacts.html", username=trgtuser["username"], versinfo=versinfo)
+        savedone = libr_contacts.fetccont(trgtuser["username"])
+        if request.method == "POST":
+            srchtext = request.form["srchtext"]
+            if srchtext == "":
+                erorcode = "srchemty"
+            else:
+                srchuser = libr_contacts.fetcuser(srchtext, trgtuser["username"])
+                if srchuser == []:
+                    erorcode = "nouserfd"
+            return render_template("contacts.html", username=trgtuser["username"], versinfo=versinfo, savedone=savedone, srchuser=srchuser, erorcode=erorcode, erorlist=erorlist)
+        return render_template("contacts.html", username=trgtuser["username"], versinfo=versinfo, savedone=savedone, srchuser=srchuser, erorcode=erorcode, erorlist=erorlist)
 
 @software.route("/trashcan/")
 def trashcan():
@@ -118,6 +144,14 @@ def fglogout():
     else:
         trgtuser = None
         return render_template("fglogout.html", username="", versinfo=versinfo)
+
+@software.route("/viewuser/<parauser>/<usercont>/")
+def viewuser(parauser, usercont):
+    if trgtuser == None:
+        return render_template("invalses.html", versinfo=versinfo)
+    else:
+        userdict = libr_contacts.fetcsing(usercont)
+        return render_template("viewuser.html", username=trgtuser["username"], versinfo=versinfo, userdict=userdict, itempara=parauser)
 
 @software.route("/readinbx/<paradrct>/<mailiden>/")
 def readinbx(paradrct, mailiden):
