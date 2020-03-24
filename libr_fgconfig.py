@@ -93,5 +93,5 @@ erorlist = {
     "recvabst": "No receiver with the provided username exists.",
     "mailsucc": "Your directive has been sent successfully.",
     "srchemty": "You cannot search with empty query.",
-    "nouserfd": "No user contact with this username was found."
+    "nouserfd": "No new contact with this username was found."
 }
