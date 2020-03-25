@@ -121,9 +121,31 @@ Forensics Oriented Reporting Group Under Encryption
   * Added function for searching unsaved contacts
   * Added function for fetching details on single contact
   * Created frontend for contacts page
+  * Created frontend for single contact view page
   * Created frontend for follow-to-contacts redirect
   * Created frontend for unfollow-to-contacts redirect
 * Updated trashcan backbone
   * Handled undecryptable *subject* & *content* of directives
 * Updated inbox backbone
   * Handled undecryptable *subject* & *content* of directives
+
+### v25022020
+* Overhauled template system with inheritance
+  * Added master template without menubar
+  * Added master template with menubar
+* Optimization performed
+  * Minimized login page
+  * Minimized signup page
+  * Minimized dashboard page
+  * Minimized compose page
+  * Minimized inbox listing page
+  * Minimized inbox mail reader page
+  * Minimized delete-to-inbox redirect
+  * Minimized trashcan listing page
+  * Minimized trashcan mail reader page
+  * Minimized restore-to-trashcan redirect
+  * Minimized purge-to-trashcan redirect
+  * Minimized contacts listing page
+  * Minimized single contact view page
+  * Minimized follow-to-contacts redirect
+  * Minimized unfollow-to-contacts redirect
