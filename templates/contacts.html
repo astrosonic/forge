@@ -1,97 +1,58 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Contacts</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{{ url_for("static", filename="css3/uikit.min.css") }}" />
-        <link rel="stylesheet" href="{{ url_for("static", filename="css3/custfrmt.css") }}" />
-        <script src="{{ url_for("static", filename="jscn/uikit.min.js") }}"></script>
-        <script src="{{ url_for("static", filename="jscn/uikit-icons.min.js") }}"></script>
-    </head>
-    <body>
-        <br/>
-        <div class="uk-container uk-container-small">
-            <div class="uk-card uk-background-secondary uk-width-1-1@s">
-                <div class="uk-card-header forggrin">
-                    <div class="uk-grid-small uk-flex-middle" uk-grid>
-                        <div class="uk-width-auto uk-padding-remove">
-                            <img class="uk-border-circle" width="50" height="50" src="{{ url_for("static", filename="imgs/datalogo.png") }}">
-                        </div>
-                        <div class="uk-width-expand">
-                            <h3 class="uk-card-title uk-margin-remove headelem">Contacts</h3>
-                            <p class="uk-text-meta uk-margin-remove normelem">Welcome, {{ username }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="uk-card-body uk-background-default uk-padding-remove uk-margin-remove">
-                    <nav class="uk-navbar-container headelem" uk-navbar>
-                        <div class="uk-navbar-left">
-                            <ul class="uk-navbar-nav">
-                                <li><a href="{{ url_for("makemail") }}">Compose</a></li>
-                                <li><a href="{{ url_for("inbxpage") }}">Inbox</a></li>
-                                <li><a href="{{ url_for("contacts") }}">Contacts</a></li>
-                                <li><a href="{{ url_for("trashcan") }}">Trashcan</a></li>
-                                <li><a href="{{ url_for("grupdata") }}">Groups</a></li>
-                                <li><a href="{{ url_for("brodcast") }}">Broadcast</a></li>
-                                <li><a href="{{ url_for("settings") }}">Settings</a></li>
-                                <li><a href="{{ url_for("fglogout") }}">Logout</a></li>
-                            </ul>
-                        </div>
-                    </nav>
-                    {% if erorcode != "" %}
-                        <div class="uk-alert-danger" uk-alert>
-                            <p class="normelem">{{ erorlist[erorcode] }}</p>
-                        </div>
-                    {% endif %}
-                    <h3 class="headelem">Unsaved contacts</h3>
-                    <form class="uk-search uk-search-default" method="POST">
-                        <fieldset class="uk-fieldset">
-                            <span uk-search-icon></span>
-                            <input class="uk-search-input normelem" type="search" placeholder="Username" name="srchtext">
-                        </fieldset>
-                    </form>
-                    <table class="uk-table uk-table-justify uk-table-divider uk-table-small">
-                        <thead>
-                            <tr>
-                                <th class="uk-width-small headelem">USERNAME</th>
-                                <th class="uk-width-large headelem">FULLNAME</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for indx in srchuser %}
-                            <tr>
-                                <td class="headelem">{{ indx.username }}</td>
-                                <td class="normelem"><a href="{{ url_for("viewuser", parauser="save", usercont=indx.username) }}">{{ indx.fullname }}</a></td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <h3 class="headelem">Saved contacts</h3>
-                    <table class="uk-table uk-table-justify uk-table-divider uk-table-small">
-                        <thead>
-                            <tr>
-                                <th class="uk-width-small headelem">USERNAME</th>
-                                <th class="uk-width-large headelem">FULLNAME</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for indx in savedone %}
-                            <tr>
-                                <td class="headelem">{{ indx.username }}</td>
-                                <td class="normelem"><a href="{{ url_for("viewuser", parauser="exst", usercont=indx.username) }}">{{ indx.fullname }}</a></td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <br/>
-                    <br/>
-                </div>
-                <div class="uk-card-footer forggrin">
-                    <p class="uk-margin-remove normelem">FORGE Client v{{ versinfo.mainline }}</p>
-                    <p class="uk-margin-remove uk-text-small normelem">Built by <span class="headelem">t0xic0der</span></p>
-                </div>
-            </div>
+{% extends "fgparent.html" %}
+{% block title %}Contacts{% endblock %}
+{% block head %}{{ super() }}{% endblock %}
+{% block head1cnt %}Contacts{% endblock %}
+{% block head2cnt %}Welcome, {{ username }}{% endblock %}
+{% block bodyextn %}
+    {% if erorcode != "" %}
+        <div class="uk-alert-danger" uk-alert>
+            <p class="normelem">{{ erorlist[erorcode] }}</p>
         </div>
-    </body>
-</html>
+    {% endif %}
+    <h3 class="headelem">Unsaved contacts</h3>
+    <form class="uk-search uk-search-default" method="POST">
+        <fieldset class="uk-fieldset">
+            <span uk-search-icon></span>
+            <input class="uk-search-input normelem" type="search" placeholder="Username" name="srchtext">
+        </fieldset>
+    </form>
+    <table class="uk-table uk-table-justify uk-table-divider uk-table-small">
+        <thead>
+            <tr>
+                <th class="uk-width-small headelem">USERNAME</th>
+                <th class="uk-width-large headelem">FULLNAME</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for indx in srchuser %}
+            <tr>
+                <td class="headelem">{{ indx.username }}</td>
+                <td class="normelem"><a href="{{ url_for("viewuser", parauser="save", usercont=indx.username) }}">{{ indx.fullname }}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3 class="headelem">Saved contacts</h3>
+    <table class="uk-table uk-table-justify uk-table-divider uk-table-small">
+        <thead>
+            <tr>
+                <th class="uk-width-small headelem">USERNAME</th>
+                <th class="uk-width-large headelem">FULLNAME</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for indx in savedone %}
+            <tr>
+                <td class="headelem">{{ indx.username }}</td>
+                <td class="normelem"><a href="{{ url_for("viewuser", parauser="exst", usercont=indx.username) }}">{{ indx.fullname }}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br/>
+    <br/>
+{% endblock %}
+{% block versdata %}
+    FORGE v{{ versinfo.mainline }}
+{% endblock %}
+{% block body %}{{ super() }}{% endblock %}

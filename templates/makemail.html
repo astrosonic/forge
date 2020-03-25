@@ -1,85 +1,46 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Compose</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{{ url_for("static", filename="css3/uikit.min.css") }}" />
-        <link rel="stylesheet" href="{{ url_for("static", filename="css3/custfrmt.css") }}" />
-        <script src="{{ url_for("static", filename="jscn/uikit.min.js") }}"></script>
-        <script src="{{ url_for("static", filename="jscn/uikit-icons.min.js") }}"></script>
-    </head>
-    <body>
-        <br/>
-        <div class="uk-container uk-container-small">
-            <div class="uk-card uk-background-secondary uk-width-1-1@s">
-                <div class="uk-card-header forggrin">
-                    <div class="uk-grid-small uk-flex-middle" uk-grid>
-                        <div class="uk-width-auto uk-padding-remove">
-                            <img class="uk-border-circle" width="50" height="50" src="{{ url_for("static", filename="imgs/datalogo.png") }}">
-                        </div>
-                        <div class="uk-width-expand">
-                            <h3 class="uk-card-title uk-margin-remove headelem">Compose</h3>
-                            <p class="uk-text-meta uk-margin-remove normelem">Welcome, {{ username }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="uk-card-body uk-background-default uk-padding-remove uk-margin-remove">
-                    <nav class="uk-navbar-container headelem" uk-navbar>
-                        <div class="uk-navbar-left">
-                            <ul class="uk-navbar-nav">
-                                <li style="font-family: Barlow-Bold-Italic"><a href="{{ url_for("makemail") }}">Compose</a></li>
-                                <li><a href="{{ url_for("inbxpage") }}">Inbox</a></li>
-                                <li><a href="{{ url_for("contacts") }}">Contacts</a></li>
-                                <li><a href="{{ url_for("trashcan") }}">Trashcan</a></li>
-                                <li><a href="{{ url_for("grupdata") }}">Groups</a></li>
-                                <li><a href="{{ url_for("brodcast") }}">Broadcast</a></li>
-                                <li><a href="{{ url_for("settings") }}">Settings</a></li>
-                                <li><a href="{{ url_for("fglogout") }}">Logout</a></li>
-                            </ul>
-                        </div>
-                    </nav>
-                    {% if erorcode != "" %}
-                    <div class="uk-alert-danger" uk-alert>
-                        <p class="normelem">{{ erorlist[erorcode] }}</p>
-                    </div>
-                    {% endif %}
-                    <p class="normelem">
-                        Composition helps you to securely send directives to single recipient.
-                    </p>
-                    <p class="normelem">
-                        Use BROADCAST or GROUPS feature to address multiple recipients.
-                    </p>
-                    <form class="uk-form-horizontal uk-margin-medium" method="POST">
-                        <fieldset class="uk-fieldset normelem">
-                            <div class="uk-margin">
-                                <label class="uk-form-label headelem" for="form-horizontal-text">RECIPIENT</label>
-                                <div class="uk-form-controls">
-                                    <input class="uk-input normelem" id="form-horizontal-text" type="text" name="receiver" placeholder="Add the username of the receiver" />
-                                </div>
-                            </div>
-                            <div class="uk-margin">
-                                <label class="uk-form-label headelem" for="form-horizontal-text">SUBJECT</label>
-                                <div class="uk-form-controls">
-                                    <input class="uk-input normelem" id="form-horizontal-text" type="text" name="subjtext" placeholder="Add the subject of your directive" />
-                                </div>
-                            </div>
-                            <div class="uk-margin">
-                                <label class="uk-form-label headelem" for="form-horizontal-select">CONTENT</label>
-                                <div class="uk-form-controls">
-                                    <textarea class="uk-textarea normelem" rows="5" name="conttext" placeholder="Add the content of your directive"></textarea>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <input type="submit" value="DISPATCH" class="uk-button uk-background-secondary headelem forggrin"/>
-                    </form>
-                    <br/>
-                </div>
-                <div class="uk-card-footer forggrin">
-                    <p class="uk-margin-remove normelem">FORGE Client v{{ versinfo.mainline }}</p>
-                    <p class="uk-margin-remove uk-text-small normelem">Built by <span class="headelem">t0xic0der</span></p>
+{% extends "fgparent.html" %}
+{% block title %}Compose{% endblock %}
+{% block head %}{{ super() }}{% endblock %}
+{% block head1cnt %}Compose{% endblock %}
+{% block head2cnt %}Welcome, {{ username }}{% endblock %}
+{% block bodyextn %}
+    {% if erorcode != "" %}
+    <div class="uk-alert-danger" uk-alert>
+        <p class="normelem">{{ erorlist[erorcode] }}</p>
+    </div>
+    {% endif %}
+    <p class="normelem">
+        Composition helps you to securely send directives to single recipient.
+    </p>
+    <p class="normelem">
+        Use BROADCAST or GROUPS feature to address multiple recipients.
+    </p>
+    <form class="uk-form-horizontal uk-margin-medium" method="POST">
+        <fieldset class="uk-fieldset normelem">
+            <div class="uk-margin">
+                <label class="uk-form-label headelem" for="form-horizontal-text">RECIPIENT</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input normelem" id="form-horizontal-text" type="text" name="receiver" placeholder="Add the username of the receiver" />
                 </div>
             </div>
-        </div>
-    </body>
-</html>
+            <div class="uk-margin">
+                <label class="uk-form-label headelem" for="form-horizontal-text">SUBJECT</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input normelem" id="form-horizontal-text" type="text" name="subjtext" placeholder="Add the subject of your directive" />
+                </div>
+            </div>
+            <div class="uk-margin">
+                <label class="uk-form-label headelem" for="form-horizontal-select">CONTENT</label>
+                <div class="uk-form-controls">
+                    <textarea class="uk-textarea normelem" rows="5" name="conttext" placeholder="Add the content of your directive"></textarea>
+                </div>
+            </div>
+        </fieldset>
+        <input type="submit" value="DISPATCH" class="uk-button uk-background-secondary headelem forggrin"/>
+    </form>
+    <br/>
+{% endblock %}
+{% block versdata %}
+    FORGE v{{ versinfo.mainline }}
+{% endblock %}
+{% block body %}{{ super() }}{% endblock %}

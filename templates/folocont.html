@@ -1,46 +1,23 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>User followed</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{{ url_for("static", filename="css3/uikit.min.css") }}" />
-        <link rel="stylesheet" href="{{ url_for("static", filename="css3/custfrmt.css") }}" />
-        <script src="{{ url_for("static", filename="jscn/uikit.min.js") }}"></script>
-        <script src="{{ url_for("static", filename="jscn/uikit-icons.min.js") }}"></script>
-    </head>
-    <body>
-        <br/>
-        <div class="uk-container uk-container-small">
-            <div class="uk-card uk-background-secondary uk-width-1-1@s">
-                <div class="uk-card-header forggrin">
-                    <div class="uk-grid-small uk-flex-middle" uk-grid>
-                        <div class="uk-width-auto uk-padding-remove">
-                            <img class="uk-border-circle" width="50" height="50" src="{{ url_for("static", filename="imgs/datalogo.png") }}">
-                        </div>
-                        <div class="uk-width-expand">
-                            <h3 class="uk-card-title uk-margin-remove headelem">User followed</h3>
-                            <p class="uk-text-meta uk-margin-remove normelem">Welcome, {{ username }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="uk-card-body uk-background-default uk-padding-small">
-                    <p class="normelem">
-                        You are following the user now and an entry of their contact
-                        has been made into your book. If this was done by mistake, you
-                        can unfollow them.
-                    </p>
-                    <a href="{{ url_for("contacts") }}">
-                        <button class="uk-button uk-background-secondary headelem forggrin">
-                            Go back to contacts
-                        </button>
-                    </a>
-                </div>
-                <div class="uk-card-footer forggrin">
-                    <p class="uk-margin-remove normelem">FORGE Client v{{ versinfo.mainline }}</p>
-                    <p class="uk-margin-remove uk-text-small normelem">Built by <span class="headelem">t0xic0der</span></p>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+{% extends "fglayout.html" %}
+{% block title %}User followed{% endblock %}
+{% block head %}{{ super() }}{% endblock %}
+{% block head1cnt %}User followed{% endblock %}
+{% block head2cnt %}Welcome, {{ username }}{% endblock %}
+{% block bodyextn %}
+<br/>
+<p class="normelem">
+    You are following the user now and an entry of their contact
+    has been made into your book. If this was done by mistake, you
+    can unfollow them.
+</p>
+<a href="{{ url_for("contacts") }}">
+    <button class="uk-button uk-background-secondary headelem forggrin">
+        Go back to contacts
+    </button>
+</a>
+<br/><br/>
+{% endblock %}
+{% block versdata %}
+    FORGE v{{ versinfo.mainline }}
+{% endblock %}
+{% block body %}{{ super() }}{% endblock %}

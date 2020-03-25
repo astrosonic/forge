@@ -1,0 +1,29 @@
+{% extends "fgparent.html" %}
+{% block title %}Contacts{% endblock %}
+{% block head %}{{ super() }}{% endblock %}
+{% block head1cnt %}Contacts{% endblock %}
+{% block head2cnt %}Welcome, {{ username }}{% endblock %}
+{% block bodyextn %}
+<h3 class="headelem">{{ userdict.username }}</h3>
+<h4 class="headelem uk-margin-remove">{{ userdict.fullname }}</h4>
+<h5 class="italelem uk-margin-remove">{{ userdict.emailadr }}</h5>
+<br/>
+{% if userdict.username != username %}
+    {% if itempara == "save" %}
+    <a href="{{ url_for("folocont", usercont=userdict.username) }}"
+        <button class="uk-button uk-button-secondary forggrin headelem">FOLLOW</button>
+    </a>
+    {% elif itempara == "exst" %}
+    <a href="{{ url_for("unfocont", usercont=userdict.username) }}"
+        <button class="uk-button uk-button-secondary forggrin headelem">UNFOLLOW</button>
+    </a>
+    {% endif %}
+{% else %}
+    <p class="normelem">Looking yourself up? :P</p>
+{% endif %}
+<br/><br/>
+{% endblock %}
+{% block versdata %}
+    FORGE v{{ versinfo.mainline }}
+{% endblock %}
+{% block body %}{{ super() }}{% endblock %}
