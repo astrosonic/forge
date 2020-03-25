@@ -2,8 +2,8 @@
 Forensics Oriented Reporting Group Under Encryption
 
 ## Ideology
-**This project is follows the belief of Sir Abraham Lincoln**
-> You can fool *all* the people *some* of the time and *some* of the people *all* the time,
+**This project follows the belief of Sir Abraham Lincoln**
+> You can fool *all* the people *some* of the time and *some* of the people *all* the time,  
 > But you cannot fool *all* the people *all* the time.
 
 ## Introduction
