@@ -224,4 +224,4 @@ def makeacnt(erorcode = ""):
     return render_template("makeacnt.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
 
 if __name__ == "__main__":
-    software.run(port=9696)
+    software.run(port=9696, host='0.0.0.0')
