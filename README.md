@@ -36,7 +36,7 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
 8.  Give stars to the repository if it was helpful
 
 ### Client-side instructions
-1. Open up a browser and visit ```<SERVER-IP-ADDRESS>:6969``` (default location)
+1. Open up a browser and visit ```<SERVER-IP-ADDRESS>:9696``` (default location)
 2. Create account, login, follow people and send protected directives
 3. Safely logout of your account once you are done using it
 4. Give stars to the repository if it was helpful
