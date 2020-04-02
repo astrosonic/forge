@@ -149,3 +149,33 @@ Forensics Oriented Reporting Group Under Encryption
   * Minimized single contact view page
   * Minimized follow-to-contacts redirect
   * Minimized unfollow-to-contacts redirect
+
+### v26022020
+* Layout optimizations performed
+  * Obsoleted seperate templates for landing and user pages
+  * Tested layout on multiple mobile devices
+  * Obsoleted non-responsive navigation bar
+* Sanity check
+  * Added placeholder page for groups function
+  * Added placeholder page for broadcast function
+  * Added placeholder page for settings function
+
+### v27022020
+* Networking
+  * Opened application for remote connections - `0.0.0.0:9696`
+* Session management
+  * Obsoleted dedicated session data storage
+  * Fixed shared sessions bug with flask session support
+  * Added better handling of invalid session
+
+### v2802020
+* Updated compose backbone
+  * Added detection for send-to-self directives
+  * Error handling for send-to-self directives
+* Layout optimization perfomed
+  * Replaced navigation with breadcrumb
+  * Added CSS for condensed buttons and card layout
+  * Added system code for alert pages
+  * Moved user information to footer
+* Documentation
+  * Updated screenshots to `SCREENSHOTS.md`
