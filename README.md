@@ -1,6 +1,8 @@
 # forge
 Forensics Oriented Reporting Group Under Encryption
 
+## We made it to the top 10 projects in the 2020 HackTheCrisisIndia IDEAthon
+
 ## Ideology
 **This project follows the belief of Sir Abraham Lincoln**
 > You can fool *all* the people *some* of the time and *some* of the people *all* the time,  
