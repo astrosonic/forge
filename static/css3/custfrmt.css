@@ -39,5 +39,16 @@
 }
 
 .forggrin {
-    background-color: rgba(64,256,128);
+    background-color: rgb(32,192,160);
+}
+
+.headcard {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.blcktint {
+    color: #000000;
 }
