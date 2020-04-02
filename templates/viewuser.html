@@ -11,24 +11,26 @@
 {% endblock %}
 {% block bodyextn %}
 <br/>
-<h3 class="headelem">{{ userdict.username }}</h3>
-<h4 class="headelem uk-margin-remove">{{ userdict.fullname }}</h4>
-<h5 class="italelem uk-margin-remove">{{ userdict.emailadr }}</h5>
-<br/>
-{% if userdict.username != username %}
-    {% if itempara == "save" %}
-    <a href="{{ url_for("folocont", usercont=userdict.username) }}"
-        <button class="uk-button uk-button-secondary forggrin headelem">FOLLOW</button>
-    </a>
-    {% elif itempara == "exst" %}
-    <a href="{{ url_for("unfocont", usercont=userdict.username) }}"
-        <button class="uk-button uk-button-secondary forggrin headelem">UNFOLLOW</button>
-    </a>
+<div class="uk-card-body uk-background-default uk-padding-remove">
+    <h3 class="headelem">{{ userdict.username }}</h3>
+    <h4 class="headelem uk-margin-remove">{{ userdict.fullname }}</h4>
+    <h5 class="italelem uk-margin-remove">{{ userdict.emailadr }}</h5>
+    <br/>
+    {% if userdict.username != username %}
+        {% if itempara == "save" %}
+        <a href="{{ url_for("folocont", usercont=userdict.username) }}"
+            <button class="uk-button uk-button-secondary uk-button-small forggrin headelem">FOLLOW</button>
+        </a>
+        {% elif itempara == "exst" %}
+        <a href="{{ url_for("unfocont", usercont=userdict.username) }}"
+            <button class="uk-button uk-button-secondary uk-button-small forggrin headelem">UNFOLLOW</button>
+        </a>
+        {% endif %}
+    {% else %}
+        <p class="normelem">Looking yourself up? :P</p>
     {% endif %}
-{% else %}
-    <p class="normelem">Looking yourself up? :P</p>
-{% endif %}
-<br/><br/>
+</div>
+<br/>
 {% endblock %}
 {% block logdinas %}<p class="uk-margin-remove italelem">Logged in as {{ username }}</p>{% endblock %}
 {% block versdata %}

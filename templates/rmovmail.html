@@ -3,7 +3,7 @@
 {% block head %}{{ super() }}{% endblock %}
 {% block pagename %}Directive removed{% endblock %}
 {% block navaloca %}
-    <p class="uk-margin-remove normelem">The directive has been removed from your inbox</p>
+    <p class="uk-margin-remove normelem uk-text-small">The directive has been removed from your inbox</p>
 {% endblock %}
 {% block bodyextn %}
 <br/>
@@ -14,7 +14,7 @@
     permanently delete it, purge it from the trashcan.
 </p>
 <a href="{{ url_for("inbxpage") }}">
-    <button class="uk-button uk-background-secondary headelem forggrin">
+    <button class="uk-button uk-background-secondary uk-button-small headelem forggrin">
         Go back to inbox
     </button>
 </a>

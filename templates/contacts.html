@@ -9,7 +9,8 @@
     </ul>
 {% endblock %}
 {% block bodyextn %}
-    <br/>
+<br/>
+<div class="uk-card-body uk-background-default uk-padding-remove">
     {% if erorcode != "" %}
         <div class="uk-alert-danger" uk-alert>
             <p class="normelem">{{ erorlist[erorcode] }}</p>
@@ -19,7 +20,7 @@
     <form class="uk-search uk-search-default" method="POST">
         <fieldset class="uk-fieldset">
             <span uk-search-icon></span>
-            <input class="uk-search-input normelem" type="search" placeholder="Username" name="srchtext">
+            <input class="uk-search-input normelem uk-form-small" type="search" placeholder="Username" name="srchtext">
         </fieldset>
     </form>
     <table class="uk-table uk-table-justify uk-table-divider uk-table-small">
@@ -55,8 +56,8 @@
             {% endfor %}
         </tbody>
     </table>
-    <br/>
-    <br/>
+</div>
+<br/>
 {% endblock %}
 {% block logdinas %}<p class="uk-margin-remove italelem">Logged in as {{ username }}</p>{% endblock %}
 {% block versdata %}

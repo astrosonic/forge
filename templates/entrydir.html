@@ -16,14 +16,14 @@
     <p class="normelem">You need to login to continue.</p>
     <form method="POST">
         <fieldset class="uk-fieldset normelem">
-            <p><input class="uk-input" type="text" name="username" placeholder="Username"></p>
-            <p><input class="uk-input" type="password" name="password" placeholder="Password"></p>
+            <p><input class="uk-input uk-form-small" type="text" name="username" placeholder="Username"></p>
+            <p><input class="uk-input uk-form-small" type="password" name="password" placeholder="Password"></p>
         </fieldset>
-        <input type="submit" value="LOGIN" class="uk-button uk-background-secondary headelem forggrin"/>
+        <input type="submit" value="LOGIN" class="uk-button uk-background-secondary uk-button-small headelem forggrin"/>
     </form>
     <p class="normelem">Don't have an account yet? Create one here</p>
     <a href="{{ url_for("makeacnt") }}">
-        <button class="uk-button uk-background-secondary headelem forggrin">
+        <button class="uk-button uk-background-secondary uk-button-small headelem forggrin">
             SIGNUP
         </button>
     </a>

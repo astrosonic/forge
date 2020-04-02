@@ -7,17 +7,19 @@
 {% endblock %}
 {% block bodyextn %}
 <br/>
-<p class="normelem">
-    You have unfollowed the user now and an entry of their contact
-    has been removed from your book. If this was done by mistake, you
-    can look them up again.
-</p>
-<a href="{{ url_for("contacts") }}">
-    <button class="uk-button uk-background-secondary headelem forggrin">
-        Go back to contacts
-    </button>
-</a>
-<br/><br/>
+<div class="uk-card-body uk-background-default uk-padding-remove">
+    <p class="normelem">
+        You have unfollowed the user now and an entry of their contact
+        has been removed from your book. If this was done by mistake, you
+        can look them up again.
+    </p>
+    <a href="{{ url_for("contacts") }}">
+        <button class="uk-button uk-background-secondary uk-button-small headelem forggrin">
+            Go back to contacts
+        </button>
+    </a>
+</div>
+<br/>
 {% endblock %}
 {% block logdinas %}<p class="uk-margin-remove italelem">Logged in as {{ username }}</p>{% endblock %}
 {% block versdata %}
