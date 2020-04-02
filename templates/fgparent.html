@@ -16,40 +16,27 @@
         <br/>
         <div class="uk-container uk-container-small">
             <div class="uk-card uk-background-secondary uk-width-1-1@s">
-                <div class="uk-card-header forggrin">
+                <div class="uk-card-header forggrin headcard">
                     <div class="uk-grid-small uk-flex-middle" uk-grid>
                         <div class="uk-width-auto uk-padding-remove">
                             <img class="uk-border-circle" width="50" height="50" src="{{ url_for("static", filename="imgs/datalogo.png") }}">
                         </div>
                         <div class="uk-width-expand">
-                            <h3 class="uk-card-title uk-margin-remove headelem">{% block head1cnt %}{% endblock %}</h3>
-                            <p class="uk-text-meta uk-margin-remove normelem">{% block head2cnt %}{% endblock %}</p>
+                            <h3 class="uk-card-title uk-margin-remove headelem">{% block pagename %}{% endblock %}</h3>
+                            {% block navaloca %}{% endblock %}
                         </div>
                     </div>
                 </div>
                 <div class="uk-card-body uk-background-default uk-padding-remove uk-margin-remove">
-                    <nav class="uk-navbar-container headelem" uk-navbar>
-                        <div class="uk-navbar-left">
-                            <ul class="uk-navbar-nav">
-                                <li><a href="{{ url_for("makemail") }}">Compose</a></li>
-                                <li><a href="{{ url_for("inbxpage") }}">Inbox</a></li>
-                                <li><a href="{{ url_for("contacts") }}">Contacts</a></li>
-                                <li><a href="{{ url_for("trashcan") }}">Trashcan</a></li>
-                                <li><a href="{{ url_for("grupdata") }}">Groups</a></li>
-                                <li><a href="{{ url_for("brodcast") }}">Broadcast</a></li>
-                                <li><a href="{{ url_for("settings") }}">Settings</a></li>
-                                <li><a href="{{ url_for("fglogout") }}">Logout</a></li>
-                            </ul>
-                        </div>
-                    </nav>
                     {% block bodyextn %}{% endblock %}
                 </div>
-                <div class="uk-card-footer forggrin">
-                    <p class="uk-margin-remove normelem">{% block versdata %}{% endblock %}</p>
-                    <p class="uk-margin-remove uk-text-small normelem">Built by <span class="headelem">t0xic0der</span></p>
+                <div class="uk-card-footer forggrin headcard">
+                    {% block logdinas %}{% endblock %}
+                    <p class="uk-margin-remove uk-text-small normelem">{% block versdata %}{% endblock %} - Built by <span class="headelem">t0xic0der</span></p>
                 </div>
             </div>
         </div>
         {% endblock %}
+        <br/>
     </body>
 </html>

@@ -1,14 +1,18 @@
 {% extends "fgparent.html" %}
 {% block title %}Dashboard{% endblock %}
 {% block head %}{{ super() }}{% endblock %}
-{% block head1cnt %}Dashboard{% endblock %}
-{% block head2cnt %}Welcome, {{ username }}{% endblock %}
+{% block pagename %}Dashboard{% endblock %}
+{% block navaloca %}
+    <ul class="uk-margin-remove uk-breadcrumb normelem">
+        <li><span class="blcktint">Dashboard</span></li>
+    </ul>
+{% endblock %}
 {% block bodyextn %}
     <br/>
     <div class="uk-child-width-1-3@s" uk-grid>
         <div>
             <div class="uk-card uk-card-default uk-card-small uk-card-body">
-                <h3 class="uk-card-title hugeelem">COMPOSE</h3>
+                <h3 class="uk-card-title hugeelem"><a href="{{ url_for("makemail") }}">COMPOSE</a></h3>
                 <ul class="normelem">
                     <li>Compose new directive</li>
                     <li>Check directive drafts</li>
@@ -19,10 +23,10 @@
         </div>
         <div>
             <div class="uk-card uk-card-default uk-card-small uk-card-body">
-                <h3 class="uk-card-title hugeelem">INBOX</h3>
+                <h3 class="uk-card-title hugeelem"><a href="{{ url_for("inbxpage") }}">INBOX</a></h3>
                 <ul class="normelem">
-                    <li>Receive 6 new messages</li>
-                    <li>Go through 16 existing mails</li>
+                    <li>Receive new messages</li>
+                    <li>Go through sent mails</li>
                     <li>Remove old directives</li>
                     <li>Mark special mails</li>
                 </ul>
@@ -30,7 +34,7 @@
         </div>
         <div>
             <div class="uk-card uk-card-default uk-card-small uk-card-body">
-                <h3 class="uk-card-title hugeelem">CONTACTS</h3>
+                <h3 class="uk-card-title hugeelem"><a href="{{ url_for("contacts") }}">CONTACTS</a></h3>
                 <ul class="normelem">
                     <li>Add new contacts</li>
                     <li>Remove unwanted contacts</li>
@@ -41,7 +45,7 @@
         </div>
         <div>
             <div class="uk-card uk-card-default uk-card-small uk-card-body">
-                <h3 class="uk-card-title hugeelem">TRASHCAN</h3>
+                <h3 class="uk-card-title hugeelem"><a href="{{ url_for("trashcan") }}">TRASHCAN</a></h3>
                 <ul class="normelem">
                     <li>Permanently remove mails</li>
                     <li>Restore directives again</li>
@@ -52,7 +56,7 @@
         </div>
         <div>
             <div class="uk-card uk-card-default uk-card-small uk-card-body">
-                <h3 class="uk-card-title hugeelem">GROUPS</h3>
+                <h3 class="uk-card-title hugeelem"><a href="{{ url_for("grupdata") }}">GROUPS</a></h3>
                 <ul class="normelem">
                     <li>Send directives to group</li>
                     <li>Receive shared messages</li>
@@ -63,7 +67,7 @@
         </div>
         <div>
             <div class="uk-card uk-card-default uk-card-small uk-card-body">
-                <h3 class="uk-card-title hugeelem">BROADCAST</h3>
+                <h3 class="uk-card-title hugeelem"><a href="{{ url_for("brodcast") }}">BROADCAST</a></h3>
                 <ul class="normelem">
                     <li>Pick specific recipients</li>
                     <li>Share to multiple people</li>
@@ -74,7 +78,7 @@
         </div>
         <div>
             <div class="uk-card uk-card-default uk-card-small uk-card-body">
-                <h3 class="uk-card-title hugeelem">SETTINGS</h3>
+                <h3 class="uk-card-title hugeelem"><a href="{{ url_for("settings") }}">SETTINGS</a></h3>
                 <ul class="normelem">
                     <li>Change profile options</li>
                     <li>Refresh PKCS credentials</li>
@@ -85,7 +89,7 @@
         </div>
         <div>
             <div class="uk-card uk-card-default uk-card-small uk-card-body">
-                <h3 class="uk-card-title hugeelem">LOGOUT</h3>
+                <h3 class="uk-card-title hugeelem"><a href="{{ url_for("fglogout") }}">LOGOUT</a></h3>
                 <ul class="normelem">
                     <li>Commit all changes</li>
                     <li>Secure logout from client</li>
@@ -97,6 +101,7 @@
     </div>
     <br/>
 {% endblock %}
+{% block logdinas %}<p class="uk-margin-remove italelem">Logged in as {{ username }}</p>{% endblock %}
 {% block versdata %}
     FORGE v{{ versinfo.mainline }}
 {% endblock %}

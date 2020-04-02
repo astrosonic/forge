@@ -1,8 +1,10 @@
-{% extends "fglayout.html" %}
+{% extends "fgparent.html" %}
 {% block title %}User followed{% endblock %}
 {% block head %}{{ super() }}{% endblock %}
-{% block head1cnt %}User followed{% endblock %}
-{% block head2cnt %}Welcome, {{ username }}{% endblock %}
+{% block pagename %}User followed{% endblock %}
+{% block navaloca %}
+    <p class="uk-margin-remove normelem uk-text-small">Person has been added to your contacts</p>
+{% endblock %}
 {% block bodyextn %}
 <br/>
 <p class="normelem">
@@ -17,6 +19,7 @@
 </a>
 <br/><br/>
 {% endblock %}
+{% block logdinas %}<p class="uk-margin-remove italelem">Logged in as {{ username }}</p>{% endblock %}
 {% block versdata %}
     FORGE v{{ versinfo.mainline }}
 {% endblock %}

@@ -1,27 +1,31 @@
-{% extends "fglayout.html" %}
+{% extends "fgparent.html" %}
 {% block title %}Create account{% endblock %}
 {% block head %}{{ super() }}{% endblock %}
-{% block head1cnt %}Create account{% endblock %}
-{% block head2cnt %}Welcome to FORGE{% endblock %}
+{% block pagename %}Create account{% endblock %}
+{% block navaloca %}
+    <p class="uk-margin-remove normelem uk-text-small">Welcome to FORGE</p>
+{% endblock %}
 {% block bodyextn %}
 <br/>
-{% if erorcode != "" %}
-<div class="uk-alert-danger" uk-alert>
-    <p class="normelem">{{ erorlist[erorcode] }}</p>
+<div class="uk-card-body uk-background-default uk-padding-remove">
+    {% if erorcode != "" %}
+    <div class="uk-alert-danger" uk-alert>
+        <p class="normelem">{{ erorlist[erorcode] }}</p>
+    </div>
+    {% endif %}
+    <p class="normelem">You need to provide some information before your account is created.</p>
+    <form method="POST">
+        <fieldset class="uk-fieldset normelem">
+            <p><input class="uk-input" type="text" name="fullname" placeholder="Full name"></p>
+            <p><input class="uk-input" type="text" name="username" placeholder="Username"></p>
+            <p><input class="uk-input" type="password" name="password" placeholder="Password"></p>
+            <p><input class="uk-input" type="password" name="passrept" placeholder="Password (again)"></p>
+            <p><input class="uk-input" type="email" name="emailadr" placeholder="Email address"></p>
+        </fieldset>
+        <input type="submit" value="SIGNUP" class="uk-button uk-background-secondary headelem forggrin"/>
+    </form>
 </div>
-{% endif %}
-<p class="normelem">You need to provide some information before your account is created.</p>
-<form method="POST">
-    <fieldset class="uk-fieldset normelem">
-        <p><input class="uk-input" type="text" name="fullname" placeholder="Full name"></p>
-        <p><input class="uk-input" type="text" name="username" placeholder="Username"></p>
-        <p><input class="uk-input" type="password" name="password" placeholder="Password"></p>
-        <p><input class="uk-input" type="password" name="passrept" placeholder="Password (again)"></p>
-        <p><input class="uk-input" type="email" name="emailadr" placeholder="Email address"></p>
-    </fieldset>
-    <input type="submit" value="SIGNUP" class="uk-button uk-background-secondary headelem forggrin"/>
-</form>
-<br/><br/>
+<br/>
 {% endblock %}
 {% block versdata %}
     FORGE v{{ versinfo.mainline }}

@@ -1,23 +1,32 @@
 {% extends "fgparent.html" %}
-{% block title %}Trashcan{% endblock %}
+{% block title %}Reader{% endblock %}
 {% block head %}{{ super() }}{% endblock %}
-{% block head1cnt %}Trashcan{% endblock %}
-{% block head2cnt %}Welcome, {{ username }}{% endblock %}
+{% block pagename %}Reader{% endblock %}
+{% block navaloca %}
+    <ul class="uk-margin-remove uk-breadcrumb normelem">
+        <li><a class="blcktint" href="{{ url_for("dashbord") }}">Dashboard</a></li>
+        <li><a class="blcktint" href="{{ url_for("trashcan") }}">Trashcan</a></li>
+        <li><span class="blcktint">Reader</span></li>
+    </ul>
+{% endblock %}
 {% block bodyextn %}
-<h3 class="headelem">{{ maildict.subjtext }}</h3>
-<h4 class="headelem uk-margin-remove">{{ maildict.interact }}</h4>
-<h5 class="italelem uk-margin-remove">{{ maildict.timedata.date }} {{ maildict.timedata.mont.tinyform }} {{ maildict.timedata.year }}, {{ maildict.timedata.hour }}:{{ maildict.timedata.mins }} GMT</h5>
-<p class="uk-text-justify normelem">{{ maildict.conttext }}</p>
 <br/>
-<a href="{{ url_for("rstrmail", paradrct=itempara, mailiden=maildict.mailiden) }}"
-    <button class="uk-button uk-button-secondary forggrin headelem">RESTORE</button>
-</a>
-<a href="{{ url_for("purgemsg", paradrct=itempara, mailiden=maildict.mailiden) }}"
-    <button class="uk-button uk-button-secondary forggrin headelem">PURGE</button>
-</a>
-<br/>
+<div class="uk-card-body uk-background-default uk-padding-remove">
+    <h3 class="headelem">{{ maildict.subjtext }}</h3>
+    <h4 class="headelem uk-margin-remove">{{ maildict.interact }}</h4>
+    <h5 class="italelem uk-margin-remove">{{ maildict.timedata.date }} {{ maildict.timedata.mont.tinyform }} {{ maildict.timedata.year }}, {{ maildict.timedata.hour }}:{{ maildict.timedata.mins }} GMT</h5>
+    <p class="uk-text-justify normelem">{{ maildict.conttext }}</p>
+    <br/>
+    <a href="{{ url_for("rstrmail", paradrct=itempara, mailiden=maildict.mailiden) }}"
+        <button class="uk-button uk-button-secondary uk-button-small forggrin headelem">RESTORE</button>
+    </a>
+    <a href="{{ url_for("purgemsg", paradrct=itempara, mailiden=maildict.mailiden) }}"
+        <button class="uk-button uk-button-secondary uk-button-small forggrin headelem">PURGE</button>
+    </a>
+</div>
 <br/>
 {% endblock %}
+{% block logdinas %}<p class="uk-margin-remove italelem">Logged in as {{ username }}</p>{% endblock %}
 {% block versdata %}
     FORGE v{{ versinfo.mainline }}
 {% endblock %}

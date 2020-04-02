@@ -1,49 +1,29 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Logout</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{{ url_for("static", filename="css3/uikit.min.css") }}" />
-        <link rel="stylesheet" href="{{ url_for("static", filename="css3/custfrmt.css") }}" />
-        <script src="{{ url_for("static", filename="jscn/uikit.min.js") }}"></script>
-        <script src="{{ url_for("static", filename="jscn/uikit-icons.min.js") }}"></script>
-    </head>
-    <body>
-        <br/>
-        <div class="uk-container uk-container-small">
-            <div class="uk-card uk-background-secondary uk-width-1-1@s">
-                <div class="uk-card-header forggrin">
-                    <div class="uk-grid-small uk-flex-middle" uk-grid>
-                        <div class="uk-width-auto uk-padding-remove">
-                            <img class="uk-border-circle" width="50" height="50" src="{{ url_for("static", filename="imgs/datalogo.png") }}">
-                        </div>
-                        <div class="uk-width-expand">
-                            <h3 class="uk-card-title uk-margin-remove headelem">Forensics Oriented Reporting Group Under Encryption</h3>
-                            <p class="uk-text-meta uk-margin-remove normelem">LOGOUT SUCCESSFUL</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="uk-card-body uk-background-default uk-padding-remove uk-margin-remove">
-                    <div class="uk-card-body uk-background-default uk-padding-small">
-                        <p class="normelem">
-                            You have successfully logged out of your account. The session
-                            token is invalidated so all your preferences are secure and cannot
-                            be modified without you logging into the account again. Visit
-                            again soon!
-                        </p>
-                        <a href="{{ url_for("entrydir") }}">
-                            <button class="uk-button uk-background-secondary headelem forggrin">
-                                Go to login page
-                            </button>
-                        </a>
-                    </div>
-                </div>
-                <div class="uk-card-footer forggrin">
-                    <p class="uk-margin-remove normelem">FORGE Client v{{ versinfo.mainline }}</p>
-                    <p class="uk-margin-remove uk-text-small normelem">Built by <span class="headelem">t0xic0der</span></p>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+{% extends "fgparent.html" %}
+{% block title %}Logout successful{% endblock %}
+{% block head %}{{ super() }}{% endblock %}
+{% block pagename %}Logout successful{% endblock %}
+{% block navaloca %}
+    <p class="uk-margin-remove normelem uk-text-small">Visit FORGE again</p>
+{% endblock %}
+{% block bodyextn %}
+<br/>
+<div class="uk-card-body uk-background-default uk-padding-remove">
+    <p class="normelem">
+        You have successfully logged out of your account. The session
+        token is invalidated so all your preferences are secure and cannot
+        be modified without you logging into the account again. Visit
+        again soon!
+    </p>
+    <a href="{{ url_for("entrydir") }}">
+        <button class="uk-button uk-background-secondary headelem forggrin">
+            Go to login page
+        </button>
+    </a>
+</div>
+<br/>
+{% endblock %}
+{% block logdinas %}<p class="uk-margin-remove italelem">Code - FGLOGOUT</p>{% endblock %}
+{% block versdata %}
+    FORGE v{{ versinfo.mainline }}
+{% endblock %}
+{% block body %}{{ super() }}{% endblock %}

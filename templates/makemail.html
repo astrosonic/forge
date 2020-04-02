@@ -1,9 +1,16 @@
 {% extends "fgparent.html" %}
 {% block title %}Compose{% endblock %}
 {% block head %}{{ super() }}{% endblock %}
-{% block head1cnt %}Compose{% endblock %}
-{% block head2cnt %}Welcome, {{ username }}{% endblock %}
+{% block pagename %}Compose{% endblock %}
+{% block navaloca %}
+    <ul class="uk-margin-remove uk-breadcrumb normelem">
+        <li><a class="blcktint" href="{{ url_for("dashbord") }}">Dashboard</a></li>
+        <li><span class="blcktint">Compose</span></li>
+    </ul>
+{% endblock %}
 {% block bodyextn %}
+<br/>
+<div class="uk-card-body uk-background-default uk-padding-remove">
     {% if erorcode != "" %}
     <div class="uk-alert-danger" uk-alert>
         <p class="normelem">{{ erorlist[erorcode] }}</p>
@@ -36,10 +43,12 @@
                 </div>
             </div>
         </fieldset>
-        <input type="submit" value="DISPATCH" class="uk-button uk-background-secondary headelem forggrin"/>
+        <input type="submit" value="DISPATCH" class="uk-button uk-background-secondary uk-button-small headelem forggrin"/>
     </form>
-    <br/>
+</div>
+<br/>
 {% endblock %}
+{% block logdinas %}<p class="uk-margin-remove italelem">Logged in as {{ username }}</p>{% endblock %}
 {% block versdata %}
     FORGE v{{ versinfo.mainline }}
 {% endblock %}

@@ -1,23 +1,28 @@
-{% extends "fglayout.html" %}
+{% extends "fgparent.html" %}
 {% block title %}Invalid session{% endblock %}
 {% block head %}{{ super() }}{% endblock %}
-{% block head1cnt %}Invalid session{% endblock %}
-{% block head2cnt %}Try logging again{% endblock %}
+{% block pagename %}Invalid session{% endblock %}
+{% block navaloca %}
+    <p class="uk-margin-remove normelem uk-text-small">This page requires you to login</p>
+{% endblock %}
 {% block bodyextn %}
 <br/>
-<p class="normelem">
-    You are attempting to access an invalidated session.
-    This happens if you have recently logged out and still
-    attempt going back to menu items that require
-    renewed authentication. Try logging again.
-</p>
-<a href="{{ url_for("entrydir") }}">
-    <button class="uk-button uk-background-secondary headelem forggrin">
-        Go to login page
-    </button>
-</a>
-<br/><br/>
+<div class="uk-card-body uk-background-default uk-padding-remove">
+    <p class="normelem">
+        You are attempting to access an invalidated session.
+        This happens if you have recently logged out and still
+        attempt going back to menu items that require
+        renewed authentication. Try logging again.
+    </p>
+    <a href="{{ url_for("entrydir") }}">
+        <button class="uk-button uk-background-secondary headelem forggrin">
+            Go to login page
+        </button>
+    </a>
+</div>
+<br/>
 {% endblock %}
+{% block logdinas %}<p class="uk-margin-remove italelem">Code - INVALSES</p>{% endblock %}
 {% block versdata %}
     FORGE v{{ versinfo.mainline }}
 {% endblock %}

@@ -1,31 +1,36 @@
-{% extends "fglayout.html" %}
+{% extends "fgparent.html" %}
 {% block title %}Account created{% endblock %}
 {% block head %}{{ super() }}{% endblock %}
-{% block head1cnt %}Account created{% endblock %}
-{% block head2cnt %}Access your account now{% endblock %}
+{% block pagename %}Account created{% endblock %}
+{% block navaloca %}
+    <p class="uk-margin-remove normelem uk-text-small">You can use your account now</p>
+{% endblock %}
 {% block bodyextn %}
 <br/>
-<p class="normelem">
-    Your account was successfully created.
-</p>
-<dl class="uk-description-list">
-    <dt class="headelem">Fullname</dt>
-    <dd class="normelem">{{ fullname }}</dd>
-    <dt class="headelem">Username</dt>
-    <dd class="normelem">{{ username }}</dd>
-    <dt class="headelem">Email address</dt>
-    <dd class="normelem">{{ emailadr }}</dd>
-</dl>
-<p class="normelem">
-    Use the above username and password that you entered previously to log in to your account.
-</p>
-<a href="{{ url_for("entrydir") }}">
-    <button class="uk-button uk-background-secondary headelem forggrin">
-        Go to login page
-    </button>
-</a>
-<br/><br/>
+<div class="uk-card-body uk-background-default uk-padding-remove">
+    <p class="normelem">
+        Your account was successfully created.
+    </p>
+    <dl class="uk-description-list">
+        <dt class="headelem">Fullname</dt>
+        <dd class="normelem">{{ fullname }}</dd>
+        <dt class="headelem">Username</dt>
+        <dd class="normelem">{{ username }}</dd>
+        <dt class="headelem">Email address</dt>
+        <dd class="normelem">{{ emailadr }}</dd>
+    </dl>
+    <p class="normelem">
+        Use the above username and password that you entered previously to log in to your account.
+    </p>
+    <a href="{{ url_for("entrydir") }}">
+        <button class="uk-button uk-background-secondary headelem forggrin">
+            Go to login page
+        </button>
+    </a>
+</div>
+<br/>
 {% endblock %}
+{% block logdinas %}<p class="uk-margin-remove italelem">Code - ACNTMADE</p>{% endblock %}
 {% block versdata %}
     FORGE v{{ versinfo.mainline }}
 {% endblock %}

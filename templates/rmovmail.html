@@ -1,10 +1,13 @@
-{% extends "fglayout.html" %}
+{% extends "fgparent.html" %}
 {% block title %}Directive removed{% endblock %}
 {% block head %}{{ super() }}{% endblock %}
-{% block head1cnt %}Directive removed{% endblock %}
-{% block head2cnt %}Welcome, {{ username }}{% endblock %}
+{% block pagename %}Directive removed{% endblock %}
+{% block navaloca %}
+    <p class="uk-margin-remove normelem">The directive has been removed from your inbox</p>
+{% endblock %}
 {% block bodyextn %}
 <br/>
+<div class="uk-card-body uk-background-default uk-padding-remove">
 <p class="normelem">
     The directive you specified was successfully moved to trashcan.
     If this was done unintentionally, you can still restore it. To
@@ -15,8 +18,10 @@
         Go back to inbox
     </button>
 </a>
-<br/><br/>
+</div>
+<br/>
 {% endblock %}
+{% block logdinas %}<p class="uk-margin-remove italelem">Logged in as {{ username }}</p>{% endblock %}
 {% block versdata %}
     FORGE v{{ versinfo.mainline }}
 {% endblock %}

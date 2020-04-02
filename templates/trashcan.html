@@ -1,49 +1,58 @@
 {% extends "fgparent.html" %}
 {% block title %}Trashcan{% endblock %}
 {% block head %}{{ super() }}{% endblock %}
-{% block head1cnt %}Trashcan{% endblock %}
-{% block head2cnt %}Welcome, {{ username }}{% endblock %}
+{% block pagename %}Trashcan{% endblock %}
+{% block navaloca %}
+    <ul class="uk-margin-remove uk-breadcrumb normelem">
+        <li><a class="blcktint" href="{{ url_for("dashbord") }}">Dashboard</a></li>
+        <li><span class="blcktint">Trashcan</span></li>
+    </ul>
+{% endblock %}
 {% block bodyextn %}
-<h3 class="headelem">Received directives</h3>
-<table class="uk-table uk-table-justify uk-table-divider uk-table-small">
-    <thead>
-        <tr>
-            <th class="uk-width-small headelem">SOURCE</th>
-            <th class="uk-width-large headelem">DIRECTIVE</th>
-            <th class="uk-width-small headelem">DATE</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for indx in recvdict %}
-        <tr>
-            <td class="headelem">{{ indx.srceuser }}</td>
-            <td class="normelem"><a href="{{ url_for("readtrsh", paradrct="recv", mailiden=indx.mailiden) }}">{{ indx.subjtext }}</a></td>
-            <td class="normelem">{{ indx.timedata.date }} {{ indx.timedata.mont.tinyform }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-<h3 class="headelem">Sent directives</h3>
-<table class="uk-table uk-table-justify uk-table-divider uk-table-small">
-    <thead>
-        <tr>
-            <th class="uk-width-small headelem">DESTINATION</th>
-            <th class="uk-width-large headelem">DIRECTIVE</th>
-            <th class="uk-width-small headelem">DATE</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for indx in senddict %}
-        <tr>
-            <td class="headelem">{{ indx.destuser }}</td>
-            <td class="normelem"><a href="{{ url_for("readtrsh", paradrct="send", mailiden=indx.mailiden) }}">{{ indx.subjtext }}</a></td>
-            <td class="normelem">{{ indx.timedata.date }} {{ indx.timedata.mont.tinyform }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<br/>
+<div class="uk-card-body uk-background-default uk-padding-remove">
+    <h3 class="headelem">Received directives</h3>
+    <table class="uk-table uk-table-justify uk-table-divider uk-table-small">
+        <thead>
+            <tr>
+                <th class="uk-width-small headelem">SOURCE</th>
+                <th class="uk-width-large headelem">DIRECTIVE</th>
+                <th class="uk-width-small headelem">DATE</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for indx in recvdict %}
+            <tr>
+                <td class="headelem">{{ indx.srceuser }}</td>
+                <td class="normelem"><a href="{{ url_for("readtrsh", paradrct="recv", mailiden=indx.mailiden) }}">{{ indx.subjtext }}</a></td>
+                <td class="normelem">{{ indx.timedata.date }} {{ indx.timedata.mont.tinyform }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3 class="headelem">Sent directives</h3>
+    <table class="uk-table uk-table-justify uk-table-divider uk-table-small">
+        <thead>
+            <tr>
+                <th class="uk-width-small headelem">DESTINATION</th>
+                <th class="uk-width-large headelem">DIRECTIVE</th>
+                <th class="uk-width-small headelem">DATE</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for indx in senddict %}
+            <tr>
+                <td class="headelem">{{ indx.destuser }}</td>
+                <td class="normelem"><a href="{{ url_for("readtrsh", paradrct="send", mailiden=indx.mailiden) }}">{{ indx.subjtext }}</a></td>
+                <td class="normelem">{{ indx.timedata.date }} {{ indx.timedata.mont.tinyform }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 <br/>
 {% endblock %}
+{% block logdinas %}<p class="uk-margin-remove italelem">Logged in as {{ username }}</p>{% endblock %}
 {% block versdata %}
     FORGE v{{ versinfo.mainline }}
 {% endblock %}

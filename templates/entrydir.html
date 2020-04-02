@@ -1,31 +1,36 @@
-{% extends "fglayout.html" %}
+{% extends "fgparent.html" %}
 {% block title %}Login{% endblock %}
 {% block head %}{{ super() }}{% endblock %}
-{% block head1cnt %}Login{% endblock %}
-{% block head2cnt %}Welcome to FORGE{% endblock %}
+{% block pagename %}Login{% endblock %}
+{% block navaloca %}
+    <p class="uk-margin-remove normelem uk-text-small">Welcome to FORGE</p>
+{% endblock %}
 {% block bodyextn %}
 <br/>
-{% if erorcode != "" %}
-<div class="uk-alert-danger" uk-alert>
-    <p class="normelem">{{ erorlist[erorcode] }}</p>
+<div class="uk-card-body uk-background-default uk-padding-remove">
+    {% if erorcode != "" %}
+    <div class="uk-alert-danger" uk-alert>
+        <p class="normelem">{{ erorlist[erorcode] }}</p>
+    </div>
+    {% endif %}
+    <p class="normelem">You need to login to continue.</p>
+    <form method="POST">
+        <fieldset class="uk-fieldset normelem">
+            <p><input class="uk-input" type="text" name="username" placeholder="Username"></p>
+            <p><input class="uk-input" type="password" name="password" placeholder="Password"></p>
+        </fieldset>
+        <input type="submit" value="LOGIN" class="uk-button uk-background-secondary headelem forggrin"/>
+    </form>
+    <p class="normelem">Don't have an account yet? Create one here</p>
+    <a href="{{ url_for("makeacnt") }}">
+        <button class="uk-button uk-background-secondary headelem forggrin">
+            SIGNUP
+        </button>
+    </a>
 </div>
-{% endif %}
-<p class="normelem">You need to login to continue.</p>
-<form method="POST">
-    <fieldset class="uk-fieldset normelem">
-        <p><input class="uk-input" type="text" name="username" placeholder="Username"></p>
-        <p><input class="uk-input" type="password" name="password" placeholder="Password"></p>
-    </fieldset>
-    <input type="submit" value="LOGIN" class="uk-button uk-background-secondary headelem forggrin"/>
-</form>
-<p class="normelem">Don't have an account yet? Create one here</p>
-<a href="{{ url_for("makeacnt") }}">
-    <button class="uk-button uk-background-secondary headelem forggrin">
-        SIGNUP
-    </button>
-</a>
-<br/><br/>
+<br/>
 {% endblock %}
+{% block logdinas %}<p class="uk-margin-remove italelem">Code - ENTRYDIR</p>{% endblock %}
 {% block versdata %}
     FORGE v{{ versinfo.mainline }}
 {% endblock %}

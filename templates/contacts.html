@@ -1,9 +1,15 @@
 {% extends "fgparent.html" %}
 {% block title %}Contacts{% endblock %}
 {% block head %}{{ super() }}{% endblock %}
-{% block head1cnt %}Contacts{% endblock %}
-{% block head2cnt %}Welcome, {{ username }}{% endblock %}
+{% block pagename %}Contacts{% endblock %}
+{% block navaloca %}
+    <ul class="uk-margin-remove uk-breadcrumb normelem">
+        <li><a class="blcktint" href="{{ url_for("dashbord") }}">Dashboard</a></li>
+        <li><span class="blcktint">Contacts</span></li>
+    </ul>
+{% endblock %}
 {% block bodyextn %}
+    <br/>
     {% if erorcode != "" %}
         <div class="uk-alert-danger" uk-alert>
             <p class="normelem">{{ erorlist[erorcode] }}</p>
@@ -52,6 +58,7 @@
     <br/>
     <br/>
 {% endblock %}
+{% block logdinas %}<p class="uk-margin-remove italelem">Logged in as {{ username }}</p>{% endblock %}
 {% block versdata %}
     FORGE v{{ versinfo.mainline }}
 {% endblock %}

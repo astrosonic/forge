@@ -1,9 +1,16 @@
 {% extends "fgparent.html" %}
-{% block title %}Contacts{% endblock %}
+{% block title %}Viewer{% endblock %}
 {% block head %}{{ super() }}{% endblock %}
-{% block head1cnt %}Contacts{% endblock %}
-{% block head2cnt %}Welcome, {{ username }}{% endblock %}
+{% block pagename %}Viewer{% endblock %}
+{% block navaloca %}
+    <ul class="uk-margin-remove uk-breadcrumb normelem">
+        <li><a class="blcktint" href="{{ url_for("dashbord") }}">Dashboard</a></li>
+        <li><a class="blcktint" href="{{ url_for("contacts") }}">Contacts</a></li>
+        <li><span class="blcktint">Viewer</span></li>
+    </ul>
+{% endblock %}
 {% block bodyextn %}
+<br/>
 <h3 class="headelem">{{ userdict.username }}</h3>
 <h4 class="headelem uk-margin-remove">{{ userdict.fullname }}</h4>
 <h5 class="italelem uk-margin-remove">{{ userdict.emailadr }}</h5>
@@ -23,6 +30,7 @@
 {% endif %}
 <br/><br/>
 {% endblock %}
+{% block logdinas %}<p class="uk-margin-remove italelem">Logged in as {{ username }}</p>{% endblock %}
 {% block versdata %}
     FORGE v{{ versinfo.mainline }}
 {% endblock %}
