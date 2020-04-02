@@ -1,25 +1,24 @@
-from flask import Flask, render_template, request, redirect, url_for
-import libr_makeacnt, libr_entrydir, libr_sessdata, libr_fgconfig, libr_makemail, libr_inbxpage, libr_trashcan, libr_contacts
+from flask import Flask, render_template, request, redirect, url_for, session
+import libr_makeacnt, libr_entrydir, libr_fgconfig, libr_makemail, libr_inbxpage, libr_trashcan, libr_contacts
 
 versinfo = libr_fgconfig.versinfo
 erorlist = libr_fgconfig.erorlist
 
-trgtuser = None
-
 software = Flask(__name__)
+software.secret_key = "t0xic0der"
 
 @software.route("/dashbord/")
 def dashbord():
-    if trgtuser == None:
-        return render_template("invalses.html", versinfo=versinfo)
+    if 'username' in session:
+        username = session['username']
+        return render_template("dashbord.html", username=username, versinfo=versinfo)
     else:
-        return render_template("dashbord.html", username=trgtuser["username"], versinfo=versinfo)
+        return render_template("invalses.html", versinfo=versinfo)
 
 @software.route("/makemail/", methods=["GET", "POST"])
 def makemail(erorcode=""):
-    if trgtuser == None:
-        return render_template("invalses.html", versinfo=versinfo)
-    else:
+    if 'username' in session:
+        username = session['username']
         if request.method == "POST":
             receiver = request.form["receiver"]
             subjtext = request.form["subjtext"]
@@ -30,144 +29,159 @@ def makemail(erorcode=""):
                 erorcode = "nosubjsp"
             elif conttext == "":
                 erorcode = "contemty"
+            elif receiver == username:
+                erorcode = "sameuser"
             else:
                 isitexst = libr_makemail.acntexst(receiver)
                 if isitexst == False:
                     erorcode = "recvabst"
                 else:
                     erorcode = "mailsucc"
-                    libr_makemail.sendmail(subjtext, conttext, trgtuser["username"], receiver)
-            return render_template("makemail.html", username=trgtuser["username"], versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
-        return render_template("makemail.html", username=trgtuser["username"], versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
+                    libr_makemail.sendmail(subjtext, conttext, username, receiver)
+        return render_template("makemail.html", username=username, versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
+    else:
+        return render_template("invalses.html", versinfo=versinfo)
 
 @software.route("/folocont/<usercont>/")
 def folocont(usercont):
-    if trgtuser == None:
-        return render_template("invalses.html", versinfo=versinfo)
+    if 'username' in session:
+        username = session['username']
+        libr_contacts.addtocnt(usercont, username)
+        return render_template("folocont.html", username=username, versinfo=versinfo)
     else:
-        libr_contacts.addtocnt(usercont, trgtuser["username"])
-        return render_template("folocont.html", username=trgtuser["username"], versinfo=versinfo)
+        return render_template("invalses.html", versinfo=versinfo)
 
 @software.route("/unfocont/<usercont>/")
 def unfocont(usercont):
-    if trgtuser == None:
-        return render_template("invalses.html", versinfo=versinfo)
+    if 'username' in session:
+        username = session['username']
+        libr_contacts.delfmcnt(usercont, username)
+        return render_template("unfocont.html", username=username, versinfo=versinfo)
     else:
-        libr_contacts.delfmcnt(usercont, trgtuser["username"])
-        return render_template("unfocont.html", username=trgtuser["username"], versinfo=versinfo)
+        return render_template("invalses.html", versinfo=versinfo)
 
 @software.route("/rmovmail/<paradrct>/<mailiden>/")
 def rmovmail(paradrct, mailiden):
-    if trgtuser == None:
-        return render_template("invalses.html", versinfo=versinfo)
-    else:
+    if 'username' in session:
+        username = session['username']
         libr_inbxpage.movetrsh(paradrct, mailiden)
-        return render_template("rmovmail.html", username=trgtuser["username"], versinfo=versinfo)
+        return render_template("rmovmail.html", username=username, versinfo=versinfo)
+    else:
+        return render_template("invalses.html", versinfo=versinfo)
 
 @software.route("/purgemsg/<paradrct>/<mailiden>/")
 def purgemsg(paradrct, mailiden):
-    if trgtuser == None:
-        return render_template("invalses.html", versinfo=versinfo)
-    else:
+    if 'username' in session:
+        username = session['username']
         libr_trashcan.purgemsg(paradrct, mailiden)
-        return render_template("purgemsg.html", username=trgtuser["username"], versinfo=versinfo)
+        return render_template("purgemsg.html", username=username, versinfo=versinfo)
+    else:
+        return render_template("invalses.html", versinfo=versinfo)
 
 @software.route("/rstrmail/<paradrct>/<mailiden>/")
 def rstrmail(paradrct, mailiden):
-    if trgtuser == None:
-        return render_template("invalses.html", versinfo=versinfo)
-    else:
+    if 'username' in session:
+        username = session['username']
         libr_trashcan.moveinbx(paradrct, mailiden)
-        return render_template("rstrmail.html", username=trgtuser["username"], versinfo=versinfo)
+        return render_template("rstrmail.html", username=username, versinfo=versinfo)
+    else:
+        return render_template("invalses.html", versinfo=versinfo)
 
 @software.route("/inbxpage/")
 def inbxpage():
-    if trgtuser == None:
-        return render_template("invalses.html", versinfo=versinfo)
+    if 'username' in session:
+        username = session['username']
+        recvdict = libr_inbxpage.fetcrecv(username)
+        senddict = libr_inbxpage.fetcsend(username)
+        return render_template("inbxpage.html", username=username, versinfo=versinfo, recvdict=recvdict, senddict=senddict)
     else:
-        recvdict = libr_inbxpage.fetcrecv(trgtuser["username"])
-        senddict = libr_inbxpage.fetcsend(trgtuser["username"])
-        return render_template("inbxpage.html", username=trgtuser["username"], versinfo=versinfo, recvdict=recvdict, senddict=senddict)
+        return render_template("invalses.html", versinfo=versinfo)
 
 @software.route("/contacts/", methods=["GET", "POST"])
 def contacts(srchuser = [], erorcode = ""):
-    if trgtuser == None:
-        return render_template("invalses.html", versinfo=versinfo)
-    else:
-        savedone = libr_contacts.fetccont(trgtuser["username"])
+    if 'username' in session:
+        username = session['username']
+        savedone = libr_contacts.fetccont(username)
         if request.method == "POST":
             srchtext = request.form["srchtext"]
             if srchtext == "":
                 erorcode = "srchemty"
             else:
-                srchuser = libr_contacts.fetcuser(srchtext, trgtuser["username"])
+                srchuser = libr_contacts.fetcuser(srchtext, username)
                 if srchuser == []:
                     erorcode = "nouserfd"
-            return render_template("contacts.html", username=trgtuser["username"], versinfo=versinfo, savedone=savedone, srchuser=srchuser, erorcode=erorcode, erorlist=erorlist)
-        return render_template("contacts.html", username=trgtuser["username"], versinfo=versinfo, savedone=savedone, srchuser=srchuser, erorcode=erorcode, erorlist=erorlist)
+        return render_template("contacts.html", username=username, versinfo=versinfo, savedone=savedone, srchuser=srchuser, erorcode=erorcode, erorlist=erorlist)
+    else:
+        return render_template("invalses.html", versinfo=versinfo)
 
 @software.route("/trashcan/")
 def trashcan():
-    if trgtuser == None:
-        return render_template("invalses.html", versinfo=versinfo)
+    if 'username' in session:
+        username = session['username']
+        recvdict = libr_trashcan.fetcrecv(username)
+        senddict = libr_trashcan.fetcsend(username)
+        return render_template("trashcan.html", username=username, versinfo=versinfo, recvdict=recvdict, senddict=senddict)
     else:
-        recvdict = libr_trashcan.fetcrecv(trgtuser["username"])
-        senddict = libr_trashcan.fetcsend(trgtuser["username"])
-        return render_template("trashcan.html", username=trgtuser["username"], versinfo=versinfo, recvdict=recvdict, senddict=senddict)
+        return render_template("invalses.html", versinfo=versinfo)
 
 @software.route("/grupdata/")
 def grupdata():
-    if trgtuser == None:
-        return render_template("invalses.html", versinfo=versinfo)
+    if 'username' in session:
+        username = session['username']
+        return render_template("grupdata.html", username=username, versinfo=versinfo)
     else:
-        return render_template("grupdata.html", username=trgtuser["username"], versinfo=versinfo)
+        return render_template("invalses.html", versinfo=versinfo)
 
 @software.route("/brodcast/")
 def brodcast():
-    if trgtuser == None:
-        return render_template("invalses.html", versinfo=versinfo)
+    if 'username' in session:
+        username = session['username']
+        return render_template("brodcast.html", username=username, versinfo=versinfo)
     else:
-        return render_template("brodcast.html", username=trgtuser["username"], versinfo=versinfo)
+        return render_template("invalses.html", versinfo=versinfo)
 
 @software.route("/settings/")
 def settings():
-    if trgtuser == None:
-        return render_template("invalses.html", versinfo=versinfo)
+    if 'username' in session:
+        username = session['username']
+        return render_template("settings.html", username=username, versinfo=versinfo)
     else:
-        return render_template("settings.html", username=trgtuser["username"], versinfo=versinfo)
+        return render_template("invalses.html", versinfo=versinfo)
 
 @software.route("/fglogout/")
 def fglogout():
-    global trgtuser
-    if trgtuser == None:
-        return render_template("invalses.html", versinfo=versinfo)
-    else:
-        trgtuser = None
+    if 'username' in session:
+        session.pop('username', None)
         return render_template("fglogout.html", username="", versinfo=versinfo)
+    else:
+        return render_template("invalses.html", versinfo=versinfo)
 
 @software.route("/viewuser/<parauser>/<usercont>/")
 def viewuser(parauser, usercont):
-    if trgtuser == None:
-        return render_template("invalses.html", versinfo=versinfo)
-    else:
+    if 'username' in session:
+        username = session['username']
         userdict = libr_contacts.fetcsing(usercont)
-        return render_template("viewuser.html", username=trgtuser["username"], versinfo=versinfo, userdict=userdict, itempara=parauser)
+        return render_template("viewuser.html", username=username, versinfo=versinfo, userdict=userdict, itempara=parauser)
+    else:
+        return render_template("invalses.html", versinfo=versinfo)
 
 @software.route("/readinbx/<paradrct>/<mailiden>/")
 def readinbx(paradrct, mailiden):
-    if trgtuser == None:
-        return render_template("invalses.html", versinfo=versinfo)
+    if 'username' in session:
+        username = session['username']
+        maildict = libr_inbxpage.mailread(paradrct, mailiden, username)
+        return render_template("readinbx.html", username=username, versinfo=versinfo, maildict=maildict, itempara=paradrct)
     else:
-        maildict = libr_inbxpage.mailread(paradrct, mailiden, trgtuser["username"])
-        return render_template("readinbx.html", username=trgtuser["username"], versinfo=versinfo, maildict=maildict, itempara=paradrct)
+        return render_template("invalses.html", versinfo=versinfo)
 
 @software.route("/readtrsh/<paradrct>/<mailiden>/")
 def readtrsh(paradrct, mailiden):
-    if trgtuser == None:
-        return render_template("invalses.html", versinfo=versinfo)
+    if 'username' in session:
+        username = session['username']
+        maildict = libr_trashcan.mailread(paradrct, mailiden, username)
+        return render_template("readtrsh.html", username=username, versinfo=versinfo, maildict=maildict, itempara=paradrct)
     else:
-        maildict = libr_trashcan.mailread(paradrct, mailiden, trgtuser["username"])
-        return render_template("readtrsh.html", username=trgtuser["username"], versinfo=versinfo, maildict=maildict, itempara=paradrct)
+        return render_template("invalses.html", versinfo=versinfo)
 
 @software.route("/", methods=["GET", "POST"])
 def entrydir(erorcode = ""):
@@ -187,8 +201,7 @@ def entrydir(erorcode = ""):
                 if isittrue == False:
                     erorcode = "wrngpswd"
                 else:
-                    global trgtuser
-                    trgtuser = libr_sessdata.makesess(username)
+                    session['username'] = username
                     return dashbord()
         return render_template("entrydir.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
     return render_template("entrydir.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
@@ -224,4 +237,4 @@ def makeacnt(erorcode = ""):
     return render_template("makeacnt.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
 
 if __name__ == "__main__":
-    software.run(port=9696, host='0.0.0.0')
+    software.run(port=9696, host="0.0.0.0")
