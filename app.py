@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-import libr_makeacnt, libr_entrydir, libr_fgconfig, libr_makemail, libr_inbxpage, libr_trashcan, libr_contacts
+from libraries import libr_makeacnt, libr_entrydir, libr_fgconfig, libr_makemail, libr_inbxpage, libr_trashcan, libr_contacts
 
 versinfo = libr_fgconfig.versinfo
 erorlist = libr_fgconfig.erorlist

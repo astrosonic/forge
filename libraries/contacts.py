@@ -1,5 +1,5 @@
 import sqlite3, hashlib
-from libr_fgconfig import dataunit
+from libraries.fgconfig import dataunit
 
 def convhash(textobjc):
     textobjc = textobjc.encode("utf-8")
