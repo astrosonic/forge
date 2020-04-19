@@ -1,5 +1,5 @@
 import sqlite3, time, rsa
-from libraries.fgconfig import dataunit, timedata
+from libraries.libr_fgconfig import dataunit, timedata
 
 def timeconv(timestmp):
     timelist = list(time.gmtime(timestmp))

@@ -1,5 +1,5 @@
 import sqlite3, hashlib, rsa
-from libraries.fgconfig import dataunit
+from libraries.libr_fgconfig import dataunit
 
 def acntexst(username):
     database = sqlite3.connect(dataunit["clouduse"]["path"])
