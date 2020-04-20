@@ -157,7 +157,7 @@ def onegroup(grupiden, erorcode=""):
                 else:
                     erorcode = "mailsucc"
                     libr_makemail.sendmail(subjtext, conttext, username, receiver)
-        return render_template("makemail.html", username=username, versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
+        #return render_template("makemail.html", username=username, versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
         return render_template("onegroup.html", username=username, versinfo=versinfo, retndata=retndata, erorlist=erorlist, erorcode=erorcode)
     else:
         return redirect(url_for("invalses"))

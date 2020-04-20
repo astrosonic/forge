@@ -63,23 +63,71 @@ def fetcgrup(grupiden):
     }
     return retndata
 
+def generate():
+    publckey, privtkey = rsa.newkeys(2048)
+    publclst = str(publckey)[10:-1].split(",")
+    privtlst = str(privtkey)[11:-1].split(",")
+    keyepair = {
+        "publckey" : {
+            "n" : int(publclst[0]),
+            "e" : int(publclst[1])
+        },
+        "privtkey" : {
+            "n" : int(privtlst[0]),
+            "e" : int(privtlst[1]),
+            "d" : int(privtlst[2]),
+            "p" : int(privtlst[3]),
+            "q" : int(privtlst[4])
+        }
+    }
+    print(keyepair)
+    return keyepair
+
 def savegrup(grupname, partlist, username):
     grupiden = convhash(grupname)
+    rsabuild = generate()
     database = sqlite3.connect(dataunit["clouduse"]["path"])
     acticurs = database.cursor()
     qurytext = "insert into grupinfo values (" + \
                "'" + str(grupiden) + "', " + \
                "'" + str(grupname) + "', " + \
-               "'" + str(username) + "')"
+               "'" + str(username) + "', " + \
+               "'" + str(rsabuild["publckey"]["n"]) + "', " + \
+               "'" + str(rsabuild["publckey"]["e"]) + "') "
     acticurs.execute(qurytext)
+    userlist = []
     for indx in partlist:
         idengenr = indx + grupiden
         identity = convhash(idengenr)
+        userdict = {
+            "identity": identity,
+            "username": indx,
+        }
+        userlist.append(userdict)
+    for indx in userlist:
         qurytext = "insert into grupteam values (" + \
-                   "'" + str(identity) + "', " + \
+                   "'" + str(indx["identity"]) + "', " + \
                    "'" + str(grupiden) + "', " + \
-                   "'" + str(indx) + "')"
-        print(qurytext)
+                   "'" + str(indx["username"]) + "')"
+        try:
+            acticurs.execute(qurytext)
+        except:
+            pass
+    database.commit()
+    database.close()
+    database = sqlite3.connect(dataunit["localuse"]["path"])
+    acticurs = database.cursor()
+    for indx in userlist:
+        qurytext = "insert into gruploca values (" + \
+                   "'" + str(indx["identity"]) + "', " + \
+                   "'" + str(grupiden) + "', " + \
+                   "'" + str(rsabuild["publckey"]["n"]) + "', " + \
+                   "'" + str(rsabuild["publckey"]["e"]) + "', " + \
+                   "'" + str(rsabuild["privtkey"]["n"]) + "', " + \
+                   "'" + str(rsabuild["privtkey"]["e"]) + "', " + \
+                   "'" + str(rsabuild["privtkey"]["d"]) + "', " + \
+                   "'" + str(rsabuild["privtkey"]["p"]) + "', " + \
+                   "'" + str(rsabuild["privtkey"]["q"]) + "') "
         try:
             acticurs.execute(qurytext)
         except:

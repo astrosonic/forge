@@ -3,7 +3,7 @@
 create table userdata(username text primary key not null, passhash text not null, fullname text not null, emailadr text not null, digisign text not null, pubkeynn text not null, pubkeyee text not null)
 
 /* grupinfo table */
-create table grupinfo(grupiden text primary key not null, grupname text not null, ownrname text not null, foreign key(username) references userdata(username))
+create table grupinfo(grupiden text primary key not null, grupname text not null, ownrname text not null, pubkeynn text not null, pubkeyee text not null, foreign key(ownrname) references userdata(username))
 
 /* grupteam table */
 create table grupteam(useriden text primary key not null, grupiden text not null, username text not null, foreign key(username) references userdata(username), foreign key(grupiden) references grupinfo(grupiden))
@@ -35,3 +35,6 @@ create table settings(username text primary key not null, pkcsiden text not null
 
 /* sessdata table */
 create table sessdata(sessiden text primary key not null, username text not null, strttime text not null, stoptime text not null)
+
+/* gruploca table */
+create table gruploca(useriden text primary key not null, grupiden text not null, pubkeynn text not null, pubkeyee text not null, prikeynn text not null, prikeyee text not null, prikeydd text not null, prikeypp text not null, prikeyqq text not null);
