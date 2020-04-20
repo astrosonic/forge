@@ -149,6 +149,8 @@ def makegrup(erorcode = ""):
                 erorcode = "gpnmabst"
             elif textlist == "":
                 erorcode = "listabst"
+            elif " " in grupname:
+                erorcode = "spacgpnm"
             else:
                 textlist = textlist + " " + str(username)
                 partlist = textlist.split(" ")
@@ -160,6 +162,8 @@ def makegrup(erorcode = ""):
                     return redirect(url_for("grupdone", identity=identity))
             return render_template("makegrup.html", username=username, versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
         return render_template("makegrup.html", username=username, versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
+
+
 
 @software.route("/grupdata/")
 def grupdata():

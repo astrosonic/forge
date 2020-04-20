@@ -86,7 +86,10 @@ def savegrup(grupname, partlist, username):
                    "'" + str(grupiden) + "', " + \
                    "'" + str(indx) + "')"
         print(qurytext)
-        acticurs.execute(qurytext)
+        try:
+            acticurs.execute(qurytext)
+        except:
+            pass
     database.commit()
     database.close()
     return grupiden
