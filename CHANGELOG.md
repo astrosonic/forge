@@ -179,3 +179,13 @@ Forensics Oriented Reporting Group Under Encryption
   * Moved user information to footer
 * Documentation
   * Updated screenshots to `SCREENSHOTS.md`
+
+### v19042020
+* Updated framework
+  * Shifted login backbone to libraries directory
+  * Shifted signup backbone to libraries directory
+  * Shifted compose backbone to libraries directory
+  * Shifted inbox backbone to libraries directory
+  * Shifted trashcan backbone to libraries directory
+  * Shifted contacts backbone to libraries directory
+* Corrected the font directory
