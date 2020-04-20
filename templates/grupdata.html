@@ -24,18 +24,18 @@
             {% for indx in gruplist %}
             <tr>
                 <td class="headelem">{{ indx["ownrname"] }}</td>
-                <td class="normelem">{{ indx["grupname"] }}</td>
+                <td class="normelem"><a href="{{ url_for("onegroup", grupiden=indx["grupiden"]) }}">{{ indx["grupname"] }}</a></td>
                 <td class="normelem">420 mails</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <h3 class="uk-margin-remove headelem">Sent directives</h3>
+    <h3 class="uk-margin-remove headelem">Not satisfied?</h3>
     <br/>
     <a href="{{ url_for("makegrup") }}">
-    <button class="uk-button uk-background-secondary uk-button-small headelem forggrin">
-        CREATE GROUP
-    </button>
+        <button class="uk-button uk-background-secondary uk-button-small headelem forggrin">
+            CREATE GROUP
+        </button>
     </a>
 </div>
 <br/>

@@ -138,6 +138,30 @@ def grupdone(identity):
     else:
         return redirect(url_for("invalses"))
 
+@software.route("/onegroup/<grupiden>", methods=["GET", "POST"])
+def onegroup(grupiden, erorcode=""):
+    if 'username' in session:
+        username = session['username']
+        retndata = libr_grupdata.fetcgrup(grupiden)
+        if request.method == "POST":
+            subjtext = request.form["subjtext"]
+            conttext = request.form["conttext"]
+            if subjtext == "":
+                erorcode = "nosubjsp"
+            elif conttext == "":
+                erorcode = "contemty"
+            else:
+                isitexst = libr_makemail.acntexst(receiver)
+                if isitexst == False:
+                    erorcode = "recvabst"
+                else:
+                    erorcode = "mailsucc"
+                    libr_makemail.sendmail(subjtext, conttext, username, receiver)
+        return render_template("makemail.html", username=username, versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
+        return render_template("onegroup.html", username=username, versinfo=versinfo, retndata=retndata, erorlist=erorlist, erorcode=erorcode)
+    else:
+        return redirect(url_for("invalses"))
+
 @software.route("/makegrup/", methods=["GET", "POST"])
 def makegrup(erorcode = ""):
     if 'username' in session:
