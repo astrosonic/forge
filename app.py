@@ -7,13 +7,17 @@ erorlist = libr_fgconfig.erorlist
 software = Flask(__name__)
 software.secret_key = "t0xic0der"
 
+@software.route("/invalses/")
+def invalses():
+    return render_template("invalses.html", versinfo=versinfo)
+
 @software.route("/dashbord/")
 def dashbord():
     if 'username' in session:
         username = session['username']
         return render_template("dashbord.html", username=username, versinfo=versinfo)
     else:
-        return render_template("invalses.html", versinfo=versinfo)
+        return redirect(url_for("invalses"))
 
 @software.route("/makemail/", methods=["GET", "POST"])
 def makemail(erorcode=""):
@@ -40,7 +44,7 @@ def makemail(erorcode=""):
                     libr_makemail.sendmail(subjtext, conttext, username, receiver)
         return render_template("makemail.html", username=username, versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
     else:
-        return render_template("invalses.html", versinfo=versinfo)
+        return redirect(url_for("invalses"))
 
 @software.route("/folocont/<usercont>/")
 def folocont(usercont):
@@ -49,7 +53,7 @@ def folocont(usercont):
         libr_contacts.addtocnt(usercont, username)
         return render_template("folocont.html", username=username, versinfo=versinfo)
     else:
-        return render_template("invalses.html", versinfo=versinfo)
+        return redirect(url_for("invalses"))
 
 @software.route("/unfocont/<usercont>/")
 def unfocont(usercont):
@@ -58,7 +62,7 @@ def unfocont(usercont):
         libr_contacts.delfmcnt(usercont, username)
         return render_template("unfocont.html", username=username, versinfo=versinfo)
     else:
-        return render_template("invalses.html", versinfo=versinfo)
+        return redirect(url_for("invalses"))
 
 @software.route("/rmovmail/<paradrct>/<mailiden>/")
 def rmovmail(paradrct, mailiden):
@@ -67,7 +71,7 @@ def rmovmail(paradrct, mailiden):
         libr_inbxpage.movetrsh(paradrct, mailiden)
         return render_template("rmovmail.html", username=username, versinfo=versinfo)
     else:
-        return render_template("invalses.html", versinfo=versinfo)
+        return redirect(url_for("invalses"))
 
 @software.route("/purgemsg/<paradrct>/<mailiden>/")
 def purgemsg(paradrct, mailiden):
@@ -76,7 +80,7 @@ def purgemsg(paradrct, mailiden):
         libr_trashcan.purgemsg(paradrct, mailiden)
         return render_template("purgemsg.html", username=username, versinfo=versinfo)
     else:
-        return render_template("invalses.html", versinfo=versinfo)
+        return redirect(url_for("invalses"))
 
 @software.route("/rstrmail/<paradrct>/<mailiden>/")
 def rstrmail(paradrct, mailiden):
@@ -85,7 +89,7 @@ def rstrmail(paradrct, mailiden):
         libr_trashcan.moveinbx(paradrct, mailiden)
         return render_template("rstrmail.html", username=username, versinfo=versinfo)
     else:
-        return render_template("invalses.html", versinfo=versinfo)
+        return redirect(url_for("invalses"))
 
 @software.route("/inbxpage/")
 def inbxpage():
@@ -95,7 +99,7 @@ def inbxpage():
         senddict = libr_inbxpage.fetcsend(username)
         return render_template("inbxpage.html", username=username, versinfo=versinfo, recvdict=recvdict, senddict=senddict)
     else:
-        return render_template("invalses.html", versinfo=versinfo)
+        return redirect(url_for("invalses"))
 
 @software.route("/contacts/", methods=["GET", "POST"])
 def contacts(srchuser = [], erorcode = ""):
@@ -112,7 +116,7 @@ def contacts(srchuser = [], erorcode = ""):
                     erorcode = "nouserfd"
         return render_template("contacts.html", username=username, versinfo=versinfo, savedone=savedone, srchuser=srchuser, erorcode=erorcode, erorlist=erorlist)
     else:
-        return render_template("invalses.html", versinfo=versinfo)
+        return redirect(url_for("invalses"))
 
 @software.route("/trashcan/")
 def trashcan():
@@ -122,7 +126,7 @@ def trashcan():
         senddict = libr_trashcan.fetcsend(username)
         return render_template("trashcan.html", username=username, versinfo=versinfo, recvdict=recvdict, senddict=senddict)
     else:
-        return render_template("invalses.html", versinfo=versinfo)
+        return redirect(url_for("invalses"))
 
 @software.route("/grupdata/")
 def grupdata():
@@ -130,7 +134,7 @@ def grupdata():
         username = session['username']
         return render_template("grupdata.html", username=username, versinfo=versinfo)
     else:
-        return render_template("invalses.html", versinfo=versinfo)
+        return redirect(url_for("invalses"))
 
 @software.route("/brodcast/")
 def brodcast():
@@ -138,7 +142,7 @@ def brodcast():
         username = session['username']
         return render_template("brodcast.html", username=username, versinfo=versinfo)
     else:
-        return render_template("invalses.html", versinfo=versinfo)
+        return redirect(url_for("invalses"))
 
 @software.route("/settings/")
 def settings():
@@ -146,7 +150,7 @@ def settings():
         username = session['username']
         return render_template("settings.html", username=username, versinfo=versinfo)
     else:
-        return render_template("invalses.html", versinfo=versinfo)
+        return redirect(url_for("invalses"))
 
 @software.route("/fglogout/")
 def fglogout():
@@ -154,7 +158,7 @@ def fglogout():
         session.pop('username', None)
         return render_template("fglogout.html", username="", versinfo=versinfo)
     else:
-        return render_template("invalses.html", versinfo=versinfo)
+        return redirect(url_for("invalses"))
 
 @software.route("/viewuser/<parauser>/<usercont>/")
 def viewuser(parauser, usercont):
@@ -163,7 +167,7 @@ def viewuser(parauser, usercont):
         userdict = libr_contacts.fetcsing(usercont)
         return render_template("viewuser.html", username=username, versinfo=versinfo, userdict=userdict, itempara=parauser)
     else:
-        return render_template("invalses.html", versinfo=versinfo)
+        return redirect(url_for("invalses"))
 
 @software.route("/readinbx/<paradrct>/<mailiden>/")
 def readinbx(paradrct, mailiden):
@@ -172,7 +176,7 @@ def readinbx(paradrct, mailiden):
         maildict = libr_inbxpage.mailread(paradrct, mailiden, username)
         return render_template("readinbx.html", username=username, versinfo=versinfo, maildict=maildict, itempara=paradrct)
     else:
-        return render_template("invalses.html", versinfo=versinfo)
+        return redirect(url_for("invalses"))
 
 @software.route("/readtrsh/<paradrct>/<mailiden>/")
 def readtrsh(paradrct, mailiden):
@@ -181,7 +185,7 @@ def readtrsh(paradrct, mailiden):
         maildict = libr_trashcan.mailread(paradrct, mailiden, username)
         return render_template("readtrsh.html", username=username, versinfo=versinfo, maildict=maildict, itempara=paradrct)
     else:
-        return render_template("invalses.html", versinfo=versinfo)
+        return redirect(url_for("invalses"))
 
 @software.route("/", methods=["GET", "POST"])
 def entrydir(erorcode = ""):
