@@ -37,8 +37,11 @@ def fdecrypt(encstrim, privtkey):
     for indx in encstrim:
         if indx != "":
             bytestrg = bytestrg + bytes([int(indx)])
-    decrbyte = rsa.decrypt(bytestrg, privtkey)
-    decrstrg = decrbyte.decode("utf-8")
+    try:
+        decrbyte = rsa.decrypt(bytestrg, privtkey)
+        decrstrg = decrbyte.decode("utf-8")
+    except rsa.DecryptionError:
+        decrstrg = "Message integrity compromised - Decryption failed!"
     return decrstrg
 
 def fetcsend(username):
