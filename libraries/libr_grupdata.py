@@ -88,8 +88,21 @@ def savegrup(grupname, partlist, username):
     database.close()
     return grupiden
 
-def listongp(username):
-    pass
-
-def listadgp(username):
-    pass
+def listfetc(username):
+    database = sqlite3.connect(dataunit["clouduse"]["path"])
+    acticurs = database.cursor()
+    qurytext = "select * from grupinfo where grupiden in " + \
+               "(select grupiden from grupteam where username = " + \
+               "'" + str(username) + "')"
+    recvobjc = acticurs.execute(qurytext)
+    recvobjc = recvobjc.fetchall()
+    gruplist = []
+    for indx in recvobjc:
+        grupdict = {
+            "grupiden": indx[0],
+            "grupname": indx[1],
+            "ownrname": indx[2],
+        }
+        gruplist.append(grupdict)
+    database.close()
+    return gruplist

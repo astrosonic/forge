@@ -173,9 +173,8 @@ def makegrup(erorcode = ""):
 def grupdata():
     if 'username' in session:
         username = session['username']
-        owndgrup = libr_grupdata.listongp(username)
-        adedgrup = libr_grupdata.listadgp(username)
-        return render_template("grupdata.html", username=username, versinfo=versinfo, owndgrup=owndgrup, adedgrup=adedgrup)
+        gruplist = libr_grupdata.listfetc(username)
+        return render_template("grupdata.html", username=username, versinfo=versinfo, gruplist=gruplist)
     else:
         return redirect(url_for("invalses"))
 

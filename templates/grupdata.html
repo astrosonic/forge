@@ -10,26 +10,33 @@
 {% endblock %}
 {% block bodyextn %}
 <br/>
-<a href="{{ url_for("makegrup") }}">
+<div class="uk-card-body uk-background-default uk-padding-remove">
+    <h3 class="uk-margin-remove headelem">Active groups</h3>
+    <table class="uk-table uk-table-justify uk-table-divider uk-table-small">
+        <thead>
+            <tr>
+                <th class="uk-width-small headelem">ONWER</th>
+                <th class="uk-width-large headelem">GROUP NAME</th>
+                <th class="uk-width-small headelem">DIRECTIVES</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for indx in gruplist %}
+            <tr>
+                <td class="headelem">{{ indx["ownrname"] }}</td>
+                <td class="normelem">{{ indx["grupname"] }}</td>
+                <td class="normelem">420 mails</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3 class="uk-margin-remove headelem">Sent directives</h3>
+    <br/>
+    <a href="{{ url_for("makegrup") }}">
     <button class="uk-button uk-background-secondary uk-button-small headelem forggrin">
         CREATE GROUP
     </button>
-</a>
-<a href="{{ url_for("makegrup") }}">
-    <button class="uk-button uk-background-secondary uk-button-small headelem forggrin">
-        LEAVE GROUP
-    </button>
-</a>
-<a href="{{ url_for("makegrup") }}">
-    <button class="uk-button uk-background-secondary uk-button-small headelem forggrin">
-        PURGE GROUP
-    </button>
-</a>
-<br/>
-<br/>
-<div class="uk-card-body uk-background-default uk-padding-remove">
-    <h3 class="headelem">Received directives</h3>
-    <h3 class="headelem">Sent directives</h3>
+    </a>
 </div>
 <br/>
 {% endblock %}
