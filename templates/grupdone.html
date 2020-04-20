@@ -17,7 +17,11 @@
         <dt class="headelem">Group identity</dt>
         <dd class="normelem">{{ retndata["grupiden"] }}</dd>
         <dt class="headelem">Participant</dt>
-        <dd class="normelem">{{ retndata["userlist"] }}</dd>
+        <dd class="normelem">
+            {% for indx in retndata["userlist"] %}
+                {{ indx }},
+            {% endfor %}
+        </dd>
     </dl>
     <p class="normelem">
         The group can now be used for selective communication

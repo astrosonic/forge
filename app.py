@@ -152,25 +152,30 @@ def makegrup(erorcode = ""):
             elif " " in grupname:
                 erorcode = "spacgpnm"
             else:
-                textlist = textlist + " " + str(username)
-                partlist = textlist.split(" ")
-                isithere = libr_grupdata.doesexst(partlist)
-                if isithere == False:
-                    erorcode = "partnoex"
+                doesexst = libr_grupdata.grupexst(grupname)
+                if doesexst is True:
+                    erorcode = "samegpex"
                 else:
-                    identity = libr_grupdata.savegrup(grupname,partlist,username)
-                    return redirect(url_for("grupdone", identity=identity))
+                    textlist = textlist + " " + str(username)
+                    partlist = textlist.split(" ")
+                    isithere = libr_grupdata.doesexst(partlist)
+                    if isithere == False:
+                        erorcode = "partnoex"
+                    else:
+                        identity = libr_grupdata.savegrup(grupname,partlist,username)
+                        return redirect(url_for("grupdone", identity=identity))
             return render_template("makegrup.html", username=username, versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
         return render_template("makegrup.html", username=username, versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
-
-
+    else:
+        return redirect(url_for("invalses"))
 
 @software.route("/grupdata/")
 def grupdata():
     if 'username' in session:
         username = session['username']
-        #listgrup =
-        return render_template("grupdata.html", username=username, versinfo=versinfo)
+        owndgrup = libr_grupdata.listongp(username)
+        adedgrup = libr_grupdata.listadgp(username)
+        return render_template("grupdata.html", username=username, versinfo=versinfo, owndgrup=owndgrup, adedgrup=adedgrup)
     else:
         return redirect(url_for("invalses"))
 

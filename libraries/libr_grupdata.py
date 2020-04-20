@@ -16,20 +16,16 @@ def acntexst(username):
     else:
         return False
 
-def grupexst(grupiden):
+def grupexst(grupname):
     database = sqlite3.connect(dataunit["clouduse"]["path"])
     acticurs = database.cursor()
-    qurytext = "select grupiden from grupinfo"
+    qurytext = "select grupname from grupinfo where grupname = '" + str(grupname) + "'"
     recvobjc = acticurs.execute(qurytext)
-    recvobjc = recvobjc.fetchall()
-    gruplist = []
-    for indx in recvobjc:
-        gruplist.append(indx[0])
-    database.close()
-    if grupiden in gruplist:
-        return True
-    else:
+    recvobjc = recvobjc.fetchone()
+    if recvobjc is None:
         return False
+    else:
+        return True
 
 def convhash(idengenr):
     idengenr = idengenr.encode("utf-8")
@@ -68,9 +64,7 @@ def fetcgrup(grupiden):
     return retndata
 
 def savegrup(grupname, partlist, username):
-    timecurt = str(time.time())
-    idengenr = grupname + timecurt
-    grupiden = convhash(idengenr)
+    grupiden = convhash(grupname)
     database = sqlite3.connect(dataunit["clouduse"]["path"])
     acticurs = database.cursor()
     qurytext = "insert into grupinfo values (" + \
@@ -94,5 +88,8 @@ def savegrup(grupname, partlist, username):
     database.close()
     return grupiden
 
-def listgrup(username):
+def listongp(username):
+    pass
+
+def listadgp(username):
     pass

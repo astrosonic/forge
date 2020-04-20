@@ -77,6 +77,7 @@ versinfo = {
 }
 
 erorlist = {
+    "samegpex": "Group with the same name already exists",
     "spacgpnm": "Spaces are not allowed in the group name",
     "gpnmabst": "You did not provide the group name",
     "listabst": "You did not provide the list of participants",
