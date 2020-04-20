@@ -77,6 +77,9 @@ versinfo = {
 }
 
 erorlist = {
+    "gpnmabst": "You did not provide the group name",
+    "listabst": "You did not provide the list of participants",
+    "partnoex": "One or two participants specified do not exist.",
     "sucesful": "Your account has been created.",
     "uneqpass": "The passwords provided do not match. Try again.",
     "nameabst": "The fullname field is mandatory.",

@@ -1,0 +1,37 @@
+{% extends "fgparent.html" %}
+{% block title %}Group created{% endblock %}
+{% block head %}{{ super() }}{% endblock %}
+{% block pagename %}Group created{% endblock %}
+{% block navaloca %}
+    <p class="uk-margin-remove normelem uk-text-small">Group has been created</p>
+{% endblock %}
+{% block bodyextn %}
+<br/>
+<div class="uk-card-body uk-background-default uk-padding-remove">
+    <p class="normelem">
+        Your group was successfully created.
+    </p>
+    <dl class="uk-description-list">
+        <dt class="headelem">Group name</dt>
+        <dd class="normelem">{{ retndata["grupname"] }}</dd>
+        <dt class="headelem">Group identity</dt>
+        <dd class="normelem">{{ retndata["grupiden"] }}</dd>
+        <dt class="headelem">Participant</dt>
+        <dd class="normelem">{{ retndata["userlist"] }}</dd>
+    </dl>
+    <p class="normelem">
+        The group can now be used for selective communication
+    </p>
+    <a href="{{ url_for("grupdata") }}">
+        <button class="uk-button uk-background-secondary uk-button-small headelem forggrin">
+            Go to groups page
+        </button>
+    </a>
+</div>
+<br/>
+{% endblock %}
+{% block logdinas %}<p class="uk-margin-remove italelem">Logged in as {{ username }}</p>{% endblock %}
+{% block versdata %}
+    FORGE v{{ versinfo.mainline }}
+{% endblock %}
+{% block body %}{{ super() }}{% endblock %}

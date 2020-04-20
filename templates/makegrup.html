@@ -1,0 +1,35 @@
+{% extends "fgparent.html" %}
+{% block title %}Group creation{% endblock %}
+{% block head %}{{ super() }}{% endblock %}
+{% block pagename %}Group creation{% endblock %}
+{% block navaloca %}
+    <ul class="uk-margin-remove uk-breadcrumb normelem">
+        <li><a class="blcktint" href="{{ url_for("dashbord") }}">Dashboard</a></li>
+        <li><a class="blcktint" href="{{ url_for("grupdata") }}">Groups</a></li>
+        <li><span class="blcktint">Groups creation</span></li>
+    </ul>
+{% endblock %}
+{% block bodyextn %}
+<br/>
+<div class="uk-card-body uk-background-default uk-padding-remove">
+    {% if erorcode != "" %}
+    <div class="uk-alert-danger" uk-alert>
+        <p class="normelem">{{ erorlist[erorcode] }}</p>
+    </div>
+    {% endif %}
+    <p class="normelem">You need to provide some information before a group is created.</p>
+    <form method="POST">
+        <fieldset class="uk-fieldset normelem">
+            <p><input class="uk-input uk-form-small" type="text" name="grupname" placeholder="Group name"></p>
+            <p><input class="uk-input uk-form-small" type="text" name="textlist" placeholder="Participant username(s) separated by SPACES"></p>
+        </fieldset>
+        <input type="submit" value="MAKE A GROUP" class="uk-button uk-background-secondary uk-button-small headelem forggrin"/>
+    </form>
+</div>
+<br/>
+{% endblock %}
+{% block logdinas %}<p class="uk-margin-remove italelem">Logged in as {{ username }}</p>{% endblock %}
+{% block versdata %}
+    FORGE v{{ versinfo.mainline }}
+{% endblock %}
+{% block body %}{{ super() }}{% endblock %}

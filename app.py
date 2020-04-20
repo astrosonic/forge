@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from libraries import libr_makeacnt, libr_entrydir, libr_fgconfig, libr_makemail, libr_inbxpage, libr_trashcan, libr_contacts
+from libraries import libr_makeacnt, libr_entrydir, libr_fgconfig, libr_makemail
+from libraries import libr_inbxpage, libr_trashcan, libr_contacts, libr_grupdata
 
 versinfo = libr_fgconfig.versinfo
 erorlist = libr_fgconfig.erorlist
@@ -128,10 +129,43 @@ def trashcan():
     else:
         return redirect(url_for("invalses"))
 
+@software.route("/grupdone/<identity>/")
+def grupdone(identity):
+    if 'username' in session:
+        username = session['username']
+        retndata = libr_grupdata.fetcgrup(identity)
+        return render_template("grupdone.html", username=username, versinfo=versinfo, retndata=retndata)
+    else:
+        return redirect(url_for("invalses"))
+
+@software.route("/makegrup/", methods=["GET", "POST"])
+def makegrup(erorcode = ""):
+    if 'username' in session:
+        username = session['username']
+        if request.method == "POST":
+            grupname = request.form["grupname"]
+            textlist = request.form["textlist"]
+            if grupname == "":
+                erorcode = "gpnmabst"
+            elif textlist == "":
+                erorcode = "listabst"
+            else:
+                textlist = textlist + " " + str(username)
+                partlist = textlist.split(" ")
+                isithere = libr_grupdata.doesexst(partlist)
+                if isithere == False:
+                    erorcode = "partnoex"
+                else:
+                    identity = libr_grupdata.savegrup(grupname,partlist,username)
+                    return redirect(url_for("grupdone", identity=identity))
+            return render_template("makegrup.html", username=username, versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
+        return render_template("makegrup.html", username=username, versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
+
 @software.route("/grupdata/")
 def grupdata():
     if 'username' in session:
         username = session['username']
+        #listgrup =
         return render_template("grupdata.html", username=username, versinfo=versinfo)
     else:
         return redirect(url_for("invalses"))
