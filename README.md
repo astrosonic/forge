@@ -1,6 +1,8 @@
 # forge
 Forensics Oriented Reporting Group Under Encryption
 
+![Topic Image](pictures/introduc.jpg)
+
 ## We made it to the top 10 projects in the 2020 HackTheCrisisIndia IDEAthon
 
 ## Ideology

@@ -164,7 +164,6 @@ def onegroup(grupiden, erorcode=""):
             else:
                 erorcode = "mailsucc"
                 libr_gpmkmail.sendmail(subjtext, conttext, username, grupiden)
-                #return render_template("onegroup.html", username=username, versinfo=versinfo, retndata=retndata, erorlist=erorlist, erorcode=erorcode)
         return render_template("onegroup.html", username=username, versinfo=versinfo, retndata=retndata, recvdict=recvdict, erorlist=erorlist, erorcode=erorcode)
     else:
         return redirect(url_for("invalses"))
