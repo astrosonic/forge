@@ -262,25 +262,27 @@ def readtrsh(paradrct, mailiden):
 
 @software.route("/", methods=["GET", "POST"])
 def entrydir(erorcode = ""):
-    if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
-        if username == "":
-            erorcode = "usnmabst"
-        elif password == "":
-            erorcode = "passabst"
-        else:
-            isithere = libr_entrydir.acntexst(username)
-            if isithere == False:
-                erorcode = "noscuser"
+    if 'username' in session:
+        return redirect(url_for("dashbord"))
+    else:
+        if request.method == "POST":
+            username = request.form["username"]
+            password = request.form["password"]
+            if username == "":
+                erorcode = "usnmabst"
+            elif password == "":
+                erorcode = "passabst"
             else:
-                isittrue = libr_entrydir.chekuser(username,password)
-                if isittrue == False:
-                    erorcode = "wrngpswd"
+                isithere = libr_entrydir.acntexst(username)
+                if isithere == False:
+                    erorcode = "noscuser"
                 else:
-                    session['username'] = username
-                    return dashbord()
-        return render_template("entrydir.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
+                    isittrue = libr_entrydir.chekuser(username,password)
+                    if isittrue == False:
+                        erorcode = "wrngpswd"
+                    else:
+                        session['username'] = username
+                        return redirect(url_for("dashbord"))
     return render_template("entrydir.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
 
 @software.route("/makeacnt/", methods=["GET","POST"])
@@ -310,7 +312,6 @@ def makeacnt(erorcode = ""):
             else:
                 pkcsiden = libr_makeacnt.saveuser(fullname,username,password,emailadr)
                 return render_template("acntmade.html", versinfo=versinfo, username=username, fullname=fullname, emailadr=emailadr, pkcsiden=pkcsiden)
-        return render_template("makeacnt.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
     return render_template("makeacnt.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
 
 if __name__ == "__main__":
