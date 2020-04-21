@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from libraries import libr_makeacnt, libr_entrydir, libr_fgconfig, libr_makemail
 from libraries import libr_inbxpage, libr_trashcan, libr_contacts, libr_grupdata
+from libraries import libr_gpmkmail
 
 versinfo = libr_fgconfig.versinfo
 erorlist = libr_fgconfig.erorlist
@@ -138,11 +139,21 @@ def grupdone(identity):
     else:
         return redirect(url_for("invalses"))
 
+@software.route("/readgrup/<grupname>/<grupiden>/<mailiden>/")
+def readgrup(grupname, grupiden, mailiden):
+    if 'username' in session:
+        username = session['username']
+        maildict = libr_gpmkmail.mailread(grupiden, mailiden, username)
+        return render_template("readgrup.html", username=username, versinfo=versinfo, grupname=grupname, maildict=maildict)
+    else:
+        return redirect(url_for("invalses"))
+
 @software.route("/onegroup/<grupiden>", methods=["GET", "POST"])
 def onegroup(grupiden, erorcode=""):
     if 'username' in session:
         username = session['username']
         retndata = libr_grupdata.fetcgrup(grupiden)
+        recvdict = libr_gpmkmail.fetcmail(grupiden, username)
         if request.method == "POST":
             subjtext = request.form["subjtext"]
             conttext = request.form["conttext"]
@@ -151,14 +162,10 @@ def onegroup(grupiden, erorcode=""):
             elif conttext == "":
                 erorcode = "contemty"
             else:
-                isitexst = libr_makemail.acntexst(receiver)
-                if isitexst == False:
-                    erorcode = "recvabst"
-                else:
-                    erorcode = "mailsucc"
-                    libr_makemail.sendmail(subjtext, conttext, username, receiver)
-        #return render_template("makemail.html", username=username, versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
-        return render_template("onegroup.html", username=username, versinfo=versinfo, retndata=retndata, erorlist=erorlist, erorcode=erorcode)
+                erorcode = "mailsucc"
+                libr_gpmkmail.sendmail(subjtext, conttext, username, grupiden)
+                #return render_template("onegroup.html", username=username, versinfo=versinfo, retndata=retndata, erorlist=erorlist, erorcode=erorcode)
+        return render_template("onegroup.html", username=username, versinfo=versinfo, retndata=retndata, recvdict=recvdict, erorlist=erorlist, erorcode=erorcode)
     else:
         return redirect(url_for("invalses"))
 
