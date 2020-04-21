@@ -16,6 +16,8 @@ Forensics Oriented Reporting Group Under Encryption
   * Enabled storing passwords as 512-bit SHA hash
   * Added login check by hash comparison
   * Created frontend for login page
+* Updated configuration system
+  * Updated version info
 
 ### v19032020
 * Elected RSA2048 as the default asymmetric encryption method
@@ -37,6 +39,8 @@ Forensics Oriented Reporting Group Under Encryption
   * Added link to broadcast page
   * Added link to settings page
   * Added link to logout
+* Updated configuration system
+  * Updated version info
 
 ### v20032020
 * Updated login backbone
@@ -54,6 +58,8 @@ Forensics Oriented Reporting Group Under Encryption
   * Added timekeeping metadata
   * Added centralized version info
   * Added centralized error handling routine
+* Updated configuration system
+  * Updated version info
 
 ### v21032020
 * Built compose backbone
@@ -74,6 +80,8 @@ Forensics Oriented Reporting Group Under Encryption
   * Added convertor function for byte-index array
   * Enabled *subject* decryption for sent and received directives
   * Enabled *content* decryption for sent and received directives
+* Updated configuration system
+  * Updated version info
 
 ### v22032020
 * Updated compose backbone
@@ -89,6 +97,8 @@ Forensics Oriented Reporting Group Under Encryption
   * Created frontend for inbox page
   * Created frontend for mail reader page
   * Created frontend for delete-to-inbox redirect
+* Updated configuration system
+  * Updated version info
 
 ### v23032020
 * Updated inbox backbone
@@ -108,6 +118,8 @@ Forensics Oriented Reporting Group Under Encryption
   * Created frontend for mail reader page
   * Created frontend for restore-to-trashcan redirect
   * Created frontend for purge-to-trashcan redirect
+* Updated configuration system
+  * Updated version info
 
 ### v24022020
 * Built contacts backbone
@@ -128,6 +140,8 @@ Forensics Oriented Reporting Group Under Encryption
   * Handled undecryptable *subject* & *content* of directives
 * Updated inbox backbone
   * Handled undecryptable *subject* & *content* of directives
+* Updated configuration system
+  * Updated version info
 
 ### v25022020
 * Overhauled template system with inheritance
@@ -149,6 +163,8 @@ Forensics Oriented Reporting Group Under Encryption
   * Minimized single contact view page
   * Minimized follow-to-contacts redirect
   * Minimized unfollow-to-contacts redirect
+* Updated configuration system
+  * Updated version info
 
 ### v26022020
 * Layout optimizations performed
@@ -159,6 +175,8 @@ Forensics Oriented Reporting Group Under Encryption
   * Added placeholder page for groups function
   * Added placeholder page for broadcast function
   * Added placeholder page for settings function
+* Updated configuration system
+  * Updated version info
 
 ### v27022020
 * Networking
@@ -167,6 +185,8 @@ Forensics Oriented Reporting Group Under Encryption
   * Obsoleted dedicated session data storage
   * Fixed shared sessions bug with flask session support
   * Added better handling of invalid session
+* Updated configuration system
+  * Updated version info
 
 ### v2802020
 * Updated compose backbone
@@ -179,6 +199,8 @@ Forensics Oriented Reporting Group Under Encryption
   * Moved user information to footer
 * Documentation
   * Updated screenshots to `SCREENSHOTS.md`
+* Updated configuration system
+  * Updated version info
 
 ### v19042020
 * Updated framework
@@ -189,3 +211,48 @@ Forensics Oriented Reporting Group Under Encryption
   * Shifted trashcan backbone to libraries directory
   * Shifted contacts backbone to libraries directory
 * Corrected the font directory
+* Replaced function call with redirect for invalid session
+* Updated requirements
+* Updated configuration system
+  * Updated version info
+
+### v20042020
+* Built groups backbone
+  * Added group listing functionality
+  * Added group creation functionality
+  * Fixed integrity error on adding same person to the group again
+  * Automatic addition of current user to the created group
+  * Added field validation to avoid non-existent accounts in groups
+  * Reworked database to allow for group's own keypair
+  * Stored public key in cloud database 
+  * Stored private key in local database per joined user
+  * Created frontend for listing groups
+  * Created frontend for creating groups
+  * Created frontend for successful creation
+* Updated configuration system
+  * Updated version info
+
+### v21042020
+* Updated groups backbone
+  * Created frontend for per-group compose and reading
+  * Listed both received and dispatched mails in one stack
+  * Disallowed deletion of group mails
+  * Single storage for all group directives
+  * Reworked database to allow for storing group members
+  * Added no spaces and uniqueness constraint on group name
+  * Fixed menu list on group titlebar
+* Updated basic flow-of-control framework
+  * Added route to group listing page
+  * Added route to group creation page
+  * Added route to single group page for composition and reading
+  * Added route to group creation succeeded page
+  * Introduced form validation logic in group creation
+  * Introduced form validation logic in single group page
+* Fixed integrity error on failed decryption attempts
+* Updated configuration system
+  * Added error code for same name group existence
+  * Added error code for spaces in group name
+  * Added error code for absent group name
+  * Added error code for absent participants list
+  * Added error cdoe for non-existent participant
+  * Updated version info
