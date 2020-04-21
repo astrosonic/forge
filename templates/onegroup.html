@@ -1,0 +1,79 @@
+{% extends "fgparent.html" %}
+{% block title %}{{ retndata["grupname"] }}{% endblock %}
+{% block head %}{{ super() }}{% endblock %}
+{% block pagename %}{{ retndata["grupname"] }}{% endblock %}
+{% block navaloca %}
+    <ul class="uk-margin-remove uk-breadcrumb normelem">
+        <li><a class="blcktint" href="{{ url_for("dashbord") }}">Dashboard</a></li>
+        <li><a class="blcktint" href="{{ url_for("grupdata") }}">Groups</a></li>
+        <li><span class="blcktint">{{ retndata["grupname"] }}</span></li>
+    </ul>
+{% endblock %}
+{% block bodyextn %}
+<br/>
+<div class="uk-card-body uk-background-default uk-padding-remove">
+    <dl class="uk-description-list">
+        <dt class="headelem">Participants</dt>
+        <dd class="normelem">
+            {% for indx in retndata["userlist"] %}
+                {{ indx }},&nbsp;
+            {% endfor %}
+        </dd>
+    </dl>
+    {% if erorcode != "" %}
+    <div class="uk-alert-danger" uk-alert>
+        <p class="normelem">{{ erorlist[erorcode] }}</p>
+    </div>
+    {% endif %}
+    <h3 class="uk-margin-remove headelem">Compose</h3>
+    <p class="normelem uk-margin-remove">
+        Any and all directives dispatched would be received by {{ retndata["grupname"] }} group's members only
+    </p>
+    <form class="uk-form-horizontal uk-margin-medium" method="POST">
+        <fieldset class="uk-fieldset normelem">
+            <div class="uk-margin">
+                <label class="uk-form-label headelem" for="form-horizontal-text">SUBJECT</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input normelem uk-form-small" id="form-horizontal-text" type="text" name="subjtext" placeholder="Add the subject of your directive" />
+                </div>
+            </div>
+            <div class="uk-margin">
+                <label class="uk-form-label headelem" for="form-horizontal-select">CONTENT</label>
+                <div class="uk-form-controls">
+                    <textarea class="uk-textarea normelem uk-form-small" rows="5" name="conttext" placeholder="Add the content of your directive"></textarea>
+                </div>
+            </div>
+        </fieldset>
+        <input type="submit" value="DISPATCH" class="uk-button uk-background-secondary uk-button-small headelem forggrin"/>
+    </form>
+    <h3 class="uk-margin-remove headelem">Reader</h3>
+    <p class="normelem uk-margin-remove">
+        These directives have been sent from and to {{ retndata["grupname"] }} group's members only
+    </p>
+    <table class="uk-table uk-table-justify uk-table-divider uk-table-small">
+        <thead>
+            <tr>
+                <th class="uk-width-small headelem">SOURCE</th>
+                <th class="uk-width-large headelem">DIRECTIVE</th>
+                <th class="uk-width-small headelem">DATE</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for indx in recvdict %}
+            <tr>
+                <td class="headelem">{{ indx.srceuser }}</td>
+                <td class="normelem"><a href="{{ url_for("readgrup", grupname=retndata["grupname"], grupiden=retndata["grupiden"], mailiden=indx.mailiden) }}">{{ indx.subjtext }}</a></td>
+                <td class="normelem">{{ indx.timedata.date }} {{ indx.timedata.mont.tinyform }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button class="uk-button uk-background-secondary uk-button-small headelem forggrin" onclick="document.location.href='{{ url_for("onegroup", grupiden=retndata["grupiden"]) }}'">REFRESH GROUP</button>
+</div>
+<br/>
+{% endblock %}
+{% block logdinas %}<p class="uk-margin-remove italelem">Logged in as {{ username }}</p>{% endblock %}
+{% block versdata %}
+    FORGE v{{ versinfo.mainline }}
+{% endblock %}
+{% block body %}{{ super() }}{% endblock %}

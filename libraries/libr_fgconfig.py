@@ -77,6 +77,11 @@ versinfo = {
 }
 
 erorlist = {
+    "samegpex": "Group with the same name already exists",
+    "spacgpnm": "Spaces are not allowed in the group name",
+    "gpnmabst": "You did not provide the group name",
+    "listabst": "You did not provide the list of participants",
+    "partnoex": "One or two participants specified do not exist.",
     "sucesful": "Your account has been created.",
     "uneqpass": "The passwords provided do not match. Try again.",
     "nameabst": "The fullname field is mandatory.",
