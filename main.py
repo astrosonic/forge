@@ -6,14 +6,14 @@ from libraries import libr_gpmkmail
 versinfo = libr_fgconfig.versinfo
 erorlist = libr_fgconfig.erorlist
 
-software = Flask(__name__)
-software.secret_key = "t0xic0der"
+main = Flask(__name__)
+main.secret_key = "t0xic0der"
 
-@software.route("/invalses/")
+@main.route("/invalses/")
 def invalses():
     return render_template("invalses.html", versinfo=versinfo)
 
-@software.route("/dashbord/")
+@main.route("/dashbord/")
 def dashbord():
     if 'username' in session:
         username = session['username']
@@ -21,7 +21,7 @@ def dashbord():
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/makemail/", methods=["GET", "POST"])
+@main.route("/makemail/", methods=["GET", "POST"])
 def makemail(erorcode=""):
     if 'username' in session:
         username = session['username']
@@ -48,7 +48,7 @@ def makemail(erorcode=""):
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/folocont/<usercont>/")
+@main.route("/folocont/<usercont>/")
 def folocont(usercont):
     if 'username' in session:
         username = session['username']
@@ -57,7 +57,7 @@ def folocont(usercont):
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/unfocont/<usercont>/")
+@main.route("/unfocont/<usercont>/")
 def unfocont(usercont):
     if 'username' in session:
         username = session['username']
@@ -66,7 +66,7 @@ def unfocont(usercont):
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/rmovmail/<paradrct>/<mailiden>/")
+@main.route("/rmovmail/<paradrct>/<mailiden>/")
 def rmovmail(paradrct, mailiden):
     if 'username' in session:
         username = session['username']
@@ -75,7 +75,7 @@ def rmovmail(paradrct, mailiden):
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/purgemsg/<paradrct>/<mailiden>/")
+@main.route("/purgemsg/<paradrct>/<mailiden>/")
 def purgemsg(paradrct, mailiden):
     if 'username' in session:
         username = session['username']
@@ -84,7 +84,7 @@ def purgemsg(paradrct, mailiden):
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/rstrmail/<paradrct>/<mailiden>/")
+@main.route("/rstrmail/<paradrct>/<mailiden>/")
 def rstrmail(paradrct, mailiden):
     if 'username' in session:
         username = session['username']
@@ -93,7 +93,7 @@ def rstrmail(paradrct, mailiden):
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/inbxpage/")
+@main.route("/inbxpage/")
 def inbxpage():
     if 'username' in session:
         username = session['username']
@@ -103,7 +103,7 @@ def inbxpage():
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/contacts/", methods=["GET", "POST"])
+@main.route("/contacts/", methods=["GET", "POST"])
 def contacts(srchuser = [], erorcode = ""):
     if 'username' in session:
         username = session['username']
@@ -120,7 +120,7 @@ def contacts(srchuser = [], erorcode = ""):
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/trashcan/")
+@main.route("/trashcan/")
 def trashcan():
     if 'username' in session:
         username = session['username']
@@ -130,7 +130,7 @@ def trashcan():
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/grupdone/<identity>/")
+@main.route("/grupdone/<identity>/")
 def grupdone(identity):
     if 'username' in session:
         username = session['username']
@@ -139,7 +139,7 @@ def grupdone(identity):
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/readgrup/<grupname>/<grupiden>/<mailiden>/")
+@main.route("/readgrup/<grupname>/<grupiden>/<mailiden>/")
 def readgrup(grupname, grupiden, mailiden):
     if 'username' in session:
         username = session['username']
@@ -148,7 +148,7 @@ def readgrup(grupname, grupiden, mailiden):
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/onegroup/<grupiden>", methods=["GET", "POST"])
+@main.route("/onegroup/<grupiden>", methods=["GET", "POST"])
 def onegroup(grupiden, erorcode=""):
     if 'username' in session:
         username = session['username']
@@ -168,7 +168,7 @@ def onegroup(grupiden, erorcode=""):
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/makegrup/", methods=["GET", "POST"])
+@main.route("/makegrup/", methods=["GET", "POST"])
 def makegrup(erorcode = ""):
     if 'username' in session:
         username = session['username']
@@ -199,7 +199,7 @@ def makegrup(erorcode = ""):
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/grupdata/")
+@main.route("/grupdata/")
 def grupdata():
     if 'username' in session:
         username = session['username']
@@ -208,7 +208,7 @@ def grupdata():
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/brodcast/")
+@main.route("/brodcast/")
 def brodcast():
     if 'username' in session:
         username = session['username']
@@ -216,7 +216,7 @@ def brodcast():
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/settings/")
+@main.route("/settings/")
 def settings():
     if 'username' in session:
         username = session['username']
@@ -224,7 +224,7 @@ def settings():
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/fglogout/")
+@main.route("/fglogout/")
 def fglogout():
     if 'username' in session:
         session.pop('username', None)
@@ -232,7 +232,7 @@ def fglogout():
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/viewuser/<parauser>/<usercont>/")
+@main.route("/viewuser/<parauser>/<usercont>/")
 def viewuser(parauser, usercont):
     if 'username' in session:
         username = session['username']
@@ -241,7 +241,7 @@ def viewuser(parauser, usercont):
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/readinbx/<paradrct>/<mailiden>/")
+@main.route("/readinbx/<paradrct>/<mailiden>/")
 def readinbx(paradrct, mailiden):
     if 'username' in session:
         username = session['username']
@@ -250,7 +250,7 @@ def readinbx(paradrct, mailiden):
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/readtrsh/<paradrct>/<mailiden>/")
+@main.route("/readtrsh/<paradrct>/<mailiden>/")
 def readtrsh(paradrct, mailiden):
     if 'username' in session:
         username = session['username']
@@ -259,7 +259,7 @@ def readtrsh(paradrct, mailiden):
     else:
         return redirect(url_for("invalses"))
 
-@software.route("/", methods=["GET", "POST"])
+@main.route("/", methods=["GET", "POST"])
 def entrydir(erorcode = ""):
     if 'username' in session:
         return redirect(url_for("dashbord"))
@@ -284,7 +284,7 @@ def entrydir(erorcode = ""):
                         return redirect(url_for("dashbord"))
     return render_template("entrydir.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
 
-@software.route("/makeacnt/", methods=["GET","POST"])
+@main.route("/makeacnt/", methods=["GET","POST"])
 def makeacnt(erorcode = ""):
     if request.method == "POST":
         fullname = request.form["fullname"]
@@ -314,4 +314,4 @@ def makeacnt(erorcode = ""):
     return render_template("makeacnt.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
 
 if __name__ == "__main__":
-    software.run(port=9696, host="0.0.0.0")
+    main.run(port=9696, host="0.0.0.0")
