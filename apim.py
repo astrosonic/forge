@@ -9,6 +9,20 @@ erorlist = libr_fgconfig.erorlist
 main = Flask(__name__)
 main.secret_key = "t0xic0der"
 
+@main.route("/inbxpage/", methods=["GET"])
+def inbxpage():
+    if request.method == "GET":
+        jsondata = request.get_json()
+        username = jsondata["username"]
+        recvdict = libr_inbxpage.fetcrecv(username)
+        senddict = libr_inbxpage.fetcsend(username)
+        retndata = {
+            "notecode": "INBXPAGE",
+            "recvmail": recvdict,
+            "sentmail": senddict,
+        }
+        return retndata
+
 @main.route("/makeacnt/", methods=["GET"])
 def makeacnt():
     if request.method == "GET":
