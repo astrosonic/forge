@@ -9,6 +9,20 @@ erorlist = libr_fgconfig.erorlist
 main = Flask(__name__)
 main.secret_key = "t0xic0der"
 
+@main.route("/trashcan/", methods=["GET"])
+def trashcan():
+    if request.method == "GET":
+        jsondata = request.get_json()
+        username = jsondata["username"]
+        recvdict = libr_trashcan.fetcrecv(username)
+        senddict = libr_trashcan.fetcsend(username)
+        retndata = {
+            "notecode": "TRASHCAN",
+            "recvmail": recvdict,
+            "sentmail": senddict,
+        }
+        return retndata
+
 @main.route("/inbxpage/", methods=["GET"])
 def inbxpage():
     if request.method == "GET":
