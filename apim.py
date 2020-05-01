@@ -9,6 +9,21 @@ erorlist = libr_fgconfig.erorlist
 main = Flask(__name__)
 main.secret_key = "t0xic0der"
 
+@main.route("/makemail/", methods=["GET"])
+def makemail():
+    if request.method == "GET":
+        jsondata = request.get_json()
+        sendernm = jsondata["sendernm"]
+        receiver = jsondata["receiver"]
+        subjtext = jsondata["subjtext"]
+        conttext = jsondata["conttext"]
+        if libr_makemail.acntexst(receiver) is False:
+            retndata = {"notecode": "ACNOEXST"}
+        else:
+            libr_makemail.sendmail(subjtext, conttext, sendernm, receiver)
+            retndata = {"notecode": "MAILSENT"}
+        return retndata
+
 @main.route("/trashcan/", methods=["GET"])
 def trashcan():
     if request.method == "GET":
