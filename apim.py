@@ -9,6 +9,21 @@ erorlist = libr_fgconfig.erorlist
 main = Flask(__name__)
 main.secret_key = "t0xic0der"
 
+@main.route("/makeacnt/", methods=["GET"])
+def makeacnt():
+    if request.method == "GET":
+        jsondata = request.get_json()
+        fullname = jsondata["fullname"]
+        username = jsondata["username"]
+        password = jsondata["password"]
+        emailadr = jsondata["emailadr"]
+        if libr_entrydir.acntexst(username) is True:
+            retndata = {"notecode": "ALRDYEXT"}
+        else:
+            pkcsiden = libr_makeacnt.saveuser(fullname,username,password,emailadr)
+            retndata = {"notecode": "MADEACNT", "pkcsiden": pkcsiden}
+        return retndata
+
 @main.route("/entrydir/", methods=["GET"])
 def entrydir():
     if request.method == "GET":
