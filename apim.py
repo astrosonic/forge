@@ -182,6 +182,18 @@ def makegrup():
                 }
         return retndata
 
+@main.route("/grupdata/", methods=["GET"])
+def grupdata():
+    if request.method == "GET":
+        jsondata = request.get_json()
+        username = jsondata["username"]
+        gruplist = libr_grupdata.listfetc(username)
+        retnlist = {
+            "notecode": "GPLSFETC",
+            "gruplist": gruplist,
+        }
+        return retnlist
+
 @main.route("/makeacnt/", methods=["GET"])
 def makeacnt():
     if request.method == "GET":
