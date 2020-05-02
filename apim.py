@@ -57,7 +57,7 @@ def rmovmail():
         mailiden = jsondata["mailiden"]
         libr_inbxpage.movetrsh(paradrct,mailiden)
         retndata = {
-            "notecode": "MAILRMOV"
+            "notecode": "MSGRMOVD"
         }
         return retndata
 
@@ -71,6 +71,19 @@ def purgemsg():
         libr_trashcan.purgemsg(paradrct, mailiden)
         retndata = {
             "notecode": "MSGPURGD"
+        }
+        return retndata
+
+@main.route("/rstrmail/", methods=["GET"])
+def rstrmail():
+    if request.method == "GET":
+        jsondata = request.get_json()
+        username = jsondata["username"]
+        paradrct = jsondata["paradrct"]
+        mailiden = jsondata["mailiden"]
+        libr_trashcan.moveinbx(paradrct, mailiden)
+        retndata = {
+            "notecode": "MSGRSTRD"
         }
         return retndata
 
