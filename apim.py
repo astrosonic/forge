@@ -216,7 +216,7 @@ def settings():
         }
         return retndata
 
-@main.route("/viewuser/")
+@main.route("/viewuser/", methods=["GET"])
 def viewuser():
     if request.method == "GET":
         jsondata = request.get_json()
@@ -226,6 +226,20 @@ def viewuser():
         retndata = {
             "notecode": "VIEWUSER",
             "userdict": userdict,
+        }
+        return retndata
+
+@main.route("/readinbx/", methods=["GET"])
+def readinbx():
+    if request.method == "GET":
+        jsondata = request.get_json()
+        username = jsondata["username"]
+        paradrct = jsondata["paradrct"]
+        mailiden = jsondata["mailiden"]
+        maildict = libr_inbxpage.mailread(paradrct, mailiden, username)
+        retndata = {
+            "notecode": "READINBX",
+            "maildict": maildict,
         }
         return retndata
 
