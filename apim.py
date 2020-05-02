@@ -24,6 +24,18 @@ def makemail():
             retndata = {"notecode": "MAILSENT"}
         return retndata
 
+@main.route("/folocont/", methods=["GET"])
+def folocont(usercont):
+    if request.method == "GET":
+        jsondata = request.get_json()
+        username = jsondata["username"]
+        usercont = jsondata["usercont"]
+        libr_contacts.addtocnt(usercont, username)
+        retndata = {
+            "notecode": "USERFOLD"
+        }
+        return retndata
+
 @main.route("/trashcan/", methods=["GET"])
 def trashcan():
     if request.method == "GET":
