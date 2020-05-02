@@ -36,6 +36,18 @@ def folocont(usercont):
         }
         return retndata
 
+@main.route("/unfocont/", methods=["GET"])
+def unfocont(usercont):
+    if request.method == "GET":
+        jsondata = request.get_json()
+        username = jsondata["username"]
+        usercont = jsondata["usercont"]
+        libr_contacts.delfmcnt(usercont, usercont)
+        retndata = {
+            "notecode": "USERUNFO"
+        }
+        return retndata
+
 @main.route("/trashcan/", methods=["GET"])
 def trashcan():
     if request.method == "GET":
