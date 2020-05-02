@@ -216,6 +216,19 @@ def settings():
         }
         return retndata
 
+@main.route("/viewuser/")
+def viewuser():
+    if request.method == "GET":
+        jsondata = request.get_json()
+        username = jsondata["username"]
+        usercont = jsondata["usercont"]
+        userdict = libr_contacts.fetcsing(usercont)
+        retndata = {
+            "notecode": "VIEWUSER",
+            "userdict": userdict,
+        }
+        return retndata
+
 @main.route("/makeacnt/", methods=["GET"])
 def makeacnt():
     if request.method == "GET":
