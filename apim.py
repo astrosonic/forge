@@ -42,9 +42,22 @@ def unfocont(usercont):
         jsondata = request.get_json()
         username = jsondata["username"]
         usercont = jsondata["usercont"]
-        libr_contacts.delfmcnt(usercont, usercont)
+        libr_contacts.delfmcnt(usercont, username)
         retndata = {
             "notecode": "USERUNFO"
+        }
+        return retndata
+
+@main.route("/rmovmail/", methods=["GET"])
+def rmovmail():
+    if request.method == "GET":
+        jsondata = request.get_json()
+        username = jsondata["username"]
+        paradrct = jsondata["paradrct"]
+        mailiden = jsondata["mailiden"]
+        libr_inbxpage.movetrsh(paradrct,mailiden)
+        retndata = {
+            "notecode": "MAILRMOV"
         }
         return retndata
 
