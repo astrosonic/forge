@@ -205,6 +205,17 @@ def brodcast():
         }
         return retndata
 
+@main.route("/settings/", methods=["GET"])
+def settings():
+    if request.method == "GET":
+        jsondata = request.get_json()
+        username = jsondata["username"]
+        retndata = {
+            "notecode": "SETTINGS",
+            "username": username,
+        }
+        return retndata
+
 @main.route("/makeacnt/", methods=["GET"])
 def makeacnt():
     if request.method == "GET":
