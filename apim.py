@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session
 from libraries import libr_makeacnt, libr_entrydir, libr_fgconfig, libr_makemail
 from libraries import libr_inbxpage, libr_trashcan, libr_contacts, libr_grupdata
 from libraries import libr_gpmkmail
@@ -58,6 +58,19 @@ def rmovmail():
         libr_inbxpage.movetrsh(paradrct,mailiden)
         retndata = {
             "notecode": "MAILRMOV"
+        }
+        return retndata
+
+@main.route("/purgemsg/", methods=["GET"])
+def purgemsg():
+    if request.method == "GET":
+        jsondata = request.get_json()
+        username = jsondata["username"]
+        paradrct = jsondata["paradrct"]
+        mailiden = jsondata["mailiden"]
+        libr_trashcan.purgemsg(paradrct, mailiden)
+        retndata = {
+            "notecode": "MSGPURGD"
         }
         return retndata
 
