@@ -188,11 +188,22 @@ def grupdata():
         jsondata = request.get_json()
         username = jsondata["username"]
         gruplist = libr_grupdata.listfetc(username)
-        retnlist = {
+        retndata = {
             "notecode": "GPLSFETC",
             "gruplist": gruplist,
         }
-        return retnlist
+        return retndata
+
+@main.route("/brodcast/", methods=["GET"])
+def brodcast():
+    if request.method == "GET":
+        jsondata = request.get_json()
+        username = jsondata["username"]
+        retndata = {
+            "notecode": "BRODCAST",
+            "username": username,
+        }
+        return retndata
 
 @main.route("/makeacnt/", methods=["GET"])
 def makeacnt():
