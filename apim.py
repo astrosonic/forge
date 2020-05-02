@@ -127,7 +127,20 @@ def trashcan():
         }
         return retndata
 
-
+@main.route("/onegroup/", methods=["GET"])
+def onegroup():
+    if request.method == "GET":
+        jsondata = request.get_json()
+        username = jsondata["username"]
+        grupiden = jsondata["grupiden"]
+        grupdata = libr_grupdata.fetcgrup(grupiden)
+        listmail = libr_gpmkmail.fetcmail(grupiden, username)
+        retndata = {
+            "notecode": "GRUPMAIL",
+            "grupdata": grupdata,
+            "listmail": listmail,
+        }
+        return retndata
 
 @main.route("/makeacnt/", methods=["GET"])
 def makeacnt():
