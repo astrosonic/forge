@@ -243,6 +243,20 @@ def readinbx():
         }
         return retndata
 
+@main.route("/readtrsh/", methods=["GET"])
+def readtrsh():
+    if request.method == "GET":
+        jsondata = request.get_json()
+        username = jsondata["username"]
+        paradrct = jsondata["paradrct"]
+        mailiden = jsondata["mailiden"]
+        maildict = libr_trashcan.mailread(paradrct, mailiden, username)
+        retndata = {
+            "notecode": "READTRSH",
+            "maildict": maildict,
+        }
+        return retndata
+
 @main.route("/makeacnt/", methods=["GET"])
 def makeacnt():
     if request.method == "GET":
