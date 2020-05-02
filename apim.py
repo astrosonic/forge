@@ -142,6 +142,20 @@ def onegroup():
         }
         return retndata
 
+@main.route("/compgrup/", methods=["GET"])
+def compgrup():
+    if request.method == "GET":
+        jsondata = request.get_json()
+        username = jsondata["username"]
+        grupiden = jsondata["grupiden"]
+        subjtext = jsondata["subjtext"]
+        conttext = jsondata["conttext"]
+        libr_gpmkmail.sendmail(subjtext, conttext, username, grupiden)
+        retndata = {
+            "notecode": "MAILSENT"
+        }
+        return retndata
+
 @main.route("/makeacnt/", methods=["GET"])
 def makeacnt():
     if request.method == "GET":
