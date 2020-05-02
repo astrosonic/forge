@@ -24,8 +24,9 @@ def makemail():
             retndata = {"notecode": "MAILSENT"}
         return retndata
 
+# Endpoint tested
 @main.route("/folocont/", methods=["GET"])
-def folocont(usercont):
+def folocont():
     if request.method == "GET":
         jsondata = request.get_json()
         username = jsondata["username"]
@@ -36,8 +37,9 @@ def folocont(usercont):
         }
         return retndata
 
+# Endpoint tested
 @main.route("/unfocont/", methods=["GET"])
-def unfocont(usercont):
+def unfocont():
     if request.method == "GET":
         jsondata = request.get_json()
         username = jsondata["username"]
@@ -48,6 +50,7 @@ def unfocont(usercont):
         }
         return retndata
 
+# Endpoint tested but vulnerable to give wrong confirmation with wrong input
 @main.route("/rmovmail/", methods=["GET"])
 def rmovmail():
     if request.method == "GET":
@@ -61,6 +64,7 @@ def rmovmail():
         }
         return retndata
 
+# Endpoint tested but vulnerable to give wrong confirmation with wrong input
 @main.route("/purgemsg/", methods=["GET"])
 def purgemsg():
     if request.method == "GET":
@@ -74,6 +78,7 @@ def purgemsg():
         }
         return retndata
 
+# Endpoint tested but vulnerable to give wrong confirmation with wrong input
 @main.route("/rstrmail/", methods=["GET"])
 def rstrmail():
     if request.method == "GET":
@@ -87,6 +92,7 @@ def rstrmail():
         }
         return retndata
 
+# Endpoint tested
 @main.route("/inbxpage/", methods=["GET"])
 def inbxpage():
     if request.method == "GET":
@@ -101,6 +107,7 @@ def inbxpage():
         }
         return retndata
 
+# Endpoint tested
 @main.route("/contacts/", methods=["GET"])
 def contacts():
     if request.method == "GET":
@@ -113,6 +120,7 @@ def contacts():
         }
         return retndata
 
+# Endpoint tested
 @main.route("/trashcan/", methods=["GET"])
 def trashcan():
     if request.method == "GET":
@@ -127,6 +135,7 @@ def trashcan():
         }
         return retndata
 
+# Endpoint tested
 @main.route("/onegroup/", methods=["GET"])
 def onegroup():
     if request.method == "GET":
@@ -156,6 +165,7 @@ def compgrup():
         }
         return retndata
 
+# Creation fails with PARTNOEX false flag
 @main.route("/makegrup/", methods=["GET"])
 def makegrup():
     if request.method == "GET":
@@ -182,6 +192,7 @@ def makegrup():
                 }
         return retndata
 
+# Endpoint tested
 @main.route("/grupdata/", methods=["GET"])
 def grupdata():
     if request.method == "GET":
@@ -205,6 +216,7 @@ def brodcast():
         }
         return retndata
 
+# Endpoint incomplete but checked
 @main.route("/settings/", methods=["GET"])
 def settings():
     if request.method == "GET":
@@ -216,6 +228,7 @@ def settings():
         }
         return retndata
 
+# Endpoint incomplete but checked
 @main.route("/viewuser/", methods=["GET"])
 def viewuser():
     if request.method == "GET":
@@ -229,6 +242,7 @@ def viewuser():
         }
         return retndata
 
+# Endpoint checked
 @main.route("/readinbx/", methods=["GET"])
 def readinbx():
     if request.method == "GET":
@@ -243,6 +257,7 @@ def readinbx():
         }
         return retndata
 
+# Endpoint checked
 @main.route("/readtrsh/", methods=["GET"])
 def readtrsh():
     if request.method == "GET":
@@ -257,6 +272,7 @@ def readtrsh():
         }
         return retndata
 
+# Endpoint checked
 @main.route("/makeacnt/", methods=["GET"])
 def makeacnt():
     if request.method == "GET":
@@ -272,6 +288,7 @@ def makeacnt():
             retndata = {"notecode": "MADEACNT", "pkcsiden": pkcsiden}
         return retndata
 
+# Endpoint checked
 @main.route("/entrydir/", methods=["GET"])
 def entrydir():
     if request.method == "GET":
