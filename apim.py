@@ -87,6 +87,32 @@ def rstrmail():
         }
         return retndata
 
+@main.route("/inbxpage/", methods=["GET"])
+def inbxpage():
+    if request.method == "GET":
+        jsondata = request.get_json()
+        username = jsondata["username"]
+        recvdict = libr_inbxpage.fetcrecv(username)
+        senddict = libr_inbxpage.fetcsend(username)
+        retndata = {
+            "notecode": "INBXPAGE",
+            "recvmail": recvdict,
+            "sentmail": senddict,
+        }
+        return retndata
+
+@main.route("/contacts/", methods=["GET"])
+def contacts():
+    if request.method == "GET":
+        jsondata = request.get_json()
+        username = jsondata["username"]
+        contlist = libr_contacts.fetccont(username)
+        retndata = {
+            "notecode": "CONTACTS",
+            "contlist": contlist
+        }
+        return retndata
+
 @main.route("/trashcan/", methods=["GET"])
 def trashcan():
     if request.method == "GET":
@@ -101,19 +127,7 @@ def trashcan():
         }
         return retndata
 
-@main.route("/inbxpage/", methods=["GET"])
-def inbxpage():
-    if request.method == "GET":
-        jsondata = request.get_json()
-        username = jsondata["username"]
-        recvdict = libr_inbxpage.fetcrecv(username)
-        senddict = libr_inbxpage.fetcsend(username)
-        retndata = {
-            "notecode": "INBXPAGE",
-            "recvmail": recvdict,
-            "sentmail": senddict,
-        }
-        return retndata
+
 
 @main.route("/makeacnt/", methods=["GET"])
 def makeacnt():
