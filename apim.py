@@ -156,6 +156,32 @@ def compgrup():
         }
         return retndata
 
+@main.route("/makegrup/", methods=["GET"])
+def makegrup():
+    if request.method == "GET":
+        jsondata = request.get_json()
+        username = jsondata["username"]
+        grupname = jsondata["grupname"]
+        namelist = jsondata["namelist"]
+        if libr_grupdata.grupexst(grupname) is True:
+            retndata = {
+                "notecode": "GRUPEXST",
+            }
+        else:
+            namelist = namelist + username
+            partlist = namelist.split(" ")
+            if libr_grupdata.doesexst(partlist) is False:
+                retndata = {
+                    "notecode": "PARTNOEX",
+                }
+            else:
+                identity = libr_grupdata.savegrup(grupname, partlist, username)
+                retndata = {
+                    "notecode": "GRUPMADE",
+                    "grupiden": identity
+                }
+        return retndata
+
 @main.route("/makeacnt/", methods=["GET"])
 def makeacnt():
     if request.method == "GET":
