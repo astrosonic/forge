@@ -280,11 +280,11 @@ def makeacnt():
         fullname = jsondata["fullname"]
         username = jsondata["username"]
         password = jsondata["password"]
-        emailadr = jsondata["emailadr"]
+        mailaddr = jsondata["mailaddr"]
         if libr_entrydir.acntexst(username) is True:
             retndata = {"notecode": "ALRDYEXT"}
         else:
-            pkcsiden = libr_makeacnt.saveuser(fullname,username,password,emailadr)
+            pkcsiden = libr_makeacnt.saveuser(fullname, username, password, mailaddr)
             retndata = {"notecode": "MADEACNT", "pkcsiden": pkcsiden}
         return retndata
 
