@@ -299,7 +299,7 @@ def entrydir():
             retndata = {"notecode": "ACNOEXST"}
         else:
             if libr_entrydir.chekuser(username, password) is True:
-                retndata = {"notecode": "LOGINOK"}
+                retndata = {"notecode": "LOGINOKE"}
             else:
                 retndata = {"notecode": "WRNGPSWD"}
         return retndata
