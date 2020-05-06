@@ -26,7 +26,7 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
 * Capable of **one-to-one directive sharing** using *composition*
 * Capable of **one-to-many directive sharing** using *broadcast* and *groups*
 * State-of-the-art session management and user access control
-* Now supports **REST API in restricted network** to *maintain low profile*
+* Now supports **RESTful API in restricted network** to *maintain low profile*
 * Connectivity to API server required only during *API-bound endpoint action*
 
 ## Web application usage
@@ -47,7 +47,7 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
 3. Safely logout of your account once you are done using it
 4. Give stars to the repository if it was helpful
 
-## REST API usage
+## RESTful API usage
 
 ### Server-side instructions
 1.  Install and upgrade **virtualenv** if not already done by executing ```pip3 install virtualenv --user```
@@ -61,7 +61,7 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
 
 ### Client-side instructions
 1. Make sure that the server is reachable and note down the server's URL somewhere
-2. Read about the API endpoints - how to send requests and receive responses in [this guide](http://github.com/t0xic0der/forge/blob/master/api-guide.ipynb)
+2. Read about the API endpoints - how to send requests and receive responses in [this guide](http://github.com/t0xic0der/forge/blob/master/RESTFUL.ipynb)
 3. While developing your application, map these to your actions with HTTP requests
 4. Give stars to the repository if it was helpful
 
