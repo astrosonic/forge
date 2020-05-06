@@ -16,7 +16,7 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
 ## Features
 * Can be easily adopted in any network using client-server model
 * Directives are stored in eavesdrop-free encrypted format in the server
-* Every user has a unique **64-byte PKCS identity** to recognize with
+* Every user has a unique **64-byte PKCS identity** to recognize users with
 * Encryption uses a brute-force resistant *timestamp-based keypair generation*
 * Directive subject and content storage in tamper-free *byte-index array*
 * Asymmetric key cryptography - **2048-bit RSA** used for *directive protection*
@@ -26,8 +26,10 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
 * Capable of **one-to-one directive sharing** using *composition*
 * Capable of **one-to-many directive sharing** using *broadcast* and *groups*
 * State-of-the-art session management and user access control
+* Now supports **REST API in restricted network** to *maintain low profile*
+* Connectivity to API server required only during *API-bound endpoint action*
 
-## Usage
+## Web application usage
 
 ### Server-side instructions
 1.  Install and upgrade **virtualenv** if not already done by executing ```pip3 install virtualenv --user```
@@ -35,7 +37,7 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
 3.  Create a virtual environment by executing ```virtualenv venv```
 4.  Activate the virtual environment by executing ```source venv/bin/activate```
 5.  Install all dependencies for the project by executing ```pip3 install -r requirements.txt```
-6.  Run the project server by executing ```python3 app.py```
+6.  Run the project server by executing ```python3 main.py```
 7.  When done tinkering, deactivate the virtual environment by executing ```deactivate```
 8.  Give stars to the repository if it was helpful
 
@@ -43,6 +45,24 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
 1. Open up a browser and visit ```<SERVER-IP-ADDRESS>:9696``` (default location)
 2. Create account, login, follow people and send protected directives
 3. Safely logout of your account once you are done using it
+4. Give stars to the repository if it was helpful
+
+## REST API usage
+
+### Server-side instructions
+1.  Install and upgrade **virtualenv** if not already done by executing ```pip3 install virtualenv --user```
+2.  Clone the repository on your local drive and make it your current working directory
+3.  Create a virtual environment by executing ```virtualenv venv```
+4.  Activate the virtual environment by executing ```source venv/bin/activate```
+5.  Install all dependencies for the project by executing ```pip3 install -r requirements.txt```
+6.  Run the project server by executing ```python3 apim.py```
+7.  When done tinkering, deactivate the virtual environment by executing ```deactivate```
+8.  Give stars to the repository if it was helpful
+
+### Client-side instructions
+1. Make sure that the server is reachable and note down the server's URL somewhere
+2. Read about the API endpoints - how to send requests and receive responses in [this guide](http://github.com/t0xic0der/forge/blob/master/api-guide.ipynb)
+3. While developing your application, map these to your actions with HTTP requests
 4. Give stars to the repository if it was helpful
 
 ## Changelog
