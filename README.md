@@ -2,6 +2,7 @@
 Forensics Oriented Reporting Group Under Encryption
 
 ![Topic Image](pictures/introduc.jpg)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fastrosonic%2Fforge.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fastrosonic%2Fforge?ref=badge_shield)
 
 ## We made it to the top 10 projects in the 2020 HackTheCrisisIndia IDEAthon
 
@@ -73,3 +74,7 @@ FORGE or Forensics Oriented Reporting Group Under Encryption is a network system
 
 ## Contribute
 The project is currently in diverse development process. The codebase needs cleanup, optimization and documentation so one may find it hard to get their hands into it. Feel free to contact me at akashdeep.dhar@gmail.com if you wish to contribute.
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fastrosonic%2Fforge.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fastrosonic%2Fforge?ref=badge_large)
