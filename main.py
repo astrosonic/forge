@@ -17,7 +17,7 @@ def invalses():
 def dashbord():
     if 'username' in session:
         username = session['username']
-        return render_template("dashbord.html", username=username, versinfo=versinfo)
+        return render_template("dashbard.html", username=username, versinfo=versinfo)
     else:
         return redirect(url_for("invalses"))
 
@@ -44,7 +44,7 @@ def makemail(erorcode=""):
                 else:
                     erorcode = "mailsucc"
                     libr_makemail.sendmail(subjtext, conttext, username, receiver)
-        return render_template("makemail.html", username=username, versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
+        return render_template("makemoil.html", username=username, versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
     else:
         return redirect(url_for("invalses"))
 
