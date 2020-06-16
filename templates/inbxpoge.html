@@ -43,9 +43,9 @@
       </div>
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item"><a href="#" class="nav-link active"><i class="nav-icon fas fa-th"></i><p>Dashboard</p></a></li>
+          <li class="nav-item"><a href="{{ url_for("dashbord") }}" class="nav-link"><i class="nav-icon fas fa-th"></i><p>Dashboard</p></a></li>
           <li class="nav-item"><a href="{{ url_for("makemail") }}" class="nav-link"><i class="nav-icon fas fa-drafting-compass"></i><p>Compose</p></a></li>
-          <li class="nav-item"><a href="{{ url_for("inbxpage") }}" class="nav-link"><i class="nav-icon fas fa-box-open"></i><p>Inbox</p></a></li>
+          <li class="nav-item"><a href="#" class="nav-link active"><i class="nav-icon fas fa-box-open"></i><p>Inbox</p></a></li>
           <li class="nav-item"><a href="{{ url_for("contacts") }}" class="nav-link"><i class="nav-icon fas fa-people-arrows"></i><p>Contacts</p></a></li>
           <li class="nav-item"><a href="{{ url_for("trashcan") }}" class="nav-link"><i class="nav-icon fas fa-trash"></i><p>Trashcan</p></a></li>
           <li class="nav-item"><a href="{{ url_for("grupdata") }}" class="nav-link"><i class="nav-icon fas fa-globe"></i><p>Groups</p></a></li>
@@ -96,14 +96,14 @@
               </div>
             </div>
           </div>
-          <div class="table-responsive mailbox-messages">
+          <div class="table-responsive-sm mailbox-messages">
             <table class="table table-hover table-striped">
               <tbody>
               {% for indx in recvdict %}
               <tr>
-                <td class="mailbox-name col-mde-3">{{ indx.srceuser }}</td>
-                <td class="mailbox-subject col-mde-7"><a href="{{ url_for("readinbx", paradrct="recv", mailiden=indx.mailiden) }}"><b>{{ indx.subjtext }}</a></b></td>
-                <td class="mailbox-date col-mde-2">{{ indx.timedata.date }} {{ indx.timedata.mont.tinyform }}</td>
+                <td class="mailbox-name col-sm-3">{{ indx.srceuser }}</td>
+                <td class="mailbox-subject col-sm-7"><b><a href="{{ url_for("readinbx", paradrct="recv", mailiden=indx.mailiden) }}">{{ indx.subjtext }}</a></b></td>
+                <td class="mailbox-date col-sm-2">{{ indx.timedata.date }} {{ indx.timedata.mont.tinyform }}</td>
               </tr>
               {% endfor %}
               </tbody>
@@ -137,14 +137,14 @@
               </div>
             </div>
           </div>
-          <div class="table-responsive mailbox-messages">
+          <div class="table-responsive-sm mailbox-messages">
             <table class="table table-hover table-striped">
               <tbody>
               {% for indx in senddict %}
               <tr>
-                <td class="mailbox-name col-mde-3">{{ indx.destuser }}</td>
-                <td class="mailbox-subject col-mde-7"><a href="{{ url_for("readinbx", paradrct="send", mailiden=indx.mailiden) }}"><b>{{ indx.subjtext }}</a></b></td>
-                <td class="mailbox-date col-mde-2">{{ indx.timedata.date }} {{ indx.timedata.mont.tinyform }}</td>
+                <td class="mailbox-name col-sm-3">{{ indx.destuser }}</td>
+                <td class="mailbox-subject col-sm-7"><b><a href="{{ url_for("readinbx", paradrct="send", mailiden=indx.mailiden) }}">{{ indx.subjtext }}</a></b></td>
+                <td class="mailbox-date col-sm-2">{{ indx.timedata.date }} {{ indx.timedata.mont.tinyform }}</td>
               </tr>
               {% endfor %}
               </tbody>
