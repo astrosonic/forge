@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - FORGE</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="{{ url_for("static", filename="plugins/fontawesome-free/css/all.min.css") }}">
+  <link rel="stylesheet" href="{{ url_for("static", filename="plugins/icheck-bootstrap/icheck-bootstrap.min.css") }}">
+  <link rel="stylesheet" href="{{ url_for("static", filename="dist/css/adminlte.min.css") }}">
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo"><b>FORGE</b></div>
+  <div class="card">
+    <div class="card-body login-card-body">
+      {% if erorcode != "" %}
+        <p class="login-box-msg">{{ erorlist[erorcode] }}</p>
+      {% else %}
+        <p class="login-box-msg">Log in to start your session</p>
+      {% endif %}
+      <form method="POST">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Username" name="username">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Password" name="password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-outline btn-block" style="border-color: teal;">Login</button>
+      </form>
+      <br/>
+      <div class="social-auth-links text-center mb-3">
+        <p>Don't have an account yet? Create one here</p>
+        <a href="{{ url_for("makeacnt") }}" class="btn btn-outline btn-block" style="border-color: teal;">Signup</a>
+      </div>
+      <p class="mb-1" style="text-align: center;">
+        FORGE v{{ versinfo.mainline }}
+      </p>
+    </div>
+  </div>
+</div>
+<script src="{{ url_for("static", filename="plugins/jquery/jquery.min.js") }}"></script>
+<script src="{{ url_for("static", filename="plugins/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
+<script src="{{ url_for("static", filename="dist/js/adminlte.min.js") }}"></script>
+</body>
+</html>
