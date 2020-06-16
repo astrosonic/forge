@@ -7,6 +7,14 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="{{ url_for("static", filename="plugins/fontawesome-free/css/all.min.css") }}">
   <link rel="stylesheet" href="{{ url_for("static", filename="dist/css/adminlte.min.css") }}">
+  <style>
+    *{
+      box-sizing: border-box;
+    }
+    td {
+      white-space: normal !important;
+    }
+  </style>
 </head>
 <body class="hold-transition sidebar-mini layout-boxed text-sm">
 <div class="wrapper">
@@ -100,10 +108,10 @@
             <table class="table table-hover table-striped">
               <tbody>
               {% for indx in recvdict %}
-              <tr>
-                <td class="mailbox-name col-mde-3">{{ indx.srceuser }}</td>
-                <td class="mailbox-subject col-mde-7"><a href="{{ url_for("readinbx", paradrct="recv", mailiden=indx.mailiden) }}"><b>{{ indx.subjtext }}</a></b></td>
-                <td class="mailbox-date col-mde-2">{{ indx.timedata.date }} {{ indx.timedata.mont.tinyform }}</td>
+              <tr class="d-flex">
+                <td class="mailbox-name col-3">{{ indx.srceuser }}</td>
+                <td class="mailbox-subject col-8"><a href="{{ url_for("readinbx", paradrct="recv", mailiden=indx.mailiden) }}"><b>{{ indx.subjtext }}</a></b></td>
+                <td class="mailbox-date col-1">{{ indx.timedata.date }} {{ indx.timedata.mont.tinyform }}</td>
               </tr>
               {% endfor %}
               </tbody>
@@ -141,10 +149,10 @@
             <table class="table table-hover table-striped">
               <tbody>
               {% for indx in senddict %}
-              <tr>
-                <td class="mailbox-name col-mde-3">{{ indx.destuser }}</td>
-                <td class="mailbox-subject col-mde-7"><a href="{{ url_for("readinbx", paradrct="send", mailiden=indx.mailiden) }}"><b>{{ indx.subjtext }}</a></b></td>
-                <td class="mailbox-date col-mde-2">{{ indx.timedata.date }} {{ indx.timedata.mont.tinyform }}</td>
+              <tr class="d-flex">
+                <td class="mailbox-name col-3">{{ indx.destuser }}</td>
+                <td class="mailbox-subject col-8"><a href="{{ url_for("readinbx", paradrct="send", mailiden=indx.mailiden) }}"><b>{{ indx.subjtext }}</a></b></td>
+                <td class="mailbox-date col-1">{{ indx.timedata.date }} {{ indx.timedata.mont.tinyform }}</td>
               </tr>
               {% endfor %}
               </tbody>
