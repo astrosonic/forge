@@ -100,9 +100,9 @@
             <table class="table table-hover table-striped">
               <tbody>
               {% for indx in recvdict %}
-              <tr>
+              <tr class="d-flex">
                 <td class="mailbox-name col-sm-3">{{ indx.srceuser }}</td>
-                <td class="mailbox-subject col-sm-7"><b><a href="{{ url_for("readinbx", paradrct="recv", mailiden=indx.mailiden) }}">{{ indx.subjtext }}</a></b></td>
+                <td class="mailbox-subject col-sm-7"><a href="{{ url_for("readinbx", paradrct="recv", mailiden=indx.mailiden) }}"><b>{{ indx.subjtext }}</a></b></td>
                 <td class="mailbox-date col-sm-2">{{ indx.timedata.date }} {{ indx.timedata.mont.tinyform }}</td>
               </tr>
               {% endfor %}
@@ -141,9 +141,9 @@
             <table class="table table-hover table-striped">
               <tbody>
               {% for indx in senddict %}
-              <tr>
+              <tr class="d-flex">
                 <td class="mailbox-name col-sm-3">{{ indx.destuser }}</td>
-                <td class="mailbox-subject col-sm-7"><b><a href="{{ url_for("readinbx", paradrct="send", mailiden=indx.mailiden) }}">{{ indx.subjtext }}</a></b></td>
+                <td class="mailbox-subject col-sm-7"><a href="{{ url_for("readinbx", paradrct="send", mailiden=indx.mailiden) }}"><b>{{ indx.subjtext }}</a></b></td>
                 <td class="mailbox-date col-sm-2">{{ indx.timedata.date }} {{ indx.timedata.mont.tinyform }}</td>
               </tr>
               {% endfor %}
