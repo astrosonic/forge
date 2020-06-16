@@ -282,7 +282,7 @@ def entrydir(erorcode = ""):
                     else:
                         session['username'] = username
                         return redirect(url_for("dashbord"))
-    return render_template("entrydir.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
+    return render_template("entrydor.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
 
 @main.route("/makeacnt/", methods=["GET","POST"])
 def makeacnt(erorcode = ""):
