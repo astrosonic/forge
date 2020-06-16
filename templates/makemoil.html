@@ -3,228 +3,138 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard - FORGE</title>
-
-  <!-- Google Font: Source Sans Pro -->
+  <title>Compose - FORGE</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{ url_for("static", filename="plugins/fontawesome-free/css/all.min.css") }}">
-  <!-- Theme style -->
   <link rel="stylesheet" href="{{ url_for("static", filename="dist/css/adminlte.min.css") }}">
+  <link rel="stylesheet" href="{{ url_for("static", filename="plugins/summernote/summernote-bs4.min.css") }}">
 </head>
 <body class="hold-transition sidebar-mini layout-boxed text-sm">
 <div class="wrapper">
 
-  <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-teal navbar-light">
-    <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Compose</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Inbox</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contacts</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Trashcan</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Groups</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Broadcast</a>
-      </li>
     </ul>
-
-    <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-            <i class="fas fa-cog"></i>
-        </a>
+        <a class="nav-link" href="{{ url_for("settings") }}" role="button"><i class="fas fa-cog"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-            <i class="fas fa-plus"></i>
-        </a>
+        <a class="nav-link" href="{{ url_for("fglogout") }}" role="button"><i class="fas fa-plus"></i></a>
       </li>
     </ul>
   </nav>
-  <!-- /.navbar -->
 
-  <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-light-teal elevation-4">
-    <!-- Brand Logo -->
     <a href="index3.html" class="brand-link navbar-teal navbar-light">
       <img src="{{ url_for("static", filename="dist/img/AdminLTELogo.png") }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">&nbsp;FORGE</span>
     </a>
-
-    <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="{{ url_for("static", filename="dist/img/user2-160x160.jpg") }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ username }}</a>
         </div>
       </div>
-
-      <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Starter Pages
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Active Page</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
+          <li class="nav-item"><a href="{{ url_for("dashbord") }}" class="nav-link"><i class="nav-icon fas fa-th"></i><p>Dashboard</p></a></li>
+          <li class="nav-item"><a href="#" class="nav-link active"><i class="nav-icon fas fa-drafting-compass"></i><p>Compose</p></a></li>
+          <li class="nav-item"><a href="{{ url_for("inbxpage") }}" class="nav-link"><i class="nav-icon fas fa-box-open"></i><p>Inbox</p></a></li>
+          <li class="nav-item"><a href="{{ url_for("contacts") }}" class="nav-link"><i class="nav-icon fas fa-people-arrows"></i><p>Contacts</p></a></li>
+          <li class="nav-item"><a href="{{ url_for("trashcan") }}" class="nav-link"><i class="nav-icon fas fa-trash"></i><p>Trashcan</p></a></li>
+          <li class="nav-item"><a href="{{ url_for("grupdata") }}" class="nav-link"><i class="nav-icon fas fa-globe"></i><p>Groups</p></a></li>
+          <li class="nav-item"><a href="{{ url_for("brodcast") }}" class="nav-link"><i class="nav-icon fas fa-broadcast-tower"></i><p>Broadcast</p></a></li>
         </ul>
       </nav>
-      <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
   </aside>
 
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
+
+    <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Starter Page</h1>
-          </div><!-- /.col -->
+            <h1>Compose</h1>
+          </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Starter Page</li>
+              <li class="breadcrumb-item"><a href="{{ url_for("dashbord") }}">Dashboard</a></li>
+              <li class="breadcrumb-item active">Compose</li>
             </ol>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-sm">
-        <div class="info-box mb-3 bg-teal">
-          <span class="info-box-icon"><i class="fas fa-drafting-compass"></i></span>
-          <div class="info-box-content">
-            <span class="info-box-text">Compose</span>
-            <span class="info-box-number">Compose new directive | Check directive drafts | Send acknowledged mail | Share content links</span>
-          </div>
-        </div>
-        <div class="info-box mb-3 bg-teal">
-          <span class="info-box-icon"><i class="fas fa-box-open"></i></span>
-          <div class="info-box-content">
-            <span class="info-box-text">Inbox</span>
-            <span class="info-box-number">Receive new messages | Go through sent mails | Remove old directives | Mark special mails</span>
-          </div>
-        </div>
-        <div class="info-box mb-3 bg-teal">
-          <span class="info-box-icon"><i class="fas fa-people-arrows"></i></span>
-          <div class="info-box-content">
-            <span class="info-box-text">Contacts</span>
-            <span class="info-box-number">Add new contacts | Remove unwanted contacts | Update existing contacts | View contacts</span>
-          </div>
-        </div>
-        <div class="info-box mb-3 bg-teal">
-          <span class="info-box-icon"><i class="fas fa-trash"></i></span>
-          <div class="info-box-content">
-            <span class="info-box-text">Trashcan</span>
-            <span class="info-box-number">Permanently remove mails | Restore directives again | Mark for direct removal | Mark mails for immunity</span>
-          </div>
-        </div>
-        <div class="info-box mb-3 bg-teal">
-          <span class="info-box-icon"><i class="fas fa-globe"></i></span>
-          <div class="info-box-content">
-            <span class="info-box-text">Groups</span>
-            <span class="info-box-number">Send directives to group | Receive shared messages | Add users to group | Remove users from group</span>
-          </div>
-        </div>
-        <div class="info-box mb-3 bg-teal">
-          <span class="info-box-icon"><i class="fas fa-broadcast-tower"></i></span>
-          <div class="info-box-content">
-            <span class="info-box-text">Broadcast</span>
-            <span class="info-box-number">Pick specific recipients | Share to multiple people | Recipient-aware sharing | Hidden recipient sharing</span>
-          </div>
-        </div>
-        <div class="info-box mb-3 bg-teal">
-          <span class="info-box-icon"><i class="fas fa-wrench"></i></span>
-          <div class="info-box-content">
-            <span class="info-box-text">Settings</span>
-            <span class="info-box-number">Change profile options | Refresh PKCS credentials | Change password | Shutdown account</span>
-          </div>
+    <section class="content">
+      <div class="info-box shadow-sm">
+        <span class="info-box-icon bg-teal"><i class="far fa-save"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Statutory warning</span>
+          <span class="info-box-number">Saving drafts has not been implemented yet.</span>
         </div>
       </div>
-    </div>
+      {% if erorcode != "" %}
+      <div class="info-box shadow-sm">
+        <span class="info-box-icon bg-teal"><i class="far fa-newspaper"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Incoming alert</span>
+          <span class="info-box-number">{{ erorlist[erorcode] }}</span>
+        </div>
+      </div>
+      {% endif %}
+    </section>
+
+    <section class="content">
+      <div class="card card-teal card-outline">
+        <div class="card-header">
+          <h3 class="card-title">Compose new message</h3>
+        </div>
+        <form id="makemail" method="POST">
+          <div class="card-body">
+            <div class="form-group">
+              <input class="form-control" name="receiver" placeholder="Add the username of the receiver" />
+            </div>
+            <div class="form-group">
+              <input class="form-control" name="subjtext" placeholder="Add the subject of your directive" />
+            </div>
+            <div class="form-group">
+              <textarea id="compose-textarea" name="conttext" placeholder="Add the content of your directive" class="form-control" style="height: 300px"></textarea>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="float-right">
+              <button type="button" onclick="document.getElementById('makemail').reset()" class="btn btn-outline" style="border-color: teal">Draft</button>
+              &nbsp;&nbsp;
+              <button type="submit" class="btn btn-outline" style="border-color: teal">Send</button>
+            </div>
+            <button type="reset" class="btn btn-outline" style="border-color: teal">Discard</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
   </div>
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
 
-  <!-- Main Footer -->
   <footer class="main-footer">
-    <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      FORGE v15062020-alpha
+      FORGE v{{ versinfo.mainline }}
     </div>
-    <!-- Default to the left -->
-    <strong>Logged in as t0xic0der</strong>
+    <strong>Logged in as {{ username }}</strong>
   </footer>
+
 </div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
 <script src="{{ url_for("static", filename="plugins/jquery/jquery.min.js") }}"></script>
-<!-- Bootstrap 4 -->
 <script src="{{ url_for("static", filename="plugins/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
-<!-- AdminLTE App -->
 <script src="{{ url_for("static", filename="dist/js/adminlte.min.js") }}"></script>
+<script src="{{ url_for("static", filename="plugins/summernote/summernote-bs4.min.js") }}"></script>
 </body>
 </html>
