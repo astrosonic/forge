@@ -109,9 +109,9 @@
               <tbody>
               {% for indx in recvdict %}
               <tr class="d-flex">
-                <td class="mailbox-name col-3">{{ indx.srceuser }}</td>
-                <td class="mailbox-subject col-8"><a href="{{ url_for("readinbx", paradrct="recv", mailiden=indx.mailiden) }}"><b>{{ indx.subjtext }}</a></b></td>
-                <td class="mailbox-date col-1">{{ indx.timedata.date }} {{ indx.timedata.mont.tinyform }}</td>
+                <td class="mailbox-name col-sm-2">{{ indx.srceuser }}</td>
+                <td class="mailbox-subject col-sm-9"><a href="{{ url_for("readinbx", paradrct="recv", mailiden=indx.mailiden) }}"><b>{{ indx.subjtext }}</a></b></td>
+                <td class="mailbox-date col-sm-1">{{ indx.timedata.date }} {{ indx.timedata.mont.tinyform }}</td>
               </tr>
               {% endfor %}
               </tbody>
@@ -150,9 +150,9 @@
               <tbody>
               {% for indx in senddict %}
               <tr class="d-flex">
-                <td class="mailbox-name col-3">{{ indx.destuser }}</td>
-                <td class="mailbox-subject col-8"><a href="{{ url_for("readinbx", paradrct="send", mailiden=indx.mailiden) }}"><b>{{ indx.subjtext }}</a></b></td>
-                <td class="mailbox-date col-1">{{ indx.timedata.date }} {{ indx.timedata.mont.tinyform }}</td>
+                <td class="mailbox-name col-sm-2">{{ indx.destuser }}</td>
+                <td class="mailbox-subject col-sm-9"><a href="{{ url_for("readinbx", paradrct="send", mailiden=indx.mailiden) }}"><b>{{ indx.subjtext }}</a></b></td>
+                <td class="mailbox-date col-sm-1">{{ indx.timedata.date }} {{ indx.timedata.mont.tinyform }}</td>
               </tr>
               {% endfor %}
               </tbody>
