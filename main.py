@@ -99,7 +99,7 @@ def inbxpage():
         username = session['username']
         recvdict = libr_inbxpage.fetcrecv(username)
         senddict = libr_inbxpage.fetcsend(username)
-        return render_template("inbxpage.html", username=username, versinfo=versinfo, recvdict=recvdict, senddict=senddict)
+        return render_template("inbxpoge.html", username=username, versinfo=versinfo, recvdict=recvdict, senddict=senddict)
     else:
         return redirect(url_for("invalses"))
 
