@@ -116,7 +116,7 @@ def contacts(srchuser = [], erorcode = ""):
                 srchuser = libr_contacts.fetcuser(srchtext, username)
                 if srchuser == []:
                     erorcode = "nouserfd"
-        return render_template("contacts.html", username=username, versinfo=versinfo, savedone=savedone, srchuser=srchuser, erorcode=erorcode, erorlist=erorlist)
+        return render_template("contocts.html", username=username, versinfo=versinfo, savedone=savedone, srchuser=srchuser, erorcode=erorcode, erorlist=erorlist)
     else:
         return redirect(url_for("invalses"))
 
