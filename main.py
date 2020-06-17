@@ -311,7 +311,7 @@ def makeacnt(erorcode = ""):
             else:
                 pkcsiden = libr_makeacnt.saveuser(fullname,username,password,emailadr)
                 return render_template("acntmade.html", versinfo=versinfo, username=username, fullname=fullname, emailadr=emailadr, pkcsiden=pkcsiden)
-    return render_template("makeacnt.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
+    return render_template("makeocnt.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
 
 if __name__ == "__main__":
     main.run(port=9696, host="0.0.0.0")
