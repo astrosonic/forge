@@ -1,34 +1,70 @@
-{% extends "fgparent.html" %}
-{% block title %}Create account{% endblock %}
-{% block head %}{{ super() }}{% endblock %}
-{% block pagename %}Create account{% endblock %}
-{% block navaloca %}
-    <p class="uk-margin-remove normelem uk-text-small">Welcome to FORGE</p>
-{% endblock %}
-{% block bodyextn %}
-<br/>
+{% extends "fgparent.html" %} {% block title %}Create account{% endblock %} {%
+block head %}{{ super() }}{% endblock %} {% block pagename %}Create account{%
+endblock %} {% block navaloca %}
+<p class="uk-margin-remove normelem uk-text-small">Welcome to FORGE</p>
+{% endblock %} {% block bodyextn %}
+<br />
 <div class="uk-card-body uk-background-default uk-padding-remove">
-    {% if erorcode != "" %}
-    <div class="uk-alert-danger" uk-alert>
-        <p class="normelem">{{ erorlist[erorcode] }}</p>
-    </div>
-    {% endif %}
-    <p class="normelem">You need to provide some information before your account is created.</p>
-    <form method="POST">
-        <fieldset class="uk-fieldset normelem">
-            <p><input class="uk-input uk-form-small" type="text" name="fullname" placeholder="Full name"></p>
-            <p><input class="uk-input uk-form-small" type="text" name="username" placeholder="Username"></p>
-            <p><input class="uk-input uk-form-small" type="password" name="password" placeholder="Password"></p>
-            <p><input class="uk-input uk-form-small" type="password" name="passrept" placeholder="Password (again)"></p>
-            <p><input class="uk-input uk-form-small" type="email" name="emailadr" placeholder="Email address"></p>
-        </fieldset>
-        <input type="submit" value="SIGNUP" class="uk-button uk-background-secondary uk-button-small headelem forggrin"/>
-    </form>
+  {% if erorcode != "" %}
+  <div class="uk-alert-danger" uk-alert>
+    <p class="normelem">{{ erorlist[erorcode] }}</p>
+  </div>
+  {% endif %}
+  <p class="normelem">
+    You need to provide some information before your account is created.
+  </p>
+  <form method="POST">
+    <fieldset class="uk-fieldset normelem">
+      <p>
+        <input
+          class="uk-input uk-form-small"
+          type="text"
+          name="fullname"
+          placeholder="Full name"
+        />
+      </p>
+      <p>
+        <input
+          class="uk-input uk-form-small"
+          type="text"
+          name="username"
+          placeholder="Username"
+        />
+      </p>
+      <p>
+        <input
+          class="uk-input uk-form-small"
+          type="password"
+          name="password"
+          placeholder="Password"
+        />
+      </p>
+      <p>
+        <input
+          class="uk-input uk-form-small"
+          type="password"
+          name="passrept"
+          placeholder="Password (again)"
+        />
+      </p>
+      <p>
+        <input
+          class="uk-input uk-form-small"
+          type="email"
+          name="emailadr"
+          placeholder="Email address"
+        />
+      </p>
+    </fieldset>
+    <input
+      type="submit"
+      value="SIGNUP"
+      class="uk-button uk-background-secondary uk-button-small headelem forggrin"
+    />
+  </form>
 </div>
-<br/>
-{% endblock %}
-{% block logdinas %}<p class="uk-margin-remove italelem">Code - MAKEACNT</p>{% endblock %}
-{% block versdata %}
-    FORGE v{{ versinfo.mainline }}
-{% endblock %}
-{% block body %}{{ super() }}{% endblock %}
+<br />
+{% endblock %} {% block logdinas %}
+<p class="uk-margin-remove italelem">Code - MAKEACNT</p>
+{% endblock %} {% block versdata %} FORGE v{{ versinfo.mainline }} {% endblock
+%} {% block body %}{{ super() }}{% endblock %}
