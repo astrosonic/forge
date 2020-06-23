@@ -46,10 +46,11 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Retype password" name="passrept">
+          <input id="pwdR" type="password" class="form-control" placeholder="Retype password" name="passrept">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+              <span id="eyeSlashR" style="display: none; cursor: pointer;" onclick="hideR()" class="fas fa-eye-slash"></span>
+              <span id="eyeR" style="display: block; cursor: pointer;" onclick="showR()" class="fas fa-eye"></span>
             </div>
           </div>
         </div>
@@ -90,6 +91,19 @@
     document.getElementById("eyeSlash").style.display = "block"
     document.getElementById("eye").style.display = "none"
   }
+
+  function hideR() {
+    document.getElementById("pwdR").type = "password"
+    document.getElementById("eyeSlashR").style.display = "none"
+    document.getElementById("eyeR").style.display = "block"
+  }
+
+  function showR() {
+    document.getElementById("pwdR").type = "text"
+    document.getElementById("eyeSlashR").style.display = "block"
+    document.getElementById("eyeR").style.display = "none"
+  }
+
 </script>
 </body>
 </html>
