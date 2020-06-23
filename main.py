@@ -164,7 +164,7 @@ def onegroup(grupiden, erorcode=""):
             else:
                 erorcode = "mailsucc"
                 libr_gpmkmail.sendmail(subjtext, conttext, username, grupiden)
-        return render_template("onegroup.html", username=username, versinfo=versinfo, retndata=retndata, recvdict=recvdict, erorlist=erorlist, erorcode=erorcode)
+        return render_template("onegrope.html", username=username, versinfo=versinfo, retndata=retndata, recvdict=recvdict, erorlist=erorlist, erorcode=erorcode)
     else:
         return redirect(url_for("invalses"))
 
@@ -204,7 +204,7 @@ def grupdata():
     if 'username' in session:
         username = session['username']
         gruplist = libr_grupdata.listfetc(username)
-        return render_template("grupdata.html", username=username, versinfo=versinfo, gruplist=gruplist)
+        return render_template("grupdota.html", username=username, versinfo=versinfo, gruplist=gruplist)
     else:
         return redirect(url_for("invalses"))
 
