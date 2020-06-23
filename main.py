@@ -255,7 +255,7 @@ def readtrsh(paradrct, mailiden):
     if 'username' in session:
         username = session['username']
         maildict = libr_trashcan.mailread(paradrct, mailiden, username)
-        return render_template("readtrsh.html", username=username, versinfo=versinfo, maildict=maildict, itempara=paradrct)
+        return render_template("reodtrsh.html", username=username, versinfo=versinfo, maildict=maildict, itempara=paradrct)
     else:
         return redirect(url_for("invalses"))
 
