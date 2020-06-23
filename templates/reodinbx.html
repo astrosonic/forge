@@ -75,50 +75,47 @@
     </section>
 
     <section class="content">
-        <div class="info-box shadow-sm">
-          <span class="info-box-icon bg-olive"><i class="far fa-save"></i></span>
-          <div class="info-box-content">
-            <span class="info-box-text">Statutory warning</span>
-            <span class="info-box-number">Reply and forward features have not been implemented yet.</span>
-          </div>
+      <div class="info-box shadow-sm">
+        <span class="info-box-icon bg-olive"><i class="far fa-save"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Statutory warning</span>
+          <span class="info-box-number">Reply and forward features have not been implemented yet.</span>
         </div>
+      </div>
     </section>
 
     <section class="content">
-        <div class="card card-olive card-outline">
-            <div class="card-header">
-              <h3 class="card-title">Reader</h3>
-              <div class="card-tools">
-                <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Previous"><i class="fas fa-chevron-left"></i></a>
-                <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Next"><i class="fas fa-chevron-right"></i></a>
-              </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body p-0">
-              <div class="mailbox-read-info">
-                <h5>{{ maildict.subjtext }}</h5>
-                <h6>
-                    {{ maildict.interact }}
-                    <span class="mailbox-read-time float-right">{{ maildict.timedata.date }} {{ maildict.timedata.mont.tinyform }} {{ maildict.timedata.year }}, {{ maildict.timedata.hour }}:{{ maildict.timedata.mins }} GMT</span>
-                </h6>
-              </div>
-              <div class="mailbox-read-message">
-                  <p>{{ maildict.conttext }}</p>
-              </div>
-            </div>
-            <div class="card-footer">
-              <div class="float-right">
-                <button type="button" class="btn btn-outline" style="border-color: teal">Reply</button>
-                &nbsp;&nbsp;
-                <button type="button" class="btn btn-outline" style="border-color: teal">Forward</button>
-              </div>
-              <button type="button" onclick="window.location.href = '{{ url_for("rmovmail", paradrct=itempara, mailiden=maildict.mailiden) }}'" class="btn btn-outline" style="border-color: teal">Delete</button>
-              &nbsp;&nbsp;
-              <button type="button" onclick="window.print()" class="btn btn-outline" style="border-color: teal">Print</button>
-            </div>
-            <!-- /.card-footer -->
+      <div class="card card-olive card-outline">
+        <div class="card-header">
+          <h3 class="card-title">Reader</h3>
+          <div class="card-tools">
+            <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Previous"><i class="fas fa-chevron-left"></i></a>
+            <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Next"><i class="fas fa-chevron-right"></i></a>
           </div>
-          <!-- /.card -->
+        </div>
+        <div class="card-body p-0">
+          <div class="mailbox-read-info">
+            <h5>{{ maildict.subjtext }}</h5>
+            <h6>
+                {{ maildict.interact }}
+                <span class="mailbox-read-time float-right">{{ maildict.timedata.date }} {{ maildict.timedata.mont.tinyform }} {{ maildict.timedata.year }}, {{ maildict.timedata.hour }}:{{ maildict.timedata.mins }} GMT</span>
+            </h6>
+          </div>
+          <div class="mailbox-read-message">
+              <p>{{ maildict.conttext }}</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="float-right">
+            <button type="button" class="btn btn-outline" style="border-color: teal">Reply</button>
+            &nbsp;&nbsp;
+            <button type="button" class="btn btn-outline" style="border-color: teal">Forward</button>
+          </div>
+          <button type="button" onclick="window.location.href = '{{ url_for("rmovmail", paradrct=itempara, mailiden=maildict.mailiden) }}'" class="btn btn-outline" style="border-color: teal">Delete</button>
+          &nbsp;&nbsp;
+          <button type="button" onclick="window.print()" class="btn btn-outline" style="border-color: teal">Print</button>
+        </div>
+      </div>
     </section>
 
   </div>
