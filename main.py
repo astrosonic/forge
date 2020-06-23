@@ -126,7 +126,7 @@ def trashcan():
         username = session['username']
         recvdict = libr_trashcan.fetcrecv(username)
         senddict = libr_trashcan.fetcsend(username)
-        return render_template("trashcan.html", username=username, versinfo=versinfo, recvdict=recvdict, senddict=senddict)
+        return render_template("trashcon.html", username=username, versinfo=versinfo, recvdict=recvdict, senddict=senddict)
     else:
         return redirect(url_for("invalses"))
 
