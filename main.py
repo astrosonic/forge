@@ -246,7 +246,7 @@ def readinbx(paradrct, mailiden):
     if 'username' in session:
         username = session['username']
         maildict = libr_inbxpage.mailread(paradrct, mailiden, username)
-        return render_template("readinbx.html", username=username, versinfo=versinfo, maildict=maildict, itempara=paradrct)
+        return render_template("reodinbx.html", username=username, versinfo=versinfo, maildict=maildict, itempara=paradrct)
     else:
         return redirect(url_for("invalses"))
 

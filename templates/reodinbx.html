@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inbox - FORGE</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="{{ url_for("static", filename="plugins/fontawesome-free/css/all.min.css") }}">
+  <link rel="stylesheet" href="{{ url_for("static", filename="dist/css/adminlte.min.css") }}">
+</head>
+<body class="hold-transition sidebar-mini layout-boxed text-sm">
+<div class="wrapper">
+
+  <nav class="main-header navbar navbar-expand navbar-olive navbar-light">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for("settings") }}" role="button"><i class="fas fa-cog"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for("fglogout") }}" role="button"><i class="fas fa-plus"></i></a>
+      </li>
+    </ul>
+  </nav>
+
+  <aside class="main-sidebar sidebar-light-olive elevation-4">
+    <a href="index3.html" class="brand-link navbar-olive navbar-light">
+      <img src="{{ url_for("static", filename="dist/img/AdminLTELogo.png") }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">&nbsp;FORGE</span>
+    </a>
+    <div class="sidebar">
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{{ url_for("static", filename="dist/img/user2-160x160.jpg") }}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">{{ username }}</a>
+        </div>
+      </div>
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item"><a href="{{ url_for("dashbord") }}" class="nav-link"><i class="nav-icon fas fa-th"></i><p>Dashboard</p></a></li>
+          <li class="nav-item"><a href="{{ url_for("makemail") }}" class="nav-link"><i class="nav-icon fas fa-drafting-compass"></i><p>Compose</p></a></li>
+          <li class="nav-item"><a href="#" class="nav-link active"><i class="nav-icon fas fa-box-open"></i><p>Inbox</p></a></li>
+          <li class="nav-item"><a href="{{ url_for("contacts") }}" class="nav-link"><i class="nav-icon fas fa-people-arrows"></i><p>Contacts</p></a></li>
+          <li class="nav-item"><a href="{{ url_for("trashcan") }}" class="nav-link"><i class="nav-icon fas fa-trash"></i><p>Trashcan</p></a></li>
+          <li class="nav-item"><a href="{{ url_for("grupdata") }}" class="nav-link"><i class="nav-icon fas fa-globe"></i><p>Groups</p></a></li>
+          <li class="nav-item"><a href="{{ url_for("brodcast") }}" class="nav-link"><i class="nav-icon fas fa-broadcast-tower"></i><p>Broadcast</p></a></li>
+        </ul>
+      </nav>
+    </div>
+  </aside>
+
+  <div class="content-wrapper">
+
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Reader</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{{ url_for("dashbord") }}">Dashboard</a></li>
+              <li class="breadcrumb-item"><a href="{{ url_for("inbxpage") }}">Inbox</a></li>
+              <li class="breadcrumb-item active">Reader</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content">
+        <div class="info-box shadow-sm">
+          <span class="info-box-icon bg-olive"><i class="far fa-save"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">Statutory warning</span>
+            <span class="info-box-number">Reply and forward features have not been implemented yet.</span>
+          </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="card card-olive card-outline">
+            <div class="card-header">
+              <h3 class="card-title">Reader</h3>
+              <div class="card-tools">
+                <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Previous"><i class="fas fa-chevron-left"></i></a>
+                <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Next"><i class="fas fa-chevron-right"></i></a>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+              <div class="mailbox-read-info">
+                <h5>{{ maildict.subjtext }}</h5>
+                <h6>
+                    {{ maildict.interact }}
+                    <span class="mailbox-read-time float-right">{{ maildict.timedata.date }} {{ maildict.timedata.mont.tinyform }} {{ maildict.timedata.year }}, {{ maildict.timedata.hour }}:{{ maildict.timedata.mins }} GMT</span>
+                </h6>
+              </div>
+              <div class="mailbox-read-message">
+                  <p>{{ maildict.conttext }}</p>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="float-right">
+                <button type="button" class="btn btn-outline" style="border-color: teal">Reply</button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-outline" style="border-color: teal">Forward</button>
+              </div>
+              <button type="button" onclick="window.location.href = '{{ url_for("rmovmail", paradrct=itempara, mailiden=maildict.mailiden) }}'" class="btn btn-outline" style="border-color: teal">Delete</button>
+              &nbsp;&nbsp;
+              <button type="button" onclick="window.print()" class="btn btn-outline" style="border-color: teal">Print</button>
+            </div>
+            <!-- /.card-footer -->
+          </div>
+          <!-- /.card -->
+    </section>
+
+  </div>
+
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-inline">
+      FORGE v{{ versinfo.mainline }}
+    </div>
+    <strong>Logged in as {{ username }}</strong>
+  </footer>
+
+</div>
+<script src="{{ url_for("static", filename="plugins/jquery/jquery.min.js") }}"></script>
+<script src="{{ url_for("static", filename="plugins/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
+<script src="{{ url_for("static", filename="dist/js/adminlte.min.js") }}"></script>
+</body>
+</html>
