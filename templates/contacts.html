@@ -50,7 +50,7 @@
         <tbody>
             {% for indx in savedone %}
             <tr>
-                <td class="headelem">{{ indx.username }}</td>
+                <td class="headelem"><a href="{{ url_for('makemail',receiver=indx.username) }}">{{ indx.username }}</a></td>
                 <td class="normelem"><a href="{{ url_for("viewuser", parauser="exst", usercont=indx.username) }}">{{ indx.fullname }}</a></td>
             </tr>
             {% endfor %}

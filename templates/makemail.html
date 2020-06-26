@@ -27,7 +27,12 @@
             <div class="uk-margin">
                 <label class="uk-form-label headelem" for="form-horizontal-text">RECIPIENT</label>
                 <div class="uk-form-controls">
-                    <input class="uk-input normelem uk-form-small" id="form-horizontal-text" type="text" name="receiver" placeholder="Add the username of the receiver" />
+                    {% if receiver!="" %}
+                        <input class="uk-input normelem uk-form-small" id="form-horizontal-text" type="text" name="receiver" value="{{ receiver }}" placeholder="Add the username of the receiver" readonly/>
+                    {% else %}
+                        
+                        <input class="uk-input normelem uk-form-small" id="form-horizontal-text" type="text" name="receiver" placeholder="Add the username of the receiver" />
+                    {% endif %}
                 </div>
             </div>
             <div class="uk-margin">
