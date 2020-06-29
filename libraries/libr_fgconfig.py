@@ -72,7 +72,7 @@ timedata = {
 }
 
 versinfo = {
-    "mainline": "17072020-modern-alpha",
+    "mainline": "21042020-alpha",
     "warnmail": "This protocol is not production ready"
 }
 
