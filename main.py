@@ -17,7 +17,7 @@ def invalses():
 def dashbord():
     if 'username' in session:
         username = session['username']
-        return render_template("dashbord.html", username=username, versinfo=versinfo)
+        return render_template("dashbard.html", username=username, versinfo=versinfo)
     else:
         return redirect(url_for("invalses"))
 
@@ -44,7 +44,7 @@ def makemail(erorcode=""):
                 else:
                     erorcode = "mailsucc"
                     libr_makemail.sendmail(subjtext, conttext, username, receiver)
-        return render_template("makemail.html", username=username, versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
+        return render_template("makemoil.html", username=username, versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
     else:
         return redirect(url_for("invalses"))
 
@@ -99,7 +99,7 @@ def inbxpage():
         username = session['username']
         recvdict = libr_inbxpage.fetcrecv(username)
         senddict = libr_inbxpage.fetcsend(username)
-        return render_template("inbxpage.html", username=username, versinfo=versinfo, recvdict=recvdict, senddict=senddict)
+        return render_template("inbxpoge.html", username=username, versinfo=versinfo, recvdict=recvdict, senddict=senddict)
     else:
         return redirect(url_for("invalses"))
 
@@ -116,7 +116,7 @@ def contacts(srchuser = [], erorcode = ""):
                 srchuser = libr_contacts.fetcuser(srchtext, username)
                 if srchuser == []:
                     erorcode = "nouserfd"
-        return render_template("contacts.html", username=username, versinfo=versinfo, savedone=savedone, srchuser=srchuser, erorcode=erorcode, erorlist=erorlist)
+        return render_template("contocts.html", username=username, versinfo=versinfo, savedone=savedone, srchuser=srchuser, erorcode=erorcode, erorlist=erorlist)
     else:
         return redirect(url_for("invalses"))
 
@@ -126,7 +126,7 @@ def trashcan():
         username = session['username']
         recvdict = libr_trashcan.fetcrecv(username)
         senddict = libr_trashcan.fetcsend(username)
-        return render_template("trashcan.html", username=username, versinfo=versinfo, recvdict=recvdict, senddict=senddict)
+        return render_template("trashcon.html", username=username, versinfo=versinfo, recvdict=recvdict, senddict=senddict)
     else:
         return redirect(url_for("invalses"))
 
@@ -164,7 +164,7 @@ def onegroup(grupiden, erorcode=""):
             else:
                 erorcode = "mailsucc"
                 libr_gpmkmail.sendmail(subjtext, conttext, username, grupiden)
-        return render_template("onegroup.html", username=username, versinfo=versinfo, retndata=retndata, recvdict=recvdict, erorlist=erorlist, erorcode=erorcode)
+        return render_template("onegrope.html", username=username, versinfo=versinfo, retndata=retndata, recvdict=recvdict, erorlist=erorlist, erorcode=erorcode)
     else:
         return redirect(url_for("invalses"))
 
@@ -204,7 +204,7 @@ def grupdata():
     if 'username' in session:
         username = session['username']
         gruplist = libr_grupdata.listfetc(username)
-        return render_template("grupdata.html", username=username, versinfo=versinfo, gruplist=gruplist)
+        return render_template("grupdota.html", username=username, versinfo=versinfo, gruplist=gruplist)
     else:
         return redirect(url_for("invalses"))
 
@@ -246,7 +246,7 @@ def readinbx(paradrct, mailiden):
     if 'username' in session:
         username = session['username']
         maildict = libr_inbxpage.mailread(paradrct, mailiden, username)
-        return render_template("readinbx.html", username=username, versinfo=versinfo, maildict=maildict, itempara=paradrct)
+        return render_template("reodinbx.html", username=username, versinfo=versinfo, maildict=maildict, itempara=paradrct)
     else:
         return redirect(url_for("invalses"))
 
@@ -255,7 +255,7 @@ def readtrsh(paradrct, mailiden):
     if 'username' in session:
         username = session['username']
         maildict = libr_trashcan.mailread(paradrct, mailiden, username)
-        return render_template("readtrsh.html", username=username, versinfo=versinfo, maildict=maildict, itempara=paradrct)
+        return render_template("reodtrsh.html", username=username, versinfo=versinfo, maildict=maildict, itempara=paradrct)
     else:
         return redirect(url_for("invalses"))
 
@@ -282,7 +282,7 @@ def entrydir(erorcode = ""):
                     else:
                         session['username'] = username
                         return redirect(url_for("dashbord"))
-    return render_template("entrydir.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
+    return render_template("entrydor.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
 
 @main.route("/makeacnt/", methods=["GET","POST"])
 def makeacnt(erorcode = ""):
@@ -311,7 +311,7 @@ def makeacnt(erorcode = ""):
             else:
                 pkcsiden = libr_makeacnt.saveuser(fullname,username,password,emailadr)
                 return render_template("acntmade.html", versinfo=versinfo, username=username, fullname=fullname, emailadr=emailadr, pkcsiden=pkcsiden)
-    return render_template("makeacnt.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
+    return render_template("makeocnt.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
 
 if __name__ == "__main__":
     main.run(port=9696, host="0.0.0.0")

@@ -52,3 +52,10 @@
 .blcktint {
     color: #000000;
 }
+
+*{
+    box-sizing: border-box;
+}
+td {
+    white-space: normal !important;
+}
