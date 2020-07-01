@@ -20,9 +20,10 @@ def dashbord():
         return render_template("dashbard.html", username=username, versinfo=versinfo)
     else:
         return redirect(url_for("invalses"))
-
+        
+@main.route("/makemail/<receiver>", methods=["GET", "POST"])
 @main.route("/makemail/", methods=["GET", "POST"])
-def makemail(erorcode=""):
+def makemail(erorcode="",receiver=""):
     if 'username' in session:
         username = session['username']
         if request.method == "POST":
@@ -44,7 +45,7 @@ def makemail(erorcode=""):
                 else:
                     erorcode = "mailsucc"
                     libr_makemail.sendmail(subjtext, conttext, username, receiver)
-        return render_template("makemoil.html", username=username, versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
+        return render_template("makemoil.html", username=username,receiver=receiver, versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
     else:
         return redirect(url_for("invalses"))
 
@@ -314,4 +315,4 @@ def makeacnt(erorcode = ""):
     return render_template("makeocnt.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
 
 if __name__ == "__main__":
-    main.run(port=9696, host="0.0.0.0")
+    main.run()
