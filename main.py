@@ -21,10 +21,22 @@ def dashbord():
     else:
         return redirect(url_for("invalses"))
 
+
+@main.route("/makemail/<receiver>", methods=["GET", "POST"])
 @main.route("/makemail/", methods=["GET", "POST"])
-def makemail(erorcode=""):
+def makemail(erorcode="",receiver=""):
+    #print ("URL",request.remote_addr)
+    #print (" "*25,"receiver : ",receiver," "*25)
+    
     if 'username' in session:
         username = session['username']
+        if receiver !="" :
+            srchuser = libr_makemail.acntexst(receiver)
+            #print(srchuser)
+            if srchuser == False or receiver == username:
+                receiver=""
+                return redirect(url_for("makemail"))
+        
         if request.method == "POST":
             receiver = request.form["receiver"]
             subjtext = request.form["subjtext"]
@@ -44,7 +56,8 @@ def makemail(erorcode=""):
                 else:
                     erorcode = "mailsucc"
                     libr_makemail.sendmail(subjtext, conttext, username, receiver)
-        return render_template("makemoil.html", username=username, versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
+                    return redirect(url_for('makemail'))
+        return render_template("makemoil.html", username=username,receiver=receiver ,versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
     else:
         return redirect(url_for("invalses"))
 
@@ -314,4 +327,4 @@ def makeacnt(erorcode = ""):
     return render_template("makeocnt.html", versinfo=versinfo, erorlist=erorlist, erorcode=erorcode)
 
 if __name__ == "__main__":
-    main.run(port=9696, host="0.0.0.0")
+    main.run()
