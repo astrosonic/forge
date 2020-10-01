@@ -17,10 +17,7 @@
     <form method="POST">
         <fieldset class="uk-fieldset normelem">
             <p><input class="uk-input uk-form-small" type="text" name="username" placeholder="Username"></p>
-			<p><input class="uk-input uk-form-small" type="password" name="password" placeholder="Password">
-				<span id="eyeSlash" style="display: none; cursor: pointer;" onclick="hide()" class="fas fa-eye-slash"></span>
-				<span id="eye" style="display: block; cursor: pointer;" onclick="show()" class="fas fa-eye"></span>
-			</p>
+            <p><input class="uk-input uk-form-small" type="password" name="password" placeholder="Password"></p>
         </fieldset>
         <input type="submit" value="LOGIN" class="uk-button uk-background-secondary uk-button-small headelem forggrin"/>
     </form>
@@ -32,20 +29,6 @@
     </a>
 </div>
 <br/>
-<script>
-  
-	function hide() {
-	  document.getElementById("pwd").type = "password"
-	  document.getElementById("eyeSlash").style.display = "none"
-	  document.getElementById("eye").style.display = "block"
-	}
-  
-	function show() {
-	  document.getElementById("pwd").type = "text"
-	  document.getElementById("eyeSlash").style.display = "block"
-	  document.getElementById("eye").style.display = "none"
-	}
-  </script>
 {% endblock %}
 {% block logdinas %}<p class="uk-margin-remove italelem">Code - ENTRYDIR</p>{% endblock %}
 {% block versdata %}
