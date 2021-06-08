@@ -142,7 +142,9 @@
 							{{ indx.username }}
 						</a>
 						<br/>
-						<small>{{ indx.fullname }}</small>
+						<a href="{{ url_for('makemail',receiver=indx.username) }}" >
+							<small>{{ indx.fullname }}</small>
+						</a>
 					</div>
 					<br/>
 					{% endfor %}

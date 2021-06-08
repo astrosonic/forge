@@ -101,7 +101,11 @@
         <form id="makemail" method="POST">
           <div class="card-body">
             <div class="form-group">
-              <input class="form-control" name="receiver" placeholder="Add the username of the receiver" />
+              {% if receiver!="" %}
+                <input class="form-control" name="receiver" value='{{ receiver }}' placeholder="Add the username of the receiver" readonly/>
+              {% else %}
+                <input class="form-control" name="receiver" placeholder="Add the username of the receiver" />
+              {% endif %}
             </div>
             <div class="form-group">
               <input class="form-control" name="subjtext" placeholder="Add the subject of your directive" />
